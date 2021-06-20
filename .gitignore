@@ -106,3 +106,10 @@ shellAppWorkspaces
 *.mobileprovision
 *.orig.*
 web-build/
+*.js
+!jest.config.js
+*.d.ts
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
