@@ -7,7 +7,7 @@ __generated__
 
 # Node
 node_modules
-npm-debug.log
+npm-debug.*
 yarn-error.log
 
 # Emacs
@@ -97,3 +97,12 @@ shellAppWorkspaces
 .env.development.local
 .env.test.local
 .env.production.local
+
+# General
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
