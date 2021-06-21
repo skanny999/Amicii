@@ -1,5 +1,7 @@
 import * as cdk from '@aws-cdk/core';
 import * as appsync from '@aws-cdk/aws-appsync'
+import * as ec2 from '@aws-cdk/aws-ec2'
+
 
 export class AmiciiBackendCdkStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
@@ -14,5 +16,7 @@ export class AmiciiBackendCdkStack extends cdk.Stack {
         }
       }
     })
+
+    const vpc = new ec2.Vpc(this, 'AmiciiVPC')
   }
 }
