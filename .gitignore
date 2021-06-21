@@ -109,6 +109,8 @@ web-build/
 *.js
 !jest.config.js
 *.d.ts
+aws.xml
+Notes.txt
 
 # CDK asset staging directory
 .cdk.staging
