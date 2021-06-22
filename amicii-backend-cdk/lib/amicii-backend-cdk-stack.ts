@@ -3,6 +3,7 @@ import * as appsync from '@aws-cdk/aws-appsync'
 import * as ec2 from '@aws-cdk/aws-ec2'
 import * as rds from '@aws-cdk/aws-rds'
 import * as lambda from '@aws-cdk/aws-lambda'
+import * as cognito from '@aws-cdk/aws-cognito'
 import {Duration} from "@aws-cdk/aws-appsync/node_modules/@aws-cdk/core/lib/duration";
 
 
@@ -10,12 +11,21 @@ export class AmiciiBackendCdkStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
+    const userPool = new cognito.UserPool(this, 'AmiciiUserPool', {
+      selfSignUpEnabled: true,
+      autoVerify: { email: true },
+      signInAliases: { email: true }
+    })
+
     const api = new appsync.GraphqlApi(this, 'AmiciiApi', {
       name: 'cdk-amicii-appsync-api',
       schema: appsync.Schema.fromAsset('graphql/schema.graphql'),
       authorizationConfig: {
         defaultAuthorization: {
-          authorizationType: appsync.AuthorizationType.USER_POOL
+          authorizationType: appsync.AuthorizationType.USER_POOL,
+          userPoolConfig: {
+            userPool: userPool
+          }
         }
       }
     })
@@ -66,7 +76,5 @@ export class AmiciiBackendCdkStack extends cdk.Stack {
       typeName: 'Mutation',
       fieldName: 'updateUser'
     })
-
-
   }
 }
