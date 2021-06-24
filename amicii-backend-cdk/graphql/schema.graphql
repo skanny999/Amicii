@@ -1,6 +1,6 @@
 directive @aws_subscribe(mutations: [String!]!) on FIELD_DEFINITION
-directive @aws_api_key on OBJECT
-directive @aws_cognito_user_pools on OBJECT
+directive @aws_api_key on OBJECT | FIELD_DEFINITION
+directive @aws_cognito_user_pools(cognito_groups: [String]) on OBJECT | FIELD_DEFINITION
 
 
 type User @aws_api_key @aws_cognito_user_pools {
@@ -29,12 +29,16 @@ input UpdateUserInput {
 
 type Query {
     getCandidates(userId: String): [User]
+    @aws_api_key @aws_cognito_user_pools
     getMatches(userId: String): [User]
+    @aws_api_key @aws_cognito_user_pools
 }
 
 type Mutation {
     createUser(user: CreateUserInput): User
+    @aws_cognito_user_pools(cognito_groups: ["Admin"])
     updateUser(user: UpdateUserInput): User
+    @aws_cognito_user_pools(cognito_groups: ["Admin"])
 }
 
 type Subscription {
