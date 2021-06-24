@@ -4,7 +4,8 @@ import * as ec2 from '@aws-cdk/aws-ec2'
 import * as rds from '@aws-cdk/aws-rds'
 import * as lambda from '@aws-cdk/aws-lambda'
 import * as cognito from '@aws-cdk/aws-cognito'
-import {Duration} from "@aws-cdk/aws-appsync/node_modules/@aws-cdk/core/lib/duration";
+import { Duration } from "@aws-cdk/aws-appsync/node_modules/@aws-cdk/core/lib/duration";
+import { Expiration } from "@aws-cdk/aws-appsync/node_modules/@aws-cdk/core/lib/expiration";
 
 
 export class AmiciiBackendCdkStack extends cdk.Stack {
@@ -13,8 +14,21 @@ export class AmiciiBackendCdkStack extends cdk.Stack {
 
     const userPool = new cognito.UserPool(this, 'AmiciiUserPool', {
       selfSignUpEnabled: true,
+      accountRecovery: cognito.AccountRecovery.PHONE_AND_EMAIL,
+      userVerification: {
+        emailStyle: cognito.VerificationEmailStyle.CODE
+      },
       autoVerify: { email: true },
-      signInAliases: { email: true }
+      standardAttributes: {
+        email: {
+          required: true,
+          mutable: true
+        }
+      }
+    })
+
+    const userPoolClient = new cognito.UserPoolClient(this, "UserPoolClient", {
+      userPool
     })
 
     const api = new appsync.GraphqlApi(this, 'AmiciiApi', {
@@ -22,11 +36,17 @@ export class AmiciiBackendCdkStack extends cdk.Stack {
       schema: appsync.Schema.fromAsset('graphql/schema.graphql'),
       authorizationConfig: {
         defaultAuthorization: {
+          authorizationType: appsync.AuthorizationType.API_KEY,
+          apiKeyConfig: {
+            expires: Expiration.after(Duration.days(365))
+          }
+        },
+        additionalAuthorizationModes: [{
           authorizationType: appsync.AuthorizationType.USER_POOL,
           userPoolConfig: {
-            userPool: userPool
+            userPool
           }
-        }
+        }]
       }
     })
 
@@ -34,7 +54,6 @@ export class AmiciiBackendCdkStack extends cdk.Stack {
 
     const cluster = new rds.ServerlessCluster(this, 'AuroraAmiciiCluster', {
       engine: rds.DatabaseClusterEngine.AURORA_MYSQL,
-      parameterGroup: rds.ParameterGroup.fromParameterGroupName(this, 'ParameterGroup', 'default.aurora-mysql'),
       defaultDatabaseName: 'AmiciiDB',
       vpc: vpc,
       scaling: { autoPause: Duration.seconds(0) }
