@@ -1,6 +1,9 @@
 directive @aws_subscribe(mutations: [String!]!) on FIELD_DEFINITION
+directive @aws_api_key on OBJECT
+directive @aws_cognito_user_pools on OBJECT
 
-type User {
+
+type User @aws_api_key @aws_cognito_user_pools {
     id: String!
     username: String!
     age: Int!
