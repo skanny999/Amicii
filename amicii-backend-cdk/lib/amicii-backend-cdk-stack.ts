@@ -4,6 +4,7 @@ import * as ec2 from '@aws-cdk/aws-ec2'
 import * as rds from '@aws-cdk/aws-rds'
 import * as lambda from '@aws-cdk/aws-lambda'
 import * as cognito from '@aws-cdk/aws-cognito'
+import * as cr from '@aws-cdk/custom-resources'
 import { Duration } from "@aws-cdk/aws-appsync/node_modules/@aws-cdk/core/lib/duration";
 import { Expiration } from "@aws-cdk/aws-appsync/node_modules/@aws-cdk/core/lib/expiration";
 
@@ -27,7 +28,7 @@ export class AmiciiBackendCdkStack extends cdk.Stack {
       }
     })
 
-    const userPoolClient = new cognito.UserPoolClient(this, "UserPoolClient", {
+    new cognito.UserPoolClient(this, "UserPoolClient", {
       userPool
     })
 
@@ -59,7 +60,30 @@ export class AmiciiBackendCdkStack extends cdk.Stack {
       scaling: { autoPause: Duration.seconds(0) }
     })
 
-    const userFn = new lambda.Function(this, 'MyFunction', {
+    const dbSetupFn = new lambda.Function(this, 'DbSetupFunction', {
+      runtime: lambda.Runtime.NODEJS_12_X,
+      code: new lambda.AssetCode('lambda-fns'),
+      handler: 'dbFunction.handler',
+      memorySize: 1024,
+      environment: {
+        CLUSTER_ARN: cluster.clusterArn,
+        SECRET_ARN: cluster.secret?.secretArn || '',
+        DB_NAME: 'AmiciiDB',
+        AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1'
+      }
+    })
+
+    cluster.grantDataApiAccess(dbSetupFn)
+
+    const dbSetupCustomResourceProvider = new cr.Provider(this, 'dbSetupCustomResourceProvider', {
+      onEventHandler: dbSetupFn
+    })
+
+    new cdk.CustomResource(this, 'setupCustomResource', {
+      serviceToken: dbSetupCustomResourceProvider.serviceToken
+    })
+
+    const userFn = new lambda.Function(this, 'UserFunction', {
       runtime: lambda.Runtime.NODEJS_12_X,
       code: new lambda.AssetCode('lambda-fns'),
       handler: 'index.handler',
