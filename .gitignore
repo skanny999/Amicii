@@ -115,3 +115,5 @@ Notes.txt
 # CDK asset staging directory
 .cdk.staging
 cdk.out
+package-lock.json
+yarn.lock
