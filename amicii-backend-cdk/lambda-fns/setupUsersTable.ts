@@ -1,7 +1,6 @@
 import db from './db'
 
-async function setupDbTable() {
-
+async function setupUsersTable() {
     try {
         const query = 'CREATE TABLE users (\n' +
             '    id integer,\n' +
@@ -18,4 +17,4 @@ async function setupDbTable() {
     }
 }
 
-export default setupDbTable;
+export default setupUsersTable;

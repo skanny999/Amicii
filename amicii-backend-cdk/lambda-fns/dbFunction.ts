@@ -1,5 +1,11 @@
-import setupDbTable from "./setupDbTable";
+import setupUsersTable from "./setupUsersTable";
+import setupLikesTable from "./setupLikesTable";
+import setupDislikesTable from "./setupDislikesTable";
 
 exports.handler = async () => {
-    return await setupDbTable()
+    return await Promise.all([
+        setupUsersTable(),
+        setupLikesTable(),
+        setupDislikesTable()
+    ])
 }
