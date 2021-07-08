@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet, Text, View } from 'react-native';
+import Home from './screens/Home'
 
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
@@ -26,6 +27,19 @@ export default function App() {
                   style: styles.tabBar
                 }}
               >
+                <Tab.Screen
+                    name="Explore"
+                    component={Home}
+                    // options={{
+                    //   tabBarIcon: ({ focused }) => (
+                    //       // <TabBarIcon
+                    //       //     focused={focused}
+                    //       //     iconName="search"
+                    //       //     text="Explore"
+                    //       // />
+                    //   ),
+                    // }}
+                />
 
 
               </Tab.Navigator>
