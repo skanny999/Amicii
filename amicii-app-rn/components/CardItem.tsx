@@ -1,5 +1,5 @@
 import React from "react";
-import {Text, TouchableOpacity, StyleSheet, Dimensions, View} from 'react-native'
+import {Text, TouchableOpacity, StyleSheet, View} from 'react-native'
 import Icon from './Icon'
 import {CardItemType} from "../types";
 import {BLACK, DARK_GRAY, DISLIKE, GRAY, LIKE, DUNNO, WHITE} from "../assets/styles/colors";
@@ -47,10 +47,11 @@ const CardItem = ({
 
 export default CardItem
 
+const cardHeigth = WINDOW_HEIGHT * 0.75
+
 const styles = StyleSheet.create({
     container: {
         width: WINDOW_WIDTH - 40,
-        height: WINDOW_HEIGHT * 0.6,
         backgroundColor: WHITE,
         borderRadius: 8,
         alignItems: "center",
@@ -62,16 +63,19 @@ const styles = StyleSheet.create({
         shadowOffset: { height: 0, width: 0 },
     },
     emoji: {
-        fontSize: 100,
+        paddingTop: 30,
+        fontSize: 120,
         textAlign: 'center'
     },
     bio: {
         color: GRAY,
-        textAlign: 'center'
+        textAlign: 'center',
+        height: cardHeigth / 4
     },
     action: {
         flexDirection: 'row',
-        alignItems: 'center',
+        justifyContent: 'flex-end',
+        alignItems: 'baseline',
         paddingVertical: 30
     },
     button: {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, View, Dimensions, ImageBackground } from 'react-native';
+import { StyleSheet, View, ImageBackground } from 'react-native';
 import CardStack, { Card } from 'react-native-card-stack-swiper'
 import Filters from "../components/Filters";
 import Location from "../components/Location";

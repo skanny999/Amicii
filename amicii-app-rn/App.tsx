@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet} from 'react-native';
 import Home from './screens/Home'
+import Matches from './screens/Matches' 
 import {BLACK, DARK_GRAY, PRIMARY, WHITE} from "./assets/styles/colors";
 
 const Stack = createStackNavigator()
@@ -30,7 +31,7 @@ export default function App() {
               >
                 <Tab.Screen
                     name="Explore"
-                    component={Home}
+                    component={Matches}
                 />
 
 
