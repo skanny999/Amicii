@@ -6,21 +6,21 @@ const mockUsers: UserType[] = [
         name: 'Ric',
         bio: 'Sono bello',
         age: 21,
-        profileEmojii: '😀'
+        emoji: '😀'
     },
     {
         id: 2,
         name: 'Lara',
         bio: 'Sono bella',
         age: 23,
-        profileEmojii: '😉'
+        emoji: '😉'
     },
     {
         id: 3,
         name: 'Martin',
         bio: 'La barca va',
         age: 22,
-        profileEmojii: '😗'
+        emoji: '😗'
     }
 ]
 

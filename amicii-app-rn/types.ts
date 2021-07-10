@@ -18,5 +18,4 @@ export type CardItemType = {
     emoji: string,
     bio: string,
     hasAction?: boolean,
-    hasVariant?: boolean,
 }

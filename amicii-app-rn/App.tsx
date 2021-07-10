@@ -2,8 +2,9 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet} from 'react-native';
 import Home from './screens/Home'
+import {BLACK, DARK_GRAY, PRIMARY, WHITE} from "./assets/styles/colors";
 
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
@@ -20,8 +21,8 @@ export default function App() {
           {() => (
               <Tab.Navigator
                 tabBarOptions={{
-                  activeTintColor: "red",
-                  inactiveTintColor: "dark_gray",
+                  activeTintColor: PRIMARY,
+                  inactiveTintColor: DARK_GRAY,
                   showLabel: false,
                   labelStyle: { fontSize: 14, textTransform: 'uppercase', paddingTop: 10 },
                   style: styles.tabBar
@@ -30,15 +31,6 @@ export default function App() {
                 <Tab.Screen
                     name="Explore"
                     component={Home}
-                    // options={{
-                    //   tabBarIcon: ({ focused }) => (
-                    //       // <TabBarIcon
-                    //       //     focused={focused}
-                    //       //     iconName="search"
-                    //       //     text="Explore"
-                    //       // />
-                    //   ),
-                    // }}
                 />
 
 
@@ -58,10 +50,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   tabBar: {
-    backgroundColor: 'WHITE',
+    backgroundColor: WHITE,
     marginBottom: 0,
     borderTopWidth: 0,
-    shadowColor: 'black',
+    shadowColor: BLACK,
     shadowOpacity: 0.05,
     shadowRadius: 10,
     shadowOffset: { height: 0, width: 0 }
