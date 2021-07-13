@@ -34,6 +34,7 @@ const Home = () => {
                             emoji={user.emoji} 
                             bio={user.bio}
                             hasAction={true}
+                            isLarge={true}
                             />
                         </Card>
                     ))}

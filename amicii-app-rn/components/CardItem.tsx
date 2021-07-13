@@ -9,8 +9,17 @@ const CardItem = ({
     name,
     emoji,
     bio,
-    hasAction
+    hasAction,
+    isLarge
 }: CardItemType) => {
+
+    const profileImageStyle = [
+        {
+            width: isLarge ? WINDOW_WIDTH - 80 : WINDOW_WIDTH / 2 - 30,
+            height: 170,
+            margin: isLarge ? 20 : 0
+        }
+    ]
 
     const nameStyle = [
         {
@@ -23,7 +32,9 @@ const CardItem = ({
 
     return (
         <View style={styles.container}>
-            <Text style={styles.emoji}>{emoji}</Text>
+            <View style={profileImageStyle}>
+                <Text style={styles.emoji}>{emoji}</Text>
+            </View>
             <Text style={nameStyle}>{name}</Text>
             {bio && (
              <Text style={styles.bio}>{bio}</Text>
@@ -51,7 +62,6 @@ const cardHeigth = WINDOW_HEIGHT * 0.75
 
 const styles = StyleSheet.create({
     container: {
-        width: WINDOW_WIDTH - 40,
         backgroundColor: WHITE,
         borderRadius: 8,
         alignItems: "center",
@@ -61,6 +71,9 @@ const styles = StyleSheet.create({
         shadowRadius: 10,
         shadowColor: BLACK,
         shadowOffset: { height: 0, width: 0 },
+    },
+    profileImage: {
+        
     },
     emoji: {
         paddingTop: 30,

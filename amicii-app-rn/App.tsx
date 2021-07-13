@@ -6,6 +6,7 @@ import { StyleSheet} from 'react-native';
 import Home from './screens/Home'
 import Matches from './screens/Matches' 
 import {BLACK, DARK_GRAY, PRIMARY, WHITE} from "./assets/styles/colors";
+import TabBarIcon from './components/TabBarIcon';
 
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
@@ -31,10 +32,30 @@ export default function App() {
               >
                 <Tab.Screen
                     name="Explore"
-                    component={Matches}
+                    component={Home}
+                    options={{
+                      tabBarIcon: ({ focused }) => (
+                        <TabBarIcon
+                          focused={focused}
+                          iconName="search"
+                          text="Explore"
+                        />
+                      ),
+                    }}
                 />
-
-
+                <Tab.Screen
+                  name="Matches"
+                  component={Matches}
+                  options={{
+                    tabBarIcon: ({ focused }) => (
+                      <TabBarIcon
+                        focused={focused}
+                        iconName="heart"
+                        text="Matches"
+                      />
+                    ),
+                  }}
+                />
               </Tab.Navigator>
           )}
         </Stack.Screen>

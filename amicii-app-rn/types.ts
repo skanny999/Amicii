@@ -18,4 +18,11 @@ export type CardItemType = {
     emoji: string,
     bio: string,
     hasAction?: boolean,
+    isLarge: boolean
+}
+
+export type TabBarIconType = {
+    focused: boolean,
+    iconName: string,
+    text: string
 }
