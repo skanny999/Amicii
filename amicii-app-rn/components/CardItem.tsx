@@ -21,19 +21,31 @@ const CardItem = ({
         }
     ]
 
+    const emojiStyle = [
+        {
+            paddingTop: isLarge ? 30 : 20,
+            textAlign: 'center',
+            fontSize: isLarge ? 120 : 60
+        }
+    ]
+
     const nameStyle = [
         {
-            paddingTop: 15,
-            paddingBottom: 7,
+            paddingTop: isLarge ? 15 : 10,
+            paddingBottom: isLarge ? 7 : 5,
             color: '#363637',
-            fontSize: 30
+            fontSize: isLarge ? 30 : 15
         }
     ]
 
     return (
         <View style={styles.container}>
             <View style={profileImageStyle}>
-                <Text style={styles.emoji}>{emoji}</Text>
+                <Text style={{
+                    paddingTop: isLarge ? 30 : 20,
+                    textAlign: 'center',
+                    fontSize: isLarge ? 120 : 60
+                }}>{emoji}</Text>
             </View>
             <Text style={nameStyle}>{name}</Text>
             {bio && (
