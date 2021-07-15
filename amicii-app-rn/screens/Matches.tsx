@@ -30,7 +30,7 @@ const Matches = () => (
                 emoji={item.emoji}
                 name={item.name}
                 bio={item.bio}
-                />
+                isLarge={false}                />
             </TouchableOpacity>
         )}
         />

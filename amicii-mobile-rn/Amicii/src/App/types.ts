@@ -1,0 +1,1 @@
+export type Node = JSX.Element | null;
