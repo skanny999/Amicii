@@ -1,115 +1,98 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { SafeAreaView, StyleSheet, Text} from 'react-native';
+import Home from './src/screens/Home'
+import Matches from './src/screens/Matches' 
+import {BLACK, DARK_GRAY, PRIMARY, WHITE} from "./src/assets/styles/colors";
+import TabBarIcon from './src/components/TabBarIcon';
 
- import React from 'react';
- import {
-   SafeAreaView,
-   ScrollView,
-   StatusBar,
-   StyleSheet,
-   Text,
-   useColorScheme,
-   View,
- } from 'react-native';
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
- import {
-   Colors,
-   DebugInstructions,
-   Header,
-   LearnMoreLinks,
-   ReloadInstructions,
- } from 'react-native/Libraries/NewAppScreen';
+const App = () => (
+  <SafeAreaView>
+    <Home/>
+  </SafeAreaView>
+  // <NavigationContainer>
+  //   <Stack.Navigator>
+  //     <Stack.Screen
+  //       name="Tab"
+  //       options={{ headerShown: false, animationEnabled: false }}
+  //     >
+  //       {() => (
+  //         <Tab.Navigator
+  //           tabBarOptions={{
+  //             showLabel: false,
+  //             activeTintColor: PRIMARY,
+  //             inactiveTintColor: DARK_GRAY,
+  //             labelStyle: {
+  //               fontSize: 14,
+  //               textTransform: "uppercase",
+  //               paddingTop: 10,
+  //             },
+  //             style: {
+  //               backgroundColor: WHITE,
+  //               borderTopWidth: 0,
+  //               marginBottom: 0,
+  //               shadowOpacity: 0.05,
+  //               shadowRadius: 10,
+  //               shadowColor: BLACK,
+  //               shadowOffset: { height: 0, width: 0 },
+  //             },
+  //           }}
+  //         >
+  //           <Tab.Screen
+  //             name="Explore"
+  //             component={Home}
+  //             options={{
+  //               tabBarIcon: ({ focused }) => (
+  //                 <TabBarIcon
+  //                   focused={focused}
+  //                   iconName="search"
+  //                   text="Explore"
+  //                 />
+  //               ),
+  //             }}
+  //           />
 
- const Section: React.FC<{
-   title: string;
- }> = ({children, title}) => {
-   const isDarkMode = useColorScheme() === 'dark';
-   return (
-     <View style={styles.sectionContainer}>
-       <Text
-         style={[
-           styles.sectionTitle,
-           {
-             color: isDarkMode ? Colors.white : Colors.black,
-           },
-         ]}>
-         {title}
-       </Text>
-       <Text
-         style={[
-           styles.sectionDescription,
-           {
-             color: isDarkMode ? Colors.light : Colors.dark,
-           },
-         ]}>
-         {children}
-       </Text>
-     </View>
-   );
- };
+  //           <Tab.Screen
+  //             name="Matches"
+  //             component={Matches}
+  //             options={{
+  //               tabBarIcon: ({ focused }) => (
+  //                 <TabBarIcon
+  //                   focused={focused}
+  //                   iconName="heart"
+  //                   text="Matches"
+  //                 />
+  //               ),
+  //             }}
+  //           />
+  //         </Tab.Navigator>
+  //       )}
+  //     </Stack.Screen>
+  //   </Stack.Navigator>
+  // </NavigationContainer>
+);
 
- const App = () => {
-   const isDarkMode = useColorScheme() === 'dark';
+export default App;
 
-   const backgroundStyle = {
-     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-   };
-
-   return (
-     <SafeAreaView style={backgroundStyle}>
-       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-       <ScrollView
-         contentInsetAdjustmentBehavior="automatic"
-         style={backgroundStyle}>
-         <Header />
-         <View
-           style={{
-             backgroundColor: isDarkMode ? Colors.black : Colors.white,
-           }}>
-           <Section title="VFTM">
-             Edit <Text style={styles.highlight}>App.js</Text> to change this
-             screen and then come back to see your edits.
-           </Section>
-           <Section title="See Your Changes">
-             <ReloadInstructions />
-           </Section>
-           <Section title="Debug">
-             <DebugInstructions />
-           </Section>
-           <Section title="Learn More">
-             Read the docs to discover what to do next:
-           </Section>
-           <LearnMoreLinks />
-         </View>
-       </ScrollView>
-     </SafeAreaView>
-   );
- };
-
- const styles = StyleSheet.create({
-   sectionContainer: {
-     marginTop: 32,
-     paddingHorizontal: 24,
-   },
-   sectionTitle: {
-     fontSize: 24,
-     fontWeight: '600',
-   },
-   sectionDescription: {
-     marginTop: 8,
-     fontSize: 18,
-     fontWeight: '400',
-   },
-   highlight: {
-     fontWeight: '700',
-   },
- });
-
- export default App;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  tabBar: {
+    backgroundColor: WHITE,
+    marginBottom: 0,
+    borderTopWidth: 0,
+    shadowColor: BLACK,
+    shadowOpacity: 0.05,
+    shadowRadius: 10,
+    shadowOffset: { height: 0, width: 0 }
+  }
+});

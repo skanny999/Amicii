@@ -1,9 +1,9 @@
 import React from "react";
 import {Text, TouchableOpacity, StyleSheet, View} from 'react-native'
 import Icon from './Icon'
-import {CardItemType} from "../types";
-import {BLACK, DARK_GRAY, DISLIKE, GRAY, LIKE, DUNNO, WHITE} from "../assets/styles/colors";
-import { WINDOW_HEIGHT, WINDOW_WIDTH } from "../assets/styles/sizes";
+import {CardItemType} from '../types'
+import {BLACK, DARK_GRAY, DISLIKE, GRAY, LIKE, DUNNO, WHITE} from '../assets/styles/colors'
+import { WINDOW_HEIGHT, WINDOW_WIDTH } from '../assets/styles/sizes'
 
 const CardItem = ({
     name,
