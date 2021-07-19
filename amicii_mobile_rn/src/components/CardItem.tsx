@@ -100,7 +100,6 @@ const styles = StyleSheet.create({
     action: {
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        // alignItems: 'baseline',
         paddingVertical: 30
     },
     button: {
