@@ -1,15 +1,14 @@
 import React from "react"
 import { ImageBackground, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
-import { WHITE } from "../assets/styles/colors"
-import { WINDOW_HEIGHT, WINDOW_WIDTH } from "../assets/styles/sizes"
+import styles,{ WHITE } from "../assets/styles"
 import Icon from "../components/Icon"
 
 const Profile = () => {
     return (
-        <ImageBackground source={require('../assets/images/background.png')} style={styles.background}>
+        <ImageBackground source={require('../assets/images/background.png')} style={styles.profileBackground}>
             <ScrollView style={{ marginHorizontal: 0 }}>
                 <ImageBackground source={require('../assets/images/background.png')}>
-                    <View style={styles.top}>
+                    <View style={styles.profileTop}>
                         <TouchableOpacity>
                             <Icon
                                 name='chevron-back'
@@ -32,19 +31,3 @@ const Profile = () => {
 }
 
 export default Profile
-
-const styles = StyleSheet.create({
-    background: {
-        flex: 1,
-        resizeMode: "cover",
-        width: WINDOW_WIDTH,
-        height: WINDOW_HEIGHT,
-    },
-    top: {
-        paddingTop: 50,
-        marginHorizontal: 10,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-      }
-})

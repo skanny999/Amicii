@@ -2,11 +2,12 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { SafeAreaView, StyleSheet, Text} from 'react-native';
+import { PRIMARY, DARK_GRAY, WHITE, BLACK } from "./src/assets/styles";
 import Home from './src/screens/Home'
 import Matches from './src/screens/Matches' 
-import {BLACK, DARK_GRAY, PRIMARY, WHITE} from "./src/assets/styles/colors";
 import TabBarIcon from './src/components/TabBarIcon';
+import Profile from "./src/screens/Profile";
+
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -68,6 +69,20 @@ const App = () => (
                 ),
               }}
             />
+
+            <Tab.Screen
+              name='Profile'
+              component={Profile}
+              options={{
+                tabBarIcon: ({ focused }) => (
+                  <TabBarIcon
+                    focused={focused}
+                    iconName="person"
+                    text='Profile'
+                  />
+                )
+              }}
+            />
           </Tab.Navigator>
         )}
       </Stack.Screen>
@@ -76,21 +91,3 @@ const App = () => (
 );
 
 export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  tabBar: {
-    backgroundColor: WHITE,
-    marginBottom: 0,
-    borderTopWidth: 0,
-    shadowColor: BLACK,
-    shadowOpacity: 0.05,
-    shadowRadius: 10,
-    shadowOffset: { height: 0, width: 0 }
-  }
-});

@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { StyleSheet, View, ImageBackground } from 'react-native';
+import { View, ImageBackground } from 'react-native';
 import CardStack, { Card } from 'react-native-card-stack-swiper'
+import styles from '../assets/styles'
 import Filters from "../components/Filters";
 import Location from "../components/Location";
 import MockUsers from '../assets/data/mockUsers'
 import CardItem from "../components/CardItem";
-import { WINDOW_HEIGHT, WINDOW_WIDTH } from '../assets/styles/sizes';
 
 
 const Home = () => {
@@ -14,10 +14,10 @@ const Home = () => {
     return (
         <ImageBackground
             source={require('../assets/images/background.png')}
-            style={styles.background}
+            style={styles.homeBackground}
         >
-            <View style={styles.container}>
-                <View style={styles.top}>
+            <View style={styles.homeContainer}>
+                <View style={styles.homeTop}>
                     <Location/>
                     <Filters/>
                 </View>
@@ -45,23 +45,3 @@ const Home = () => {
 }
 
 export default Home
-
-const styles = StyleSheet.create({
-    container: {
-        marginHorizontal: 10
-    },
-    background: {
-        flex: 1,
-        resizeMode: 'cover',
-        width: WINDOW_WIDTH,
-        height: WINDOW_HEIGHT
-    },
-    top: {
-        paddingTop: 50,
-        marginHorizontal: 10,
-        flexDirection: "row",
-        justifyContent: 'space-between',
-        alignItems: 'center'
-    }
-})
-
