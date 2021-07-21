@@ -81,8 +81,8 @@ export default StyleSheet.create({
         shadowOffset: { height: 10, width: 0 } 
     },
 
-    //FILTERS
-    filtersGeneral: {
+    //BUTTONS
+    buttonGeneral: {
         backgroundColor: WHITE,
         padding: 10,
         borderRadius: 20,
@@ -93,25 +93,7 @@ export default StyleSheet.create({
         shadowColor: BLACK,
         shadowOffset: {height: 0, width: 0}
     },
-    filtersText: {
-        color: DARK_GRAY,
-        fontSize: 13,
-        textAlign: 'center'
-    },
-    
-    //LOCATION
-    locationGeneral: {
-        backgroundColor: WHITE,
-        borderRadius: 20,
-        width: 100,
-        elevation: 1,
-        padding: 10,
-        shadowOpacity: 0.05,
-        shadowRadius: 10,
-        shadowColor: BLACK,
-        shadowOffset: {height: 0, width: 0}
-    },
-    locationText: {
+    buttonText: {
         color: DARK_GRAY,
         fontSize: 13,
         textAlign: 'center'
@@ -180,8 +162,7 @@ export default StyleSheet.create({
     profileTop: {
         paddingTop: 50,
         marginHorizontal: 10,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
+        justifyContent: 'space-between',
+        alignItems: 'flex-end'
     },
 })

@@ -4,8 +4,8 @@ import Icon from './Icon'
 import styles, { DARK_GRAY } from '../assets/styles'
 
 const Location = () => (
-    <TouchableOpacity style={styles.locationGeneral}>
-        <Text style={styles.locationText}>
+    <TouchableOpacity style={styles.buttonGeneral}>
+        <Text style={styles.buttonText}>
             <Icon name="location" size={13} color={DARK_GRAY} /> London
         </Text>
     </TouchableOpacity>

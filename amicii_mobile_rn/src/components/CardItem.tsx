@@ -16,7 +16,8 @@ const CardItem = ({
         {
             width: isLarge ? WINDOW_WIDTH - 80 : WINDOW_WIDTH / 2 - 30,
             height: 170,
-            margin: isLarge ? 20 : 0
+            margin: isLarge ? 20 : 0, 
+            borderRadius: 8
         }
     ]
 
@@ -27,7 +28,6 @@ const CardItem = ({
             fontSize: isLarge ? 120 : 60
         }
     ]
-
     const nameStyle = [
         {
             paddingTop: isLarge ? 15 : 10,

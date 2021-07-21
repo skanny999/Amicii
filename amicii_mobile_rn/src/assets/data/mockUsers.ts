@@ -1,5 +1,13 @@
 import {UserType} from "../../types";
 
+export const user = {
+    id: 5,
+    name: 'Luca',
+    bio: 'Soiuons slokdj sosi jdofsi dfjsdifsodi sodjf osdif jsodi fjsdf sd jfsi dfj',
+    age: 22,
+    emoji: '🧖🏾‍♀️'
+}
+
 const mockUsers: UserType[] = [
     {
         id: 1,
