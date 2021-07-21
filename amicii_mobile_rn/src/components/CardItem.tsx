@@ -3,6 +3,7 @@ import {Text, TouchableOpacity, View} from 'react-native'
 import Icon from './Icon'
 import {CardItemType} from '../types'
 import styles, { DISLIKE, DUNNO, LIKE, WINDOW_WIDTH, }from '../assets/styles'
+import EmojiGrid from "./EmojiGrid";
 
 const CardItem = ({
     name,
@@ -47,6 +48,7 @@ const CardItem = ({
                 }}>{emoji}</Text>
             </View>
             <Text style={nameStyle}>{name}</Text>
+            <EmojiGrid/>
             {bio && (
              <Text style={styles.cardItemBio}>{bio}</Text>
             )}

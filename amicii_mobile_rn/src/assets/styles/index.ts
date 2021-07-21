@@ -81,6 +81,20 @@ export default StyleSheet.create({
         shadowOffset: { height: 10, width: 0 } 
     },
 
+    //GRIDLIST
+    emojiGrid: {
+        marginBottom: 32,
+        marginTop: 10,
+        alignItems: 'center'
+    },
+    emojiItem: {
+        margin: 5,
+        width: 25,
+        color: 'white',
+        alignItems: 'center',
+        fontSize:20
+    },
+
     //BUTTONS
     buttonGeneral: {
         backgroundColor: WHITE,
