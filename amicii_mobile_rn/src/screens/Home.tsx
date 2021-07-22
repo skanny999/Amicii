@@ -33,8 +33,10 @@ const Home = () => {
                             name={user.name} 
                             emoji={user.emoji} 
                             bio={user.bio}
+                            features={user.features}
                             hasAction={true}
                             isLarge={true}
+                            editable={false}
                             />
                         </Card>
                     ))}

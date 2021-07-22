@@ -10,15 +10,18 @@ export type UserType = {
     name: string,
     bio: string,
     age: number,
-    emoji: string
+    emoji: string,
+    features: string[]
 }
 
 export type CardItemType = {
     name: string,
     emoji: string,
     bio: string,
+    features: string[],
     hasAction?: boolean,
-    isLarge: boolean
+    isLarge: boolean,
+    editable: boolean 
 }
 
 export type TabBarIconType = {

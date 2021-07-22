@@ -29,7 +29,9 @@ const Matches = () => (
                 emoji={item.emoji}
                 name={item.name}
                 bio={item.bio}
-                isLarge={false}                
+                features={item.features}
+                isLarge={false}
+                editable={false}       
                 />
             </TouchableOpacity>
         )}

@@ -1,6 +1,6 @@
 import React from "react"
 import { ImageBackground,View } from 'react-native'
-import styles,{ WHITE } from "../assets/styles"
+import styles from "../assets/styles"
 import CardItem from "../components/CardItem"
 import {user} from "../assets/data/mockUsers"
 import Edit from "../components/Edit"
@@ -18,8 +18,10 @@ const Profile = () => {
                     name={me.name}
                     emoji={me.emoji}
                     bio={me.bio}
+                    features={me.features}
                     hasAction={false}
                     isLarge={true}
+                    editable={false}
                 />
             </View>
         </ImageBackground>

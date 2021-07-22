@@ -9,32 +9,35 @@ const CardItem = ({
     name,
     emoji,
     bio,
+    features,
     hasAction,
-    isLarge
+    isLarge,
+    editable
 }: CardItemType) => {
+
 
     const profileImageStyle = [
         {
             width: isLarge ? WINDOW_WIDTH - 80 : WINDOW_WIDTH / 2 - 30,
-            height: 170,
+            height: isLarge ? 180 : 90,
             margin: isLarge ? 20 : 0, 
             borderRadius: 8
         }
     ]
 
-    const emojiStyle = [
-        {
-            paddingTop: isLarge ? 30 : 20,
-            textAlign: 'center',
-            fontSize: isLarge ? 120 : 60
-        }
-    ]
     const nameStyle = [
         {
             paddingTop: isLarge ? 15 : 10,
             paddingBottom: isLarge ? 7 : 5,
             color: '#363637',
             fontSize: isLarge ? 30 : 15
+        }
+    ]
+
+    const featuresStyle = [
+        {
+            width: isLarge ? WINDOW_WIDTH - 80 : WINDOW_WIDTH / 2 - 30,
+            height: isLarge ? 180 : 90,
         }
     ]
 
@@ -48,7 +51,7 @@ const CardItem = ({
                 }}>{emoji}</Text>
             </View>
             <Text style={nameStyle}>{name}</Text>
-            <EmojiGrid/>
+            <EmojiGrid emojis={features} editable={false} isLarge={isLarge}/>
             {bio && (
              <Text style={styles.cardItemBio}>{bio}</Text>
             )}
