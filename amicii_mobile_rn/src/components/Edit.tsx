@@ -6,7 +6,7 @@ import Icon from './Icon'
 const Edit = () => (
     <TouchableOpacity style={styles.buttonGeneral}>
     <Text style={styles.buttonText}>
-        <Icon name='ellipsis-vertical' size={13} color={GRAY}/> Edit
+        <Icon name='ios-create-outline' size={13} color={GRAY}/> Edit
     </Text>
 </TouchableOpacity>
 )

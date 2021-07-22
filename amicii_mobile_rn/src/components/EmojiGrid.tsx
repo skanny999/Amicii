@@ -1,5 +1,5 @@
 import React from "react"
-import { FlatList, StyleSheet, Text } from "react-native"
+import { FlatList, StyleSheet, Text, TouchableOpacity } from "react-native"
 interface EmojiProps {
     emojis: string[],
     editable: boolean,
@@ -16,7 +16,12 @@ const EmojiGrid = (props: EmojiProps) => {
             data={props.emojis}
             keyExtractor={(item, index) => "E" + index.toString()}
             renderItem={({ item }) => {
-                return <Text style={emojiStyles(props.isLarge).item}>{item}</Text>
+                return  <TouchableOpacity 
+                            disabled={!props.editable} 
+                            onPressIn={() => console.log("pressed")}
+                            >       
+                            <Text style={emojiStyles(props.isLarge).item}>{item}</Text>
+                        </TouchableOpacity>
             }}
         />
     )

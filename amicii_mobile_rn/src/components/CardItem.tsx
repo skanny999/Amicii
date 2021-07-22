@@ -44,7 +44,7 @@ const CardItem = ({
                 }}>{emoji}</Text>
             </View>
             <Text style={nameStyle}>{name}</Text>
-            <EmojiGrid emojis={features} editable={false} isLarge={isLarge}/>
+            <EmojiGrid emojis={features} editable={editable} isLarge={isLarge}/>
             {bio && isLarge &&(
              <Text style={styles.cardItemBio}>{bio}</Text>
             )}

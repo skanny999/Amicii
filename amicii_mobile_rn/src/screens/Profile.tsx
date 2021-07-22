@@ -4,7 +4,6 @@ import styles from "../assets/styles"
 import CardItem from "../components/CardItem"
 import {user} from "../assets/data/mockUsers"
 import Edit from "../components/Edit"
-import { ScrollView } from "react-native-gesture-handler"
 import { WINDOW_HEIGHT } from '../assets/styles/index';
 
 const me = user
@@ -24,10 +23,9 @@ const Profile = () => {
                     features={me.features}
                     hasAction={false}
                     isLarge={true}
-                    editable={false}
+                    editable={true}
                 />
                 </View>
-
         </ImageBackground>
     )
 }
