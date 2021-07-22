@@ -19,8 +19,8 @@ const CardItem = ({
     const profileImageStyle = [
         {
             width: isLarge ? WINDOW_WIDTH - 80 : WINDOW_WIDTH / 2 - 30,
-            height: isLarge ? 180 : 90,
-            margin: isLarge ? 20 : 0, 
+            height: isLarge ? 150 : 100,
+            margin: 0, 
             borderRadius: 8
         }
     ]
@@ -28,16 +28,9 @@ const CardItem = ({
     const nameStyle = [
         {
             paddingTop: isLarge ? 15 : 10,
-            paddingBottom: isLarge ? 7 : 5,
+            paddingBottom: isLarge ? 15 : 10,
             color: '#363637',
             fontSize: isLarge ? 30 : 15
-        }
-    ]
-
-    const featuresStyle = [
-        {
-            width: isLarge ? WINDOW_WIDTH - 80 : WINDOW_WIDTH / 2 - 30,
-            height: isLarge ? 180 : 90,
         }
     ]
 
@@ -45,14 +38,14 @@ const CardItem = ({
         <View style={styles.cardItemContainer}>
             <View style={profileImageStyle}>
                 <Text style={{
-                    paddingTop: isLarge ? 30 : 20,
+                    paddingTop: 20,
                     textAlign: 'center',
-                    fontSize: isLarge ? 120 : 60
+                    fontSize: isLarge ? 100 : 60
                 }}>{emoji}</Text>
             </View>
             <Text style={nameStyle}>{name}</Text>
             <EmojiGrid emojis={features} editable={false} isLarge={isLarge}/>
-            {bio && (
+            {bio && isLarge &&(
              <Text style={styles.cardItemBio}>{bio}</Text>
             )}
             {hasAction && (
@@ -68,6 +61,7 @@ const CardItem = ({
                     </TouchableOpacity>
                 </View>
             )}
+            <View style={{padding:isLarge ? 20 : 10 }}/>
         </View>
     )
 }

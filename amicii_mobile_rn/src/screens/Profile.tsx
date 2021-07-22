@@ -4,6 +4,8 @@ import styles from "../assets/styles"
 import CardItem from "../components/CardItem"
 import {user} from "../assets/data/mockUsers"
 import Edit from "../components/Edit"
+import { ScrollView } from "react-native-gesture-handler"
+import { WINDOW_HEIGHT } from '../assets/styles/index';
 
 const me = user
 
@@ -11,9 +13,10 @@ const Profile = () => {
     return (
         <ImageBackground source={require('../assets/images/background.png')} style={styles.profileBackground}>
             <View style={styles.profileTop}>
+            <Edit/>
+            </View>
                 <View style={{marginHorizontal: 10}}>
-                    <Edit/>
-                </View>
+                <View style={{paddingBottom: WINDOW_HEIGHT / 20}}/>
                 <CardItem
                     name={me.name}
                     emoji={me.emoji}
@@ -23,7 +26,8 @@ const Profile = () => {
                     isLarge={true}
                     editable={false}
                 />
-            </View>
+                </View>
+
         </ImageBackground>
     )
 }

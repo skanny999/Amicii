@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native'
+import { StyleSheet, Dimensions, Platform } from 'react-native'
 
 //COLORS
 
@@ -21,6 +21,8 @@ export const DISLIKE = "#FF0000"
 export const WINDOW_WIDTH = Dimensions.get("window").width;
 export const WINDOW_HEIGHT = Dimensions.get("window").height;
 
+const isAndroid = Platform.OS === "android"
+
 export default StyleSheet.create({
 
     // COMPONENTS
@@ -38,14 +40,14 @@ export default StyleSheet.create({
         shadowOffset: { height: 0, width: 0 }
     }, 
     cardItemEmoji: {
-        paddingTop: 30,
+        paddingTop: 20,
         fontSize: 120,
         textAlign: 'center'
     },
     cardItemBio: {
         color: GRAY,
         textAlign: 'center',
-        height: WINDOW_WIDTH * 0.75 / 4
+        paddingHorizontal: 20
     },
     cardItemAction: {
         flexDirection: 'row',
@@ -134,7 +136,7 @@ export default StyleSheet.create({
         height: WINDOW_HEIGHT
     },
     homeTop: {
-        paddingTop: 50,
+        paddingTop: isAndroid ? 20 : 50,
         marginHorizontal: 10,
         flexDirection: "row",
         justifyContent: 'space-between',
@@ -174,8 +176,8 @@ export default StyleSheet.create({
         height: WINDOW_HEIGHT,
     },
     profileTop: {
-        paddingTop: 50,
-        marginHorizontal: 10,
+        paddingTop: isAndroid ? 20 : 50,
+        marginHorizontal: 20,
         justifyContent: 'space-between',
         alignItems: 'flex-end'
     },

@@ -1,9 +1,9 @@
-import {UserType} from "../../types";
+import { UserType } from "../../types";
 
 export const user: UserType = {
     id: 5,
     name: 'Luca',
-    bio: 'Soiuons slokdj sosi jdofsi dfjsdifsodi sodjf osdif jsodi fjsdf sd jfsi dfj',
+    bio: 'One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like.',
     age: 22,
     emoji: '🧖🏾‍♀️',
     features: ["🏩", "👀","👩🏼", "💆🏻‍♂️","👩🏻‍🦯", "🧶","🧚🏻‍♀️", "🧟","🙅🏻", "👄"]
@@ -13,7 +13,7 @@ const mockUsers: UserType[] = [
     {
         id: 1,
         name: 'Ric',
-        bio: 'Sono bello',
+        bio: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis.',
         age: 21,
         emoji: '😀',
         features: ["👩🏽‍🚀", "🙈","🐭", "😁","😺", "👘","🐲", "🫓","🎭", "🏢"]
@@ -21,7 +21,7 @@ const mockUsers: UserType[] = [
     {
         id: 2,
         name: 'Lara',
-        bio: 'Sono bella',
+        bio: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
         age: 23,
         emoji: '😉',
         features: ["⚓️", "🛕","📤", "✳️","🕟", "🫀","☎️", "💾","🖥", "📟"]
@@ -29,7 +29,7 @@ const mockUsers: UserType[] = [
     {
         id: 3,
         name: 'Martin',
-        bio: 'La barca va',
+        bio: 'Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica, sport etc. Ciao',
         age: 22,
         emoji: '😗',
         features: ["🪛", "🪙","🪤", "🎙","🧧", "🏷","🗜", "🎢","🌋", "🏘"]

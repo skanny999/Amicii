@@ -21,26 +21,26 @@ const Home = () => {
                     <Location/>
                     <Filters/>
                 </View>
-                <CardStack
-                    loop
-                    verticalSwipe={false}
-                    renderNoMoreCards={() => null}
-                    ref={(newSwiper): void => setSwiper(newSwiper)}
-                >
-                    {MockUsers.map((user) => (
-                        <Card key={user.id}>
-                            <CardItem 
-                            name={user.name} 
-                            emoji={user.emoji} 
-                            bio={user.bio}
-                            features={user.features}
-                            hasAction={true}
-                            isLarge={true}
-                            editable={false}
-                            />
-                        </Card>
-                    ))}
-                </CardStack>
+                    <CardStack
+                        loop
+                        verticalSwipe={false}
+                        renderNoMoreCards={() => null}
+                        ref={(newSwiper): void => setSwiper(newSwiper)}
+                    >
+                        {MockUsers.map((user) => (
+                            <Card key={user.id}>
+                                <CardItem 
+                                name={user.name} 
+                                emoji={user.emoji} 
+                                bio={user.bio}
+                                features={user.features}
+                                hasAction={true}
+                                isLarge={true}
+                                editable={false}
+                                />
+                            </Card>
+                        ))}
+                    </CardStack>
             </View>
         </ImageBackground>
     )

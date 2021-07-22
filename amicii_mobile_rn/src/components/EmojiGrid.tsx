@@ -1,6 +1,5 @@
 import React from "react"
 import { FlatList, StyleSheet, Text } from "react-native"
-import styles from "../assets/styles"
 interface EmojiProps {
     emojis: string[],
     editable: boolean,
@@ -12,6 +11,7 @@ const EmojiGrid = (props: EmojiProps) => {
     return(
         <FlatList
             contentContainerStyle={emojiStyles(props.isLarge).grid}
+            scrollEnabled={false}
             numColumns={5}
             data={props.emojis}
             keyExtractor={(item, index) => "E" + index.toString()}
@@ -26,8 +26,9 @@ export default EmojiGrid
 
 const emojiStyles = (isLarge: boolean) => StyleSheet.create({
     grid: {
-        marginBottom: isLarge ? 32 : 32,
-        marginTop: isLarge ? 10 : 8,
+        marginBottom: 20,
+        marginTop: 20,
+        paddingBottom: 30,
         alignItems: 'center'
     },
     item: {

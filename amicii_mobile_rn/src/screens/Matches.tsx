@@ -17,25 +17,25 @@ const Matches = () => (
                     <Icon name='ellipsis-vertical' color={DARK_GRAY} size={20}></Icon>
                 </TouchableOpacity>
             </View>
-        </View>
 
-        <FlatList
-        numColumns={2}
-        data={MockUsers}
-        keyExtractor={(user, index) => index.toString()}
-        renderItem={({item}) => (
-            <TouchableOpacity>
-                <CardItem
-                emoji={item.emoji}
-                name={item.name}
-                bio={item.bio}
-                features={item.features}
-                isLarge={false}
-                editable={false}       
-                />
-            </TouchableOpacity>
-        )}
-        />
+            <FlatList
+            numColumns={2}
+            data={MockUsers}
+            keyExtractor={(user, index) => index.toString()}
+            renderItem={({item}) => (
+                <TouchableOpacity>
+                    <CardItem
+                    emoji={item.emoji}
+                    name={item.name}
+                    bio={item.bio}
+                    features={item.features}
+                    isLarge={false}
+                    editable={false}       
+                    />
+                </TouchableOpacity>
+            )}
+            />
+        </View>
     </ImageBackground>
 )
 
