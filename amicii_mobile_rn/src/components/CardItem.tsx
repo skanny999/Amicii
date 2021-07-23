@@ -13,7 +13,7 @@ const CardItem = ({
     hasAction,
     isLarge,
     editable,
-    handleEditEmoji
+    handleEditEmoji: handleEditEmoji
 }: CardItemType) => {
 
 
@@ -37,13 +37,17 @@ const CardItem = ({
 
     return (
         <View style={styles.cardItemContainer}>
-            <View style={profileImageStyle}>
+            <TouchableOpacity 
+            style={profileImageStyle}
+            disabled={!editable}
+            onPress={() => handleEditEmoji(-1)}
+            >
                 <Text style={{
                     paddingTop: 20,
                     textAlign: 'center',
                     fontSize: isLarge ? 100 : 60
                 }}>{emoji}</Text>
-            </View>
+            </TouchableOpacity>
             <Text style={nameStyle}>{name}</Text>
             <EmojiGrid handlePress={handleEditEmoji} emojis={features} editable={editable} isLarge={isLarge}/>
             {bio && isLarge &&(

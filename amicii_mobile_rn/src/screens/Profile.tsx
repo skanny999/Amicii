@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-import { Alert, ImageBackground,Modal,Pressable,StyleSheet,Text,View } from 'react-native'
-import styles, { WINDOW_WIDTH } from "../assets/styles"
+import { ImageBackground,Modal,Pressable,StyleSheet,Text,View } from 'react-native'
+import styles from "../assets/styles"
 import CardItem from "../components/CardItem"
 import {user} from "../assets/data/mockUsers"
 import Edit from "../components/Edit"
@@ -12,13 +12,17 @@ const me = user
 const Profile = () => {
 
     const [thisUser, setUser] = useState(me)
-    const [emojiIndexToChange, setEmojiIndexToChange] = useState<number>(-1)
+    const [emojiIndexToChange, setEmojiIndexToChange] = useState<number>(-2)
     const [modalVisible, setModalVisible] = useState(false);
-    const handleSelectEmoji = (emoji: string) => { 
-        const updatedFeatures = thisUser.features
+    const handleSelectEmoji = (emoji: string) => {
+      if (emojiIndexToChange < 0) {
+        setUser({...thisUser, emoji: emoji});
+      } else {
+        const updatedFeatures = thisUser.features 
         updatedFeatures[emojiIndexToChange] = emoji
         setUser({...thisUser, features: updatedFeatures})
-        setModalVisible(false)
+      }
+      setModalVisible(false)
     }
 
     const emojiToBeUpdated = (index: number) => {
