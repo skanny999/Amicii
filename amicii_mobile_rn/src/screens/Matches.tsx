@@ -21,7 +21,7 @@ const Matches = () => (
             <FlatList
             numColumns={2}
             data={MockUsers}
-            keyExtractor={(user, index) => index.toString()}
+            keyExtractor={(item, index) => index.toString()}
             renderItem={({item}) => (
                 <TouchableOpacity>
                     <CardItem
@@ -30,7 +30,8 @@ const Matches = () => (
                     bio={item.bio}
                     features={item.features}
                     isLarge={false}
-                    editable={false}       
+                    editable={false} 
+                    handleEditEmoji={() => {}}      
                     />
                 </TouchableOpacity>
             )}

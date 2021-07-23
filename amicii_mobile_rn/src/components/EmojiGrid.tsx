@@ -3,7 +3,8 @@ import { FlatList, StyleSheet, Text, TouchableOpacity } from "react-native"
 interface EmojiProps {
     emojis: string[],
     editable: boolean,
-    isLarge: boolean
+    isLarge: boolean,
+    handlePress: (index: number) => void,
 }
 
 const EmojiGrid = (props: EmojiProps) => {
@@ -15,10 +16,10 @@ const EmojiGrid = (props: EmojiProps) => {
             numColumns={5}
             data={props.emojis}
             keyExtractor={(item, index) => "E" + index.toString()}
-            renderItem={({ item }) => {
+            renderItem={({ item, index }) => {
                 return  <TouchableOpacity 
                             disabled={!props.editable} 
-                            onPressIn={() => console.log("pressed")}
+                            onPress={() => props.handlePress(index)} 
                             >       
                             <Text style={emojiStyles(props.isLarge).item}>{item}</Text>
                         </TouchableOpacity>

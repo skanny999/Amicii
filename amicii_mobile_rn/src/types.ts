@@ -21,7 +21,8 @@ export type CardItemType = {
     features: string[],
     hasAction?: boolean,
     isLarge: boolean,
-    editable: boolean 
+    editable: boolean,
+    handleEditEmoji: (item: number) => void,
 }
 
 export type TabBarIconType = {

@@ -12,7 +12,8 @@ const CardItem = ({
     features,
     hasAction,
     isLarge,
-    editable
+    editable,
+    handleEditEmoji
 }: CardItemType) => {
 
 
@@ -44,7 +45,7 @@ const CardItem = ({
                 }}>{emoji}</Text>
             </View>
             <Text style={nameStyle}>{name}</Text>
-            <EmojiGrid emojis={features} editable={editable} isLarge={isLarge}/>
+            <EmojiGrid handlePress={handleEditEmoji} emojis={features} editable={editable} isLarge={isLarge}/>
             {bio && isLarge &&(
              <Text style={styles.cardItemBio}>{bio}</Text>
             )}
