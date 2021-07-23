@@ -1,5 +1,5 @@
 import React from "react";
-import {Text, TouchableOpacity, View} from 'react-native'
+import {Text, TextInput, TouchableOpacity, View} from 'react-native'
 import Icon from './Icon'
 import {CardItemType} from '../types'
 import styles, { DISLIKE, DUNNO, LIKE, WINDOW_WIDTH, }from '../assets/styles'
@@ -13,7 +13,8 @@ const CardItem = ({
     hasAction,
     isLarge,
     editable,
-    handleEditEmoji: handleEditEmoji
+    handleEditEmoji,
+    handleEditBio
 }: CardItemType) => {
 
 
@@ -51,7 +52,12 @@ const CardItem = ({
             <Text style={nameStyle}>{name}</Text>
             <EmojiGrid handlePress={handleEditEmoji} emojis={features} editable={editable} isLarge={isLarge}/>
             {bio && isLarge &&(
-             <Text style={styles.cardItemBio}>{bio}</Text>
+             <TextInput 
+             editable={editable}
+             multiline={true}
+             style={styles.cardItemBio}
+             onChangeText={handleEditBio}
+             >{bio}</TextInput>
             )}
             {hasAction && (
                 <View style={styles.cardItemAction}>

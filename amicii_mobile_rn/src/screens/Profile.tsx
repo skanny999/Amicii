@@ -13,7 +13,9 @@ const Profile = () => {
 
     const [thisUser, setUser] = useState(me)
     const [emojiIndexToChange, setEmojiIndexToChange] = useState<number>(-2)
-    const [modalVisible, setModalVisible] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false)
+    const [currentBio, setCurrentBio] = useState(me.bio)
+
     const handleSelectEmoji = (emoji: string) => {
       if (emojiIndexToChange < 0) {
         setUser({...thisUser, emoji: emoji});
@@ -28,6 +30,11 @@ const Profile = () => {
     const emojiToBeUpdated = (index: number) => {
         setEmojiIndexToChange(index)
         setModalVisible(true)
+    }
+
+    const updateBio = (text: string) => {
+        setCurrentBio(text)
+        
     }
 
     return (
@@ -46,6 +53,7 @@ const Profile = () => {
                     isLarge={true}
                     editable={true}
                     handleEditEmoji={emojiToBeUpdated}
+                    handleEditBio={updateBio}
                 />
                 </View>
       <Modal
