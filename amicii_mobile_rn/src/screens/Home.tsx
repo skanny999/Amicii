@@ -32,6 +32,7 @@ const Home = () => {
                                 <CardItem 
                                 name={user.name} 
                                 emoji={user.emoji} 
+                                age={user.age}
                                 bio={user.bio}
                                 features={user.features}
                                 hasAction={true}

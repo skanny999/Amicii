@@ -8,6 +8,7 @@ import EmojiGrid from "./EmojiGrid";
 const CardItem = ({
     name,
     emoji,
+    age,
     bio,
     features,
     hasAction,
@@ -30,9 +31,18 @@ const CardItem = ({
     const nameStyle = [
         {
             paddingTop: isLarge ? 15 : 10,
-            paddingBottom: isLarge ? 15 : 10,
+            paddingBottom: isLarge ? 5 : 3,
             color: '#363637',
             fontSize: isLarge ? 30 : 15
+        }
+    ]
+
+
+    const ageStyle = [
+        {
+            paddingBottom: isLarge ? 15 : 10,
+            color: '#363637',
+            fontSize: isLarge ? 20 : 10
         }
     ]
 
@@ -41,8 +51,7 @@ const CardItem = ({
             <TouchableOpacity 
             style={profileImageStyle}
             disabled={!editable}
-            onPress={() => handleEditEmoji!!(-1)}
-            >
+            onPress={() => handleEditEmoji!!(-1)}>
                 <Text style={{
                     paddingTop: 20,
                     textAlign: 'center',
@@ -50,6 +59,7 @@ const CardItem = ({
                 }}>{emoji}</Text>
             </TouchableOpacity>
             <Text style={nameStyle}>{name}</Text>
+            <Text style={ageStyle}>{age}</Text>
             <EmojiGrid handlePress={handleEditEmoji!!} emojis={features} editable={editable} isLarge={isLarge}/>
             {bio && isLarge &&(
              <TextInput 

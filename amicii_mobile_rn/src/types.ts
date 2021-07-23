@@ -17,6 +17,7 @@ export type UserType = {
 export type CardItemType = {
     name: string,
     emoji: string,
+    age: number,
     bio: string,
     features: string[],
     hasAction?: boolean,

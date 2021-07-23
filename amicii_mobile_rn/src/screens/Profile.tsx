@@ -48,6 +48,7 @@ const Profile = () => {
                     name={thisUser.name}
                     emoji={thisUser.emoji}
                     bio={thisUser.bio}
+                    age={thisUser.age}
                     features={thisUser.features}
                     hasAction={false}
                     isLarge={true}

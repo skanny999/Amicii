@@ -28,6 +28,7 @@ const Matches = () => (
                     emoji={item.emoji}
                     name={item.name}
                     bio={item.bio}
+                    age={item.age}
                     features={item.features}
                     isLarge={false}
                     editable={false} 
