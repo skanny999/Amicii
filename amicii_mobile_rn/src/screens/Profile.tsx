@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-import { Alert, ImageBackground,Modal,StyleSheet,View } from 'react-native'
-import styles from "../assets/styles"
+import { Alert, ImageBackground,Modal,Pressable,StyleSheet,Text,View } from 'react-native'
+import styles, { WINDOW_WIDTH } from "../assets/styles"
 import CardItem from "../components/CardItem"
 import {user} from "../assets/data/mockUsers"
 import Edit from "../components/Edit"
@@ -44,9 +44,9 @@ const Profile = () => {
                     handleEditEmoji={emojiToBeUpdated}
                 />
                 </View>
-        <Modal
+      <Modal
         animationType="slide"
-        transparent={true}
+        transparent={false}
         visible={modalVisible}
         onRequestClose={() => {
           setModalVisible(!modalVisible);
@@ -54,6 +54,12 @@ const Profile = () => {
       >
         <View style={modelStyles.centeredView}>
           <View style={modelStyles.modalView}>
+          <Pressable
+              style={[modelStyles.button, modelStyles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={modelStyles.textStyle}>Close</Text>
+            </Pressable>
             <EmojiPicker selectedEmoji={handleSelectEmoji}/>
           </View>
         </View>
@@ -69,7 +75,7 @@ const modelStyles = StyleSheet.create({
       flex: 1,
       justifyContent: "center",
       alignItems: "center",
-      marginTop: 22
+      marginTop: 0
     },
     modalView: {
       margin: 20,
@@ -104,6 +110,6 @@ const modelStyles = StyleSheet.create({
     },
     modalText: {
       marginBottom: 15,
-      textAlign: "center"
+      textAlign: "left"
     }
   });
