@@ -49,39 +49,6 @@ export default StyleSheet.create({
         textAlign: 'center',
         paddingHorizontal: 20
     },
-    cardItemAction: {
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        paddingVertical: 30
-    },
-    cardItemButton: {
-        width: 60,
-        height: 60,
-        borderRadius: 30,
-        backgroundColor: WHITE,
-        marginHorizontal: 7,
-        alignItems: "center",
-        justifyContent: "center",
-        elevation: 1,
-        shadowOpacity: 0.15,
-        shadowRadius: 20,
-        shadowColor: DARK_GRAY,
-        shadowOffset: { height: 10, width: 0 }
-    },
-    cardItemSmallButton: {
-        width: 40,
-        height: 40,
-        borderRadius: 30,
-        backgroundColor: WHITE,
-        marginHorizontal: 7,
-        alignItems: "center",
-        justifyContent: "center",
-        elevation: 1,
-        shadowOpacity: 0.15,
-        shadowRadius: 20,
-        shadowColor: DARK_GRAY,
-        shadowOffset: { height: 10, width: 0 } 
-    },
 
     //GRIDLIST
     emojiGrid: {
@@ -127,11 +94,13 @@ export default StyleSheet.create({
 
     //HOME
     homeContainer: {
-        marginHorizontal: 10
+        marginHorizontal: 10,
+        flex: 1,
     },
     homeBackground: {
         flex: 1,
         resizeMode: 'cover',
+        flexDirection: 'column',
         width: WINDOW_WIDTH,
         height: WINDOW_HEIGHT
     },
@@ -141,6 +110,40 @@ export default StyleSheet.create({
         flexDirection: "row",
         justifyContent: 'space-between',
         alignItems: 'center'
+    },
+    cardStackAction: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        padding: 20
+
+    },
+    cardStackButton: {
+        width: 60,
+        height: 60,
+        borderRadius: 30,
+        backgroundColor: WHITE,
+        marginHorizontal: 7,
+        alignItems: "center",
+        justifyContent: "center",
+        elevation: 1,
+        shadowOpacity: 0.15,
+        shadowRadius: 20,
+        shadowColor: DARK_GRAY,
+        shadowOffset: { height: 10, width: 0 }
+    },
+    cardStackSmallButton: {
+        width: 40,
+        height: 40,
+        borderRadius: 30,
+        backgroundColor: WHITE,
+        marginHorizontal: 7,
+        alignItems: "center",
+        justifyContent: "center",
+        elevation: 1,
+        shadowOpacity: 0.15,
+        shadowRadius: 20,
+        shadowColor: DARK_GRAY,
+        shadowOffset: { height: 10, width: 0 } 
     },
 
     //MATCHES

@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { View, ImageBackground } from 'react-native';
+import { View, ImageBackground, TouchableOpacity } from 'react-native';
 import CardStack, { Card } from 'react-native-card-stack-swiper'
-import styles from '../assets/styles'
+import styles, { DISLIKE, DUNNO, LIKE } from '../assets/styles'
 import Filters from "../components/Filters";
 import Location from "../components/Location";
 import MockUsers from '../assets/data/mockUsers'
 import CardItem from "../components/CardItem";
+import Icon from '../components/Icon'
 
 
 const Home = () => {
@@ -14,19 +15,17 @@ const Home = () => {
     return (
         <ImageBackground
             source={require('../assets/images/background.png')}
-            style={styles.homeBackground}
-        >
+            style={styles.homeBackground}>
             <View style={styles.homeContainer}>
                 <View style={styles.homeTop}>
-                    <Location/>
                     <Filters/>
                 </View>
+                <View style={{flex: 2}}>
                     <CardStack
                         loop
-                        verticalSwipe={false}
+                        verticalSwipe={true}
                         renderNoMoreCards={() => null}
-                        ref={(newSwiper): void => setSwiper(newSwiper)}
-                    >
+                        ref={(newSwiper): void => setSwiper(newSwiper)}>
                         {MockUsers.map((user) => (
                             <Card key={user.id}>
                                 <CardItem 
@@ -42,6 +41,24 @@ const Home = () => {
                             </Card>
                         ))}
                     </CardStack>
+                </View>
+                <View style={styles.cardStackAction}>
+                    <TouchableOpacity 
+                    style={styles.cardStackButton}
+                    onPress={() => swiper?.swipeLeft()}>
+                        <Icon name='close' size={35} color={DISLIKE}/>
+                    </TouchableOpacity>
+                <TouchableOpacity 
+                style={styles.cardStackSmallButton}
+                onPress={() => swiper?.swipeTop()}>
+                        <Icon name='help' size={35} color={DUNNO}/>    
+                    </TouchableOpacity>
+                <TouchableOpacity 
+                style={styles.cardStackButton} 
+                onPress={() => swiper?.swipeRight()}>
+                        <Icon name='checkmark' size={35} color={LIKE}/>
+                    </TouchableOpacity>
+                </View>
             </View>
         </ImageBackground>
     )

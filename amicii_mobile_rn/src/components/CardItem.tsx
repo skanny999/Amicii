@@ -69,19 +69,6 @@ const CardItem = ({
              onChangeText={handleEditBio}
              >{bio}</TextInput>
             )}
-            {hasAction && (
-                <View style={styles.cardItemAction}>
-                    <TouchableOpacity style={styles.cardItemButton}>
-                        <Icon name='close' size={35} color={DISLIKE}/>
-                    </TouchableOpacity>
-                <TouchableOpacity style={styles.cardItemSmallButton}>
-                        <Icon name='help' size={35} color={DUNNO}/>    
-                    </TouchableOpacity>
-                <TouchableOpacity style={styles.cardItemButton}>
-                        <Icon name='checkmark' size={35} color={LIKE}/>
-                    </TouchableOpacity>
-                </View>
-            )}
             <View style={{padding:isLarge ? 20 : 10 }}/>
         </View>
     )
