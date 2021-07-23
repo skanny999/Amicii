@@ -33,7 +33,7 @@ const CardItem = ({
             paddingTop: isLarge ? 15 : 10,
             paddingBottom: isLarge ? 5 : 3,
             color: '#363637',
-            fontSize: isLarge ? 30 : 15
+            fontSize: isLarge ? 30 : 20
         }
     ]
 
@@ -42,7 +42,7 @@ const CardItem = ({
         {
             paddingBottom: isLarge ? 15 : 10,
             color: '#363637',
-            fontSize: isLarge ? 20 : 10
+            fontSize: isLarge ? 20 : 15
         }
     ]
 

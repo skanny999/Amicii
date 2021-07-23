@@ -39,7 +39,7 @@ const emojiStyles = (isLarge: boolean) => StyleSheet.create({
     },
     item: {
         margin: 5,
-        width: isLarge ? 25 : 15,
+        width: isLarge ? 35 : 20,
         color: 'white',
         alignItems: 'center',
         fontSize:isLarge ? 20 : 12
