@@ -33,8 +33,8 @@ const Profile = () => {
     }
 
     const updateBio = (text: string) => {
-        setCurrentBio(text)
-        
+      setCurrentBio(text)
+      setUser({...thisUser, bio: currentBio})
     }
 
     return (

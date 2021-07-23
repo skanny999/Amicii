@@ -41,7 +41,7 @@ const CardItem = ({
             <TouchableOpacity 
             style={profileImageStyle}
             disabled={!editable}
-            onPress={() => handleEditEmoji(-1)}
+            onPress={() => handleEditEmoji!!(-1)}
             >
                 <Text style={{
                     paddingTop: 20,
@@ -50,7 +50,7 @@ const CardItem = ({
                 }}>{emoji}</Text>
             </TouchableOpacity>
             <Text style={nameStyle}>{name}</Text>
-            <EmojiGrid handlePress={handleEditEmoji} emojis={features} editable={editable} isLarge={isLarge}/>
+            <EmojiGrid handlePress={handleEditEmoji!!} emojis={features} editable={editable} isLarge={isLarge}/>
             {bio && isLarge &&(
              <TextInput 
              editable={editable}

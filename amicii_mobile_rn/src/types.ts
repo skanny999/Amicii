@@ -22,8 +22,8 @@ export type CardItemType = {
     hasAction?: boolean,
     isLarge: boolean,
     editable: boolean,
-    handleEditEmoji: (item: number) => void,
-    handleEditBio: (text: string) => void,
+    handleEditEmoji?: (item: number) => void,
+    handleEditBio?: (text: string) => void,
 }
 
 export type TabBarIconType = {
