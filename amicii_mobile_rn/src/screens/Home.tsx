@@ -3,7 +3,6 @@ import { View, ImageBackground, TouchableOpacity } from 'react-native';
 import CardStack, { Card } from 'react-native-card-stack-swiper'
 import styles, { DISLIKE, DUNNO, LIKE } from '../assets/styles'
 import Filters from "../components/Filters";
-import Location from "../components/Location";
 import MockUsers from '../assets/data/mockUsers'
 import CardItem from "../components/CardItem";
 import Icon from '../components/Icon'

@@ -29,6 +29,7 @@ export default StyleSheet.create({
 
     // CARD ITEM
     cardItemContainer: {
+        flex:1,
         backgroundColor: WHITE,
         borderRadius: 8,
         alignItems: "center",
@@ -39,14 +40,10 @@ export default StyleSheet.create({
         shadowColor: BLACK,
         shadowOffset: { height: 0, width: 0 }
     }, 
-    cardItemEmoji: {
-        paddingTop: 20,
-        fontSize: 120,
-        textAlign: 'center'
-    },
     cardItemBio: {
         color: GRAY,
         textAlign: 'center',
+        marginTop:0,
         paddingHorizontal: 20
     },
 
@@ -96,6 +93,7 @@ export default StyleSheet.create({
     homeContainer: {
         marginHorizontal: 10,
         flex: 1,
+        // justifyContent: "space-between",
     },
     homeBackground: {
         flex: 1,
@@ -183,5 +181,41 @@ export default StyleSheet.create({
         marginHorizontal: 20,
         justifyContent: 'space-between',
         alignItems: 'flex-end'
+    },
+
+    //MODAL
+    modalCenteredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 0
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+    },
+    modalButton: {
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2
+    },
+    modalButtonClose: {
+        backgroundColor: "#2196F3",
+    },
+    modalTextStyle: {
+        color: "white",
+        fontWeight: "bold",
+        textAlign: "center"
     },
 })
