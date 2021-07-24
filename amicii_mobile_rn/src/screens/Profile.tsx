@@ -42,8 +42,8 @@ const Profile = () => {
             <View style={styles.profileTop}>
             <Edit/>
             </View>
-                <View style={{marginHorizontal: 10}}>
-                <View style={{paddingBottom: WINDOW_HEIGHT / 20}}/>
+                <View style={styles.cardItemContainer}>
+                {/* <View style={{paddingBottom: WINDOW_HEIGHT / 20}}/> */}
                 <CardItem
                     name={thisUser.name}
                     emoji={thisUser.emoji}
@@ -56,7 +56,7 @@ const Profile = () => {
                     handleEditEmoji={emojiToBeUpdated}
                     handleEditBio={updateBio}
                 />
-                </View>
+            </View>
       <Modal
         animationType="slide"
         transparent={false}
@@ -65,19 +65,19 @@ const Profile = () => {
           setModalVisible(!modalVisible);
         }}
       >
-        <View style={modelStyles.centeredView}>
-          <View style={modelStyles.modalView}>
+        <View style={styles.modalCenteredView}>
+          <View style={styles.modalView}>
           <Pressable
-              style={[modelStyles.button, modelStyles.buttonClose]}
+              style={[styles.modalButton, styles.modalButtonClose]}
               onPress={() => setModalVisible(!modalVisible)}
             >
-              <Text style={modelStyles.textStyle}>Close</Text>
+              <Text style={styles.modalTextStyle}>Close</Text>
             </Pressable>
             <EmojiPicker selectedEmoji={handleSelectEmoji}/>
           </View>
         </View>
       </Modal>
-        </ImageBackground>
+      </ImageBackground>
     )
 }
 
