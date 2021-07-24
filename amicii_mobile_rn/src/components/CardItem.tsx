@@ -18,7 +18,6 @@ const CardItem = ({
     handleEditBio
 }: CardItemType) => {
 
-
     const profileImageStyle = [
         {
             width: isLarge ? WINDOW_WIDTH - 80 : WINDOW_WIDTH / 2 - 30,
@@ -36,7 +35,6 @@ const CardItem = ({
             fontSize: isLarge ? 30 : 20
         }
     ]
-
 
     const ageStyle = [
         {
