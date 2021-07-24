@@ -30,6 +30,7 @@
     "@aws-cdk/core": "1.108.0",
     "@aws-cdk/custom-resources": "^1.110.0",
     "@react-navigation/native": "^5.9.4",
+    "aws-amplify": "^4.2.1",
     "source-map-support": "^0.5.16"
   }
 }
