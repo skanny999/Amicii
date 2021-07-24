@@ -13,20 +13,7 @@ export class AmiciiBackendCdkStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const userPool = new cognito.UserPool(this, 'AmiciiUserPool', {
-      selfSignUpEnabled: true,
-      accountRecovery: cognito.AccountRecovery.EMAIL_ONLY,
-      userVerification: {
-        emailStyle: cognito.VerificationEmailStyle.CODE
-      },
-      autoVerify: { email: true },
-      standardAttributes: {
-        email: {
-          required: true,
-          mutable: true
-        }
-      }
-    })
+    const userPool = cognito.UserPool.fromUserPoolId(this, 'amicii-ammplify-user-pool', 'eu-west-2_4XkW19bmv')
 
     new cognito.UserPoolClient(this, "UserPoolClient", {
       userPool
@@ -49,6 +36,18 @@ export class AmiciiBackendCdkStack extends cdk.Stack {
           }
         }]
       }
+    })
+
+    new cdk.CfnOutput(this, 'aws_appsynch_graphqlEndpoint', {
+      value: api.graphqlUrl
+    })
+
+    new cdk.CfnOutput(this, 'aws_appsynch_apikey', {
+      value: api.apiKey || ''
+    })
+
+    new cdk.CfnOutput(this, 'aws_appsynch_authenticationType', {
+      value: 'API_KEY'
     })
 
     const vpc = new ec2.Vpc(this, 'AmiciiVPC')
