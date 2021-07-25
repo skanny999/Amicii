@@ -1,9 +1,9 @@
-import Amplify from 'aws-amplify'
-import config from '../src/aws-exports'
-import { AmiciiBackendCdkStack } from '../cdk-exports.json'
+// import Amplify from 'aws-amplify'
+// import config from '../src/aws-exports'
+// import { AmiciiBackendCdkStack } from '../cdk-exports.json'
 
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer} from '@react-navigation/native'
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { PRIMARY, DARK_GRAY, WHITE, BLACK } from "./src/assets/styles";
@@ -12,15 +12,15 @@ import Matches from './src/screens/Matches'
 import TabBarIcon from './src/components/TabBarIcon';
 import Profile from "./src/screens/Profile";
 
-const CDKConfig = {
-  aws_appsynch_graphqlEndpoint: AmiciiBackendCdkStack.awsappsynchgraphqlEndpoint,
-  aws_appsynch_authenticationType: AmiciiBackendCdkStack.awsappsynchauthenticationType,
-  aws_appsynch_apikey: AmiciiBackendCdkStack.awsappsynchapikey
-}
+// const CDKConfig = {
+//   aws_appsynch_graphqlEndpoint: AmiciiBackendCdkStack.awsappsynchgraphqlEndpoint,
+//   aws_appsynch_authenticationType: AmiciiBackendCdkStack.awsappsynchauthenticationType,
+//   aws_appsynch_apikey: AmiciiBackendCdkStack.awsappsynchapikey
+// }
 
-Amplify.configure({
-  ...config, CDKConfig
-})
+// Amplify.configure({
+//   ...config, CDKConfig
+// })
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
