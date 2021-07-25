@@ -1,6 +1,8 @@
-// import Amplify from 'aws-amplify'
-// import config from '../src/aws-exports'
-// import { AmiciiBackendCdkStack } from '../cdk-exports.json'
+import Amplify from 'aws-amplify'
+import Auth from '@aws-amplify/auth'
+import config from './aws-exports'
+import { AmiciiBackendCdkStack } from './cdk-exports.json'
+import { withAuthenticator } from 'aws-amplify-react-native'
 
 import React from "react";
 import { NavigationContainer} from '@react-navigation/native'
@@ -12,15 +14,18 @@ import Matches from './src/screens/Matches'
 import TabBarIcon from './src/components/TabBarIcon';
 import Profile from "./src/screens/Profile";
 
-// const CDKConfig = {
-//   aws_appsynch_graphqlEndpoint: AmiciiBackendCdkStack.awsappsynchgraphqlEndpoint,
-//   aws_appsynch_authenticationType: AmiciiBackendCdkStack.awsappsynchauthenticationType,
-//   aws_appsynch_apikey: AmiciiBackendCdkStack.awsappsynchapikey
-// }
+const CDKConfig = {
+  aws_appsynch_graphqlEndpoint: AmiciiBackendCdkStack.awsappsynchgraphqlEndpoint,
+  aws_appsynch_authenticationType: AmiciiBackendCdkStack.awsappsynchauthenticationType,
+  aws_appsynch_apikey: AmiciiBackendCdkStack.awsappsynchapikey
+}
 
-// Amplify.configure({
-//   ...config, CDKConfig
-// })
+const configuration = {
+  ...config, CDKConfig
+}
+
+Amplify.configure(configuration)
+Auth.configure(configuration)
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -103,4 +108,4 @@ const App = () => (
   </NavigationContainer>
 );
 
-export default App;
+export default withAuthenticator(App);
