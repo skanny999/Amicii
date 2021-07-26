@@ -15,9 +15,7 @@ export class AmiciiBackendCdkStack extends cdk.Stack {
 
     const userPool = cognito.UserPool.fromUserPoolId(this, 'amicii-ammplify-user-pool', 'eu-west-2_4XkW19bmv')
 
-    new cognito.UserPoolClient(this, "UserPoolClient", {
-      userPool
-    })
+    new cognito.UserPoolClient(this, "UserPoolClient", { userPool })
 
     const api = new appsync.GraphqlApi(this, 'AmiciiApi', {
       name: 'cdk-amicii-appsync-api',

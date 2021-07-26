@@ -1,49 +1,44 @@
-directive @aws_subscribe(mutations: [String!]!) on FIELD_DEFINITION
-directive @aws_api_key on OBJECT | FIELD_DEFINITION
-directive @aws_cognito_user_pools(cognito_groups: [String]) on OBJECT | FIELD_DEFINITION
-
+# directive @aws_subscribe(mutations: [String!]!) on FIELD_DEFINITION
+# directive @aws_api_key on OBJECT | FIELD_DEFINITION
+# directive @aws_cognito_user_pools(
+#   cognito_groups: [String]
+# ) on OBJECT | FIELD_DEFINITION
 
 type User @aws_api_key @aws_cognito_user_pools {
-    id: String!
-    username: String!
-    age: Int!
-    bio: String!
-    profileEmojii: String!
+  id: String
+  username: String!
+  age: Int!
+  bio: String!
+  profileEmoji: String!
 }
 
 input CreateUserInput {
-    id: String!
-    username: String!
-    age: Int!
-    bio: String!
-    profileEmojii: String!
+  id: String!
+  username: String!
+  age: Int!
+  bio: String!
+  profileEmoji: String!
 }
 
 input UpdateUserInput {
-    id: String!
-    username: String!
-    age: Int!
-    bio: String!
-    profileEmojii: String!
+  id: String!
+  username: String!
+  age: Int!
+  bio: String!
+  profileEmoji: String!
 }
 
 type Query {
-    getCandidates(userId: String): [User]
-    @aws_api_key @aws_cognito_user_pools
-    getMatches(userId: String): [User]
-    @aws_api_key @aws_cognito_user_pools
+  getCandidates(userId: String): [User] @aws_api_key @aws_cognito_user_pools
+  getMatches(userId: String): [User] @aws_api_key @aws_cognito_user_pools
 }
 
 type Mutation {
-    createUser(user: CreateUserInput): User
-    @aws_cognito_user_pools(cognito_groups: ["Admin"])
-    updateUser(user: UpdateUserInput): User
-    @aws_cognito_user_pools(cognito_groups: ["Admin"])
+  createUser(user: CreateUserInput): User @aws_api_key @aws_cognito_user_pools
+  updateUser(user: UpdateUserInput): User @aws_api_key @aws_cognito_user_pools
 }
 
 type Subscription {
-    onCreateUser: User
-    @aws_subscribe(mutations: ["createUser"])
-    onUpdateUser: User
-    @aws_subscribe(mutations: ["updateUser"])
+  onCreateUser: User @aws_subscribe(mutations: ["createUser"])
+  onUpdateUser: User @aws_subscribe(mutations: ["updateUser"])
 }

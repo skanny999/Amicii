@@ -3,7 +3,7 @@ type User = {
     username: string,
     age: number,
     bio: string,
-    profileEmojii: string
+    profileEmoji: string
 }
 
 export default User
