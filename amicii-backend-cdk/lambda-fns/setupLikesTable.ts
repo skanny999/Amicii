@@ -1,12 +1,9 @@
 import db from './db'
+import { createLikesTableQuery } from './sqlCommands'
 
 async function setupLikesTable() {
     try {
-        const query = 'CREATE TABLE likes(\n' +
-            '    userId integer,\n' +
-            '    likedUserId integer\n' +
-            ');'
-        await db.query(query)
+        await db.query(createLikesTableQuery)
         return true
     } catch (e) {
         console.log('MySQL error: ', e)
