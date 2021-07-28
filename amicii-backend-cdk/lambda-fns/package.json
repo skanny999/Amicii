@@ -4,13 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "db:save": "yarn prisma migrate dev --create-only --preview-feature",
+    "db:migrate": "yarn prisma migrate dev --preview-feature"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "data-api-client": "^1.2.0",
-    "uuid": "^8.3.2"
+    "@prisma/client": "2.14.0"
+  },
+  "devDependencies": {
+    "@prisma/cli": "2.14.0",
+    "aws-sdk": "^2.826.0"
   }
 }

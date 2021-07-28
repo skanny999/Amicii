@@ -1,15 +1,16 @@
-import db from './db'
+// import db from './db'
+import { getDB } from './db'
 import { getCandidatesQuery } from './sqlCommands'
 
 async function getCandidates() {
-    // Todo: implement get candidates
-    try {
-        const result = await db.query(getCandidatesQuery)
-        return result.records
-    } catch (err) {
-        console.log('MySQL error ', err)
-        return null
-    }
+    const db = await getDB()
+
+    // try {
+    //     return await db.user.findMany()
+    // } catch (err) {
+    //     console.log('MySQL error ', err)
+    //     return null
+    // }
 }
 
 export default getCandidates
