@@ -140,6 +140,36 @@ export class AmiciiBackendCdkStack extends cdk.Stack {
 
     const lambdaDs = api.addLambdaDataSource('lambdaDataSource', userFn)
 
+    // Setup database
+
+    const dbSetupFn = new lambda.Function(this, 'DbSetupFunction', {
+      vpc,
+      vpcSubnets: { subnetType: ec2.SubnetType.ISOLATED },
+      securityGroups: [privateSg],
+      runtime: lambda.Runtime.NODEJS_14_X,
+      code: new lambda.AssetCode('lambda-fns'),
+      handler: 'dbFunction.handler',
+      memorySize: 1024,
+      timeout: Duration.seconds(10),
+      environment: {
+        SECRET_ARN: cluster.secret?.secretArn || '',
+        AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
+      },
+    })
+
+    cluster.grantDataApiAccess(dbSetupFn)
+
+    const dbSetupCustomResourceProvider = new cr.Provider(this, 'dbSetupCustomResourceProvider', {
+      onEventHandler: dbSetupFn
+    })
+
+    new cdk.CustomResource(this, 'setupCustomResource', {
+      serviceToken: dbSetupCustomResourceProvider.serviceToken
+    })
+
+
+    // Resolvers
+
     lambdaDs.createResolver({
       typeName: 'Query',
       fieldName: 'getCandidates'
