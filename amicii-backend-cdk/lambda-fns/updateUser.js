@@ -1,0 +1,8 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+async function updateUser(user) {
+    // todo: implement update user
+    return user;
+}
+exports.default = updateUser;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXBkYXRlVXNlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbInVwZGF0ZVVzZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFFQSxLQUFLLFVBQVUsVUFBVSxDQUFDLElBQVU7SUFDaEMsOEJBQThCO0lBQzlCLE9BQU8sSUFBSSxDQUFBO0FBQ2YsQ0FBQztBQUVELGtCQUFlLFVBQVUsQ0FBQSIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBVc2VyIGZyb20gJy4vVXNlcidcblxuYXN5bmMgZnVuY3Rpb24gdXBkYXRlVXNlcih1c2VyOiBVc2VyKSB7XG4gICAgLy8gdG9kbzogaW1wbGVtZW50IHVwZGF0ZSB1c2VyXG4gICAgcmV0dXJuIHVzZXJcbn1cblxuZXhwb3J0IGRlZmF1bHQgdXBkYXRlVXNlciJdfQ==
