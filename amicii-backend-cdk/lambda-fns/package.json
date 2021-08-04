@@ -11,10 +11,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "2.14.0"
+    "@prisma/client": "2.27.0"
   },
   "devDependencies": {
     "@prisma/cli": "2.14.0",
-    "aws-sdk": "^2.826.0"
+    "aws-sdk": "^2.826.0",
+    "prisma": "2.27.0"
   }
 }

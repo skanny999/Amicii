@@ -7,10 +7,10 @@ import * as lambda from '@aws-cdk/aws-lambda'
 import * as cognito from '@aws-cdk/aws-cognito'
 import * as iam from '@aws-cdk/aws-iam'
 import * as cr from '@aws-cdk/custom-resources'
-import { Duration } from "@aws-cdk/aws-appsync/node_modules/@aws-cdk/core/lib/duration";
-import { Expiration } from "@aws-cdk/aws-appsync/node_modules/@aws-cdk/core/lib/expiration";
+import { join } from 'path';
 
-
+const userFnPath = join(__dirname, '..', 'lambda-fns', 'index.ts')
+const setupFnPath = join(__dirname, '..', 'lambda-fns', 'dbFunction.ts')
 export class AmiciiBackendCdkStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
@@ -29,7 +29,7 @@ export class AmiciiBackendCdkStack extends cdk.Stack {
         defaultAuthorization: {
           authorizationType: appsync.AuthorizationType.API_KEY,
           apiKeyConfig: {
-            expires: Expiration.after(Duration.days(365))
+            expires: cdk.Expiration.after(cdk.Duration.days(365))
           }
         },
         additionalAuthorizationModes: [{
@@ -103,21 +103,40 @@ export class AmiciiBackendCdkStack extends cdk.Stack {
       subnetGroup,
       securityGroups: [privateSg],
       removalPolicy: cdk.RemovalPolicy.DESTROY,
-      scaling: { autoPause: Duration.seconds(0) }
+      scaling: { autoPause: cdk.Duration.seconds(0) }
     })
 
-    const userFn = new lambda.Function(this, 'UserFunction', {
+    const userFn = new ln.NodejsFunction(this, 'UserFn', {
       vpc,
       vpcSubnets: { subnetType: ec2.SubnetType.ISOLATED },
       securityGroups: [privateSg],
       runtime: lambda.Runtime.NODEJS_14_X,
-      code: new lambda.AssetCode('lambda-fns'),
-      handler: 'index.handler',
+      handler: 'handler',
+      entry: userFnPath,
+      timeout: cdk.Duration.seconds(10),
       memorySize: 1024,
-      timeout: Duration.seconds(10),
       environment: {
         SECRET_ARN: cluster.secret?.secretArn || '',
         AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
+      },
+      bundling: {
+        nodeModules: ['@prisma/client', 'prisma'],
+        commandHooks: {
+          beforeBundling(_inputDir: string, _outputDir: string) {
+            return []
+          },
+          beforeInstall(_inputDir: string, outputDir: string) {
+            return [`cp -R ${join(__dirname, '..', 'lambda-fns', 'prisma')} ${outputDir}/`]
+          },
+          afterBundling(_inputDir: string, outputDir: string) {
+            return [
+              `cd ${outputDir}`,
+              `yarn prisma generate`,
+              `rm -rf node_modules/@prisma/engines`,
+              `rm -rf node_modules/@prisma/client/node_modules node_modules/.bin node_modules/prisma`,
+            ]
+          },
+        },
       },
     })
 
@@ -142,18 +161,37 @@ export class AmiciiBackendCdkStack extends cdk.Stack {
 
     // Setup database
 
-    const dbSetupFn = new lambda.Function(this, 'DbSetupFunction', {
+    const dbSetupFn = new ln.NodejsFunction(this, 'DbSetupFunction', {
       vpc,
       vpcSubnets: { subnetType: ec2.SubnetType.ISOLATED },
       securityGroups: [privateSg],
       runtime: lambda.Runtime.NODEJS_14_X,
-      code: new lambda.AssetCode('lambda-fns'),
-      handler: 'dbFunction.handler',
+      handler: 'handler',
+      entry: setupFnPath,
+      timeout: cdk.Duration.seconds(10),
       memorySize: 1024,
-      timeout: Duration.seconds(10),
       environment: {
         SECRET_ARN: cluster.secret?.secretArn || '',
         AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
+      },
+      bundling: {
+        nodeModules: ['@prisma/client', 'prisma'],
+        commandHooks: {
+          beforeBundling(_inputDir: string, _outputDir: string) {
+            return []
+          },
+          beforeInstall(_inputDir: string, outputDir: string) {
+            return [`cp -R ${join(__dirname, '..', 'lambda-fns', 'prisma')} ${outputDir}/`]
+          },
+          afterBundling(_inputDir: string, outputDir: string) {
+            return [
+              `cd ${outputDir}`,
+              `yarn prisma generate`,
+              `rm -rf node_modules/@prisma/engines`,
+              `rm -rf node_modules/@prisma/client/node_modules node_modules/.bin node_modules/prisma`,
+            ]
+          },
+        },
       },
     })
 
