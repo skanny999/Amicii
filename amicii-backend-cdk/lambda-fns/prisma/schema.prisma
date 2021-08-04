@@ -9,11 +9,32 @@ datasource db {
 }
 
 model User {
-    id           String @id
-    username     String
-    age          Int
-    bio          String
-    profileEmoji String
+    id           String     @id
+    username     String     @default(value: "")
+    age          Int        @default(value: 0)
+    bio          String     @default(value: "") @db.VarChar(1000)
+    genderM      Float      @default(value: 0)
+    genderF      Float      @default(value: 0)
+    profileEmoji String     @default(value: "")
+    createdOn    DateTime   @default(now())
+    description  String     @default("")
+    features     Features[]
+}
 
-    @@map("users")
+model Likes {
+    id          Int    @id @default(autoincrement())
+    userId      String
+    likedUserId String
+}
+
+model Dislikes {
+    id             Int    @id @default(autoincrement())
+    userId         String
+    dislikedUserId String
+}
+
+model Features {
+    id     Int    @id @default(autoincrement())
+    emoji  String @unique
+    A_User User[]
 }

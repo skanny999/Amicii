@@ -2,7 +2,7 @@ import createUser from "./createUser";
 import updateUser from "./updateUser";
 import getCandidates from "./getCandidates";
 import getMatches from "./getMatches";
-import User from './User'
+import { User } from "./types";
 
 type AppSyncEvent = {
     info: {

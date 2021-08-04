@@ -1,13 +1,27 @@
-// import db from './db'
 import { getDB } from './db'
-import User from './User'
-import { createUserQuery } from './sqlCommands'
-const { v4: uuid } = require('uuid')
+import { User } from './types'
 
-async function createUser(user: User) {
+async function createUser(newUser: User) {
     const db = await getDB()
-    if (!user.id) user.id = uuid()
-    const { id, username, age, bio, profileEmoji } = user
+
+    let user = {
+        id: newUser.id,
+        features: {
+            connect : [
+                { id: 1},
+                { id: 2},
+                { id: 3},
+                { id: 4},
+                { id: 5},
+                { id: 6},
+                { id: 7},
+                { id: 8},
+                { id: 9},
+                { id: 10},
+            ]
+        }
+    }
+
     try {
         await db.user.create({ data: user})
         return user
