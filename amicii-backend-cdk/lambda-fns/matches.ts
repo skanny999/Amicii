@@ -4,11 +4,11 @@ async function matches(userId: string) {
     const db = await getDB()
 
     const allMatchesIds = await db.$queryRaw`SELECT AU.ID
-    FROM USER AU
+    FROM User  AU
     JOIN (SELECT B.USERID FROM
-    LIKES A
+    Likes A
     JOIN
-    LIKES B
+    Likes B
     ON A.USERID = B.LIKEDUSERID
     WHERE A.USERID = ${userId}
     AND B.USERID = A.LIKEDUSERID
