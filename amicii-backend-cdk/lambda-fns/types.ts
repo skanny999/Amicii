@@ -7,20 +7,21 @@ export type User = {
     genderF: number,
     profileEmoji: string,
     createdOn: string,
-    features: [
-        string,
-        string,
-        string,
-        string,
-        string,
-        string,
-        string,
-        string,
-        string,
-        string
-    ]
+    features: Feature[]
+    //     string,
+    //     string,
+    //     string,
+    //     string,
+    //     string,
+    //     string,
+    //     string,
+    //     string,
+    //     string,
+    //     string
+    // ]
 }
 
 export type Feature = {
+    id: number,
     emoji: string,
 }

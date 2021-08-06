@@ -1,28 +1,36 @@
 import createUser from "./createUser";
 import updateUser from "./updateUser";
-import getCandidates from "./getCandidates";
-import getMatches from "./getMatches";
 import { User } from "./types";
+import candidates from "./candidates";
+import matches from "./matches";
+import features from "./features";
+import user from "./user";
 
 type AppSyncEvent = {
     info: {
         fieldName: string
     },
     arguments: {
-        user: User
+        user: User,
+        userId: string,
+        otherUserId: string
     }
 }
 
-exports.handler = async (event: AppSyncEvent) => {
+exports.handler = async (event: AppSyncEvent, context: any) => {
+    context.callbackWaitsForEmptyEventLoop = false
+
     switch (event.info.fieldName) {
         case 'createUser':
-            return await createUser(event.arguments.user)
+            return await createUser(event.arguments.userId)
         case 'updateUser':
             return await updateUser(event.arguments.user)
-        case 'getCandidates':
-            return await getCandidates()
-        case 'getMatches':
-            return await getMatches()
+        case 'user':
+            return await user(event.arguments.userId)
+        case 'candidates':
+            return await candidates(event.arguments.userId)
+        case 'matches':
+            return await matches(event.arguments.userId)
         default:
             return null
     }

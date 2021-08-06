@@ -210,12 +210,17 @@ export class AmiciiBackendCdkStack extends cdk.Stack {
 
     lambdaDs.createResolver({
       typeName: 'Query',
-      fieldName: 'getCandidates'
+      fieldName: 'user'
     })
 
     lambdaDs.createResolver({
       typeName: 'Query',
-      fieldName: 'getMatches'
+      fieldName: 'candidates'
+    })
+
+    lambdaDs.createResolver({
+      typeName: 'Query',
+      fieldName: 'matches'
     })
 
     lambdaDs.createResolver({

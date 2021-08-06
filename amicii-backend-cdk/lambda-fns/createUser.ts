@@ -1,11 +1,10 @@
 import { getDB } from './db'
-import { User } from './types'
 
-async function createUser(newUser: User) {
+async function createUser(userId: string) {
     const db = await getDB()
 
     let user = {
-        id: newUser.id,
+        id: userId,
         features: {
             connect : [
                 { id: 1},

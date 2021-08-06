@@ -5,32 +5,26 @@
 # ) on OBJECT | FIELD_DEFINITION
 
 type User @aws_api_key @aws_cognito_user_pools {
-  id: String
-  username: String!
-  age: Int!
-  bio: String!
-  profileEmoji: String!
-}
-
-input CreateUserInput {
   id: String!
   username: String!
   age: Int!
   bio: String!
+  genderM: Int!
+  genderF: Int!
   profileEmoji: String!
+  createOn: String!
+  features: [Feature!]!
 }
 
-input UpdateUserInput {
-  id: String!
-  username: String!
-  age: Int!
-  bio: String!
-  profileEmoji: String!
+type Feature @aws_api_key @aws_cognito_user_pools {
+  id: Int!
+  emoji: String!
 }
 
 type Query {
-  getCandidates(userId: String): [User] @aws_api_key @aws_cognito_user_pools
-  getMatches(userId: String): [User] @aws_api_key @aws_cognito_user_pools
+  user(userId: String): User @aws_api_key @aws_cognito_user_pools
+  candidates(userId: String): [User] @aws_api_key @aws_cognito_user_pools
+  matches(userId: String): [User] @aws_api_key @aws_cognito_user_pools
 }
 
 type Mutation {
@@ -41,4 +35,19 @@ type Mutation {
 type Subscription {
   onCreateUser: User @aws_subscribe(mutations: ["createUser"])
   onUpdateUser: User @aws_subscribe(mutations: ["updateUser"])
+}
+
+input CreateUserInput {
+  id: String!
+}
+
+input UpdateUserInput {
+  id: String
+  username: String!
+  age: Int!
+  bio: String!
+  genderM: Int!
+  genderF: Int!
+  profileEmoji: String!
+  features: [String!]!
 }

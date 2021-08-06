@@ -9,7 +9,7 @@ async function updateUser(user: User) {
         where: {id: user.id},
         data: {
             features: {
-                set: []  // disconnecting all previous features
+                set: []
             }
         }
     })
@@ -27,72 +27,72 @@ async function updateUser(user: User) {
                 connectOrCreate: [
                     {
                         where: {
-                            emoji: user.features[0]
+                            emoji: user.features[0].emoji
                         }, create: {
-                            emoji: user.features[0]
+                            emoji: user.features[0].emoji
                         }
                     },
                     {
                         where: {
-                            emoji: user.features[1]
+                            emoji: user.features[1].emoji
                         }, create: {
-                            emoji: user.features[1]
+                            emoji: user.features[1].emoji
                         }
                     },
                     {
                         where: {
-                            emoji: user.features[2]
+                            emoji: user.features[2].emoji
                         }, create: {
-                            emoji: user.features[2]
+                            emoji: user.features[2].emoji
                         }
                     },
                     {
                         where: {
-                            emoji: user.features[3]
+                            emoji: user.features[3].emoji
                         }, create: {
-                            emoji: user.features[3]
+                            emoji: user.features[3].emoji
                         }
                     },
                     {
                         where: {
-                            emoji: user.features[4]
+                            emoji: user.features[4].emoji
                         }, create: {
-                            emoji: user.features[4]
+                            emoji: user.features[4].emoji
                         }
                     },
                     {
                         where: {
-                            emoji: user.features[5]
+                            emoji: user.features[5].emoji
                         }, create: {
-                            emoji: user.features[5]
+                            emoji: user.features[5].emoji
                         }
                     },
                     {
                         where: {
-                            emoji: user.features[6]
+                            emoji: user.features[6].emoji
                         }, create: {
-                            emoji: user.features[6]
+                            emoji: user.features[6].emoji
                         }
                     },
                     {
                         where: {
-                            emoji: user.features[7]
+                            emoji: user.features[7].emoji
                         }, create: {
-                            emoji: user.features[7]
+                            emoji: user.features[7].emoji
                         }
                     },
                     {
                         where: {
-                            emoji: user.features[8]
+                            emoji: user.features[8].emoji
                         }, create: {
-                            emoji: user.features[8]
+                            emoji: user.features[8].emoji
                         }
                     },
                     {
                         where: {
-                            emoji: user.features[9]
+                            emoji: user.features[9].emoji
                         }, create: {
-                            emoji: user.features[9]
+                            emoji: user.features[9].emoji
                         }
                     }
                 ]
@@ -100,7 +100,6 @@ async function updateUser(user: User) {
         }
     })
     
-    // transaction to ensure either BOTH operations happen or NONE of them happen.
     await db.$transaction([disconnectPreviouslyConnectedFeatures, connectOrCreateNewFeatures ])
 }
 

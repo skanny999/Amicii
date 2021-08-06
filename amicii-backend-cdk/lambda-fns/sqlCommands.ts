@@ -35,7 +35,8 @@ export const createFeaturesTableQuery = `CREATE TABLE IF NOT EXISTS Features (
 
     UNIQUE INDEX Features.emoji_unique(emoji),
     PRIMARY KEY (id)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;`
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+`
 
 export const createFeatureRelationQuery = `CREATE TABLE IF NOT EXISTS _FeaturesToUser (
     A INTEGER NOT NULL,
@@ -49,16 +50,17 @@ export const addFeatureToUserForeignKey = `ALTER TABLE _FeaturesToUser ADD FOREI
 
 export const addUserToFeatureForeignKey = `ALTER TABLE _FeaturesToUser ADD FOREIGN KEY (B) REFERENCES User(id) ON DELETE CASCADE ON UPDATE CASCADE;`
 
-export const addDefaultFeatures = `INSERT IGNORE INTO Features VALUES(1, 'PL1');
-INSERT IGNORE INTO Features VALUES(2, 'PL2');
-INSERT IGNORE INTO Features VALUES(3, 'PL3');
-INSERT IGNORE INTO Features VALUES(4, 'PL4');
-INSERT IGNORE INTO Features VALUES(5, 'PL5');
-INSERT IGNORE INTO Features VALUES(6, 'PL6');
-INSERT IGNORE INTO Features VALUES(7, 'PL7');
-INSERT IGNORE INTO Features VALUES(8, 'PL8');
-INSERT IGNORE INTO Features VALUES(9, 'PL9');
-INSERT IGNORE INTO Features VALUES(10, 'PL10');`
+export const addDefaultFeature1 = `INSERT IGNORE INTO Features VALUES(1, 'PL1');`
+
+export const addDefaultFeature2 = `INSERT IGNORE INTO Features VALUES(2, 'PL2');`
+export const addDefaultFeature3 = `INSERT IGNORE INTO Features VALUES(3, 'PL3');`
+export const addDefaultFeature4 = `INSERT IGNORE INTO Features VALUES(4, 'PL4');`
+export const addDefaultFeature5 = `INSERT IGNORE INTO Features VALUES(5, 'PL5');`
+export const addDefaultFeature6 = `INSERT IGNORE INTO Features VALUES(6, 'PL6');`
+export const addDefaultFeature7 = `INSERT IGNORE INTO Features VALUES(7, 'PL7');`
+export const addDefaultFeature8 = `INSERT IGNORE INTO Features VALUES(8, 'PL8');`
+export const addDefaultFeature9 = `INSERT IGNORE INTO Features VALUES(9, 'PL9');`
+export const addDefaultFeature10 = `INSERT IGNORE INTO Features VALUES(10, 'PL10');`
 
 
 // User 
