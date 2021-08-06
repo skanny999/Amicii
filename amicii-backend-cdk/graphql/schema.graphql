@@ -12,12 +12,12 @@ type User @aws_api_key @aws_cognito_user_pools {
   genderM: Int!
   genderF: Int!
   profileEmoji: String!
-  createOn: String!
-  features: [Feature!]!
+  createdOn: String!
+  features: [Feature]! @connection
 }
 
 type Feature @aws_api_key @aws_cognito_user_pools {
-  id: Int!
+  id: Int
   emoji: String!
 }
 
@@ -28,17 +28,13 @@ type Query {
 }
 
 type Mutation {
-  createUser(user: CreateUserInput): User @aws_api_key @aws_cognito_user_pools
+  createUser(userId: String): User @aws_api_key @aws_cognito_user_pools
   updateUser(user: UpdateUserInput): User @aws_api_key @aws_cognito_user_pools
 }
 
 type Subscription {
   onCreateUser: User @aws_subscribe(mutations: ["createUser"])
   onUpdateUser: User @aws_subscribe(mutations: ["updateUser"])
-}
-
-input CreateUserInput {
-  id: String!
 }
 
 input UpdateUserInput {
@@ -49,5 +45,9 @@ input UpdateUserInput {
   genderM: Int!
   genderF: Int!
   profileEmoji: String!
-  features: [String!]!
+  features: [FeatureInput]!
+}
+
+input FeatureInput {
+  emoji: String!
 }

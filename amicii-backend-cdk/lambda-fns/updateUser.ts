@@ -4,6 +4,8 @@ import { getDB } from './db'
 async function updateUser(user: User) {
 
     const db = await getDB()
+
+
     
     const disconnectPreviouslyConnectedFeatures =  db.user.update({
         where: {id: user.id},
@@ -99,8 +101,14 @@ async function updateUser(user: User) {
             }
         }
     })
-    
-    await db.$transaction([disconnectPreviouslyConnectedFeatures, connectOrCreateNewFeatures ])
+
+    try {
+        await db.$transaction([disconnectPreviouslyConnectedFeatures, connectOrCreateNewFeatures ])
+        return user
+    } catch (err) {
+        console.log('MySQL error: ', err)
+        return null
+    }
 }
 
 export default updateUser

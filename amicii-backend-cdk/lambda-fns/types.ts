@@ -8,17 +8,6 @@ export type User = {
     profileEmoji: string,
     createdOn: string,
     features: Feature[]
-    //     string,
-    //     string,
-    //     string,
-    //     string,
-    //     string,
-    //     string,
-    //     string,
-    //     string,
-    //     string,
-    //     string
-    // ]
 }
 
 export type Feature = {
