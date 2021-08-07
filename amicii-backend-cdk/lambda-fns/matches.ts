@@ -1,20 +1,9 @@
 import { getDB } from './db'
+import { matchesQuery } from './sqlCommands'
 
 async function matches(userId: string) {
     const db = await getDB()
-
-    const allMatchesIds = await db.$queryRaw`SELECT AU.ID
-    FROM User  AU
-    JOIN (SELECT B.USERID FROM
-    Likes A
-    JOIN
-    Likes B
-    ON A.USERID = B.LIKEDUSERID
-    WHERE A.USERID = ${userId}
-    AND B.USERID = A.LIKEDUSERID
-    AND A.USERID = B.LIKEDUSERID) MU
-    ON AU.ID = MU.USERID;`
-
+    const allMatchesIds = await db.$queryRaw(matchesQuery(userId))
     const allMatches = await db.user.findMany({
         where: { 
             id: {

@@ -1,9 +1,4 @@
-// import db from './db'
-import candidates from './candidates'
 import { getDB } from './db'
-import matches from './matches'
-import { getCandidatesQuery } from './sqlCommands'
-import { User } from './types'
 
 async function user(userId: string) {
     const db = await getDB()

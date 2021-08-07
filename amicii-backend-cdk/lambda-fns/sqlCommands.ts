@@ -59,5 +59,40 @@ export const addDefaultFeature8 = `INSERT IGNORE INTO Features VALUES(8, 'PL8');
 export const addDefaultFeature9 = `INSERT IGNORE INTO Features VALUES(9, 'PL9');`
 export const addDefaultFeature10 = `INSERT IGNORE INTO Features VALUES(10, 'PL10');`
 
+export const candidatesQuery = (userId: String) => {
+    return `SELECT AU.ID
+    FROM User AU
+    WHERE AU.ID NOT LIKE '${userId}'          -- NOT ME
+    AND AU.ID NOT IN (SELECT DISLIKEDUSERID -- NOT A User I ALREADY LIKE
+      FROM User A, Dislikes
+      WHERE A.ID = '${userId}'
+      AND A.ID = Dislikes.USERID)
+    AND AU.ID NOT IN (SELECT ID             -- NOT A User I DISLIKE
+      FROM User
+      JOIN (SELECT DISTINCT LIKEDUSERID
+            FROM User A, Likes
+            WHERE A.ID = '${userId}'
+            AND A.ID = Likes.USERID) B
+      ON User.ID = B.LIKEDUSERID)
+    AND AU.ID NOT IN (SELECT U.ID           -- NOT A User THAT Dislikes ME
+        FROM User U, Dislikes D
+        WHERE U.ID = D.USERID
+        AND D.DISLIKEDUSERID = '${userId}');`
+}
+
+export const matchesQuery = (userId: string) => {
+    return `SELECT AU.ID
+    FROM User  AU
+    JOIN (SELECT B.USERID FROM
+    Likes A
+    JOIN
+    Likes B
+    ON A.USERID = B.LIKEDUSERID
+    WHERE A.USERID = '${userId}'
+    AND B.USERID = A.LIKEDUSERID
+    AND A.USERID = B.LIKEDUSERID) MU
+    ON AU.ID = MU.USERID;`
+}
+
 
 

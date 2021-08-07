@@ -1,4 +1,3 @@
-// import db from './db'
 import { getDB } from './db'
 import { createUsersTableQuery } from './sqlCommands'
 
