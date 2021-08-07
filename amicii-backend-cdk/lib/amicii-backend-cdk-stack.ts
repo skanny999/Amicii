@@ -208,29 +208,18 @@ export class AmiciiBackendCdkStack extends cdk.Stack {
 
     // Resolvers
 
-    lambdaDs.createResolver({
-      typeName: 'Query',
-      fieldName: 'user'
-    })
+    const resolvers = [
+      { typeName: 'Query', fieldName: 'user' },
+      { typeName: 'Query', fieldName: 'candidates' },
+      { typeName: 'Query', fieldName: 'matches' },
+      { typeName: 'Mutation', fieldName: 'createUser' },
+      { typeName: 'Mutation', fieldName: 'updateUser' },
+      { typeName: 'Mutation', fieldName: 'likeUser' },
+      { typeName: 'Mutation', fieldName: 'dislikeUser' }
+    ]
 
-    lambdaDs.createResolver({
-      typeName: 'Query',
-      fieldName: 'candidates'
-    })
-
-    lambdaDs.createResolver({
-      typeName: 'Query',
-      fieldName: 'matches'
-    })
-
-    lambdaDs.createResolver({
-      typeName: 'Mutation',
-      fieldName: 'createUser'
-    })
-
-    lambdaDs.createResolver({
-      typeName: 'Mutation',
-      fieldName: 'updateUser'
-    })
+    for ( let { typeName, fieldName } of resolvers) {
+      lambdaDs.createResolver({ typeName, fieldName })
+    }
   }
 }

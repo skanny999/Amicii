@@ -2,11 +2,8 @@ import { User } from './types'
 import { getDB } from './db'
 
 async function updateUser(user: User) {
-
     const db = await getDB()
 
-
-    
     const disconnectPreviouslyConnectedFeatures =  db.user.update({
         where: {id: user.id},
         data: {
