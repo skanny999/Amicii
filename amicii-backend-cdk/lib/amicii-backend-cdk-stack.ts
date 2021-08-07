@@ -45,13 +45,18 @@ export class AmiciiBackendCdkStack extends cdk.Stack {
       value: api.graphqlUrl
     })
 
-    new cdk.CfnOutput(this, 'aws_appsynch_apikey', {
-      value: api.apiKey || ''
+    new cdk.CfnOutput(this, 'aws_appsynch_region', {
+      value: "eu-west-2"
     })
 
     new cdk.CfnOutput(this, 'aws_appsynch_authenticationType', {
       value: 'API_KEY'
     })
+    
+    new cdk.CfnOutput(this, 'aws_appsynch_apikey', {
+      value: api.apiKey || ''
+    })
+
 
 
     //Create the VPC for the ServerlessDB cluster
