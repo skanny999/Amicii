@@ -14,7 +14,6 @@ export const user = /* GraphQL */ `
       profileEmoji
       createdOn
       features {
-        id
         emoji
       }
     }
@@ -32,7 +31,6 @@ export const candidates = /* GraphQL */ `
       profileEmoji
       createdOn
       features {
-        id
         emoji
       }
     }
@@ -50,7 +48,6 @@ export const matches = /* GraphQL */ `
       profileEmoji
       createdOn
       features {
-        id
         emoji
       }
     }

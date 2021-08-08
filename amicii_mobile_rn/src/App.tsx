@@ -1,37 +1,56 @@
 import Amplify from 'aws-amplify'
 import Auth from '@aws-amplify/auth'
-import config from './aws-exports'
-import { AmiciiBackendCdkStack } from './cdk-exports.json'
+import config from '../aws-exports'
+import { AmiciiBackendCdkStack } from '../cdk-exports.json'
 import { withAuthenticator } from 'aws-amplify-react-native'
 
-import React from "react";
+import React, { useEffect } from "react";
 import { NavigationContainer} from '@react-navigation/native'
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { PRIMARY, DARK_GRAY, WHITE, BLACK } from "./src/assets/styles";
-import Home from './src/screens/Home'
-import Matches from './src/screens/Matches' 
-import TabBarIcon from './src/components/TabBarIcon';
-import Profile from "./src/screens/Profile";
-
-const CDKConfig = {
-  aws_appsynch_graphqlEndpoint: AmiciiBackendCdkStack.awsappsynchgraphqlEndpoint,
-  aws_appsynch_authenticationType: AmiciiBackendCdkStack.awsappsynchauthenticationType,
-  aws_appsynch_apikey: AmiciiBackendCdkStack.awsappsynchapikey
-}
+import { PRIMARY, DARK_GRAY, WHITE, BLACK } from "./assets/styles";
+import Home from './screens/Home'
+import Matches from './screens/Matches' 
+import TabBarIcon from './components/TabBarIcon';
+import Profile from "./screens/Profile";
+import { getCandidates, getUser } from './services/APIService';
 
 const configuration = {
-  ...config, CDKConfig
+  ...config, 
+  aws_appsync_graphqlEndpoint: AmiciiBackendCdkStack.awsappsynchgraphqlEndpoint,
+  aws_appsync_authenticationType: 'AMAZON_COGNITO_USER_POOLS',
+  aws_appsync_region: "eu-west-2",
+  Analytics: {
+    disabled: true,
+  },
 }
 
 Amplify.configure(configuration)
-Auth.configure(configuration)
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const App = () => (
+const App = () => {
 
+  useEffect(() => {
+    // const user = getUser('a')
+    // user.then((myUser) => console.log(myUser))
+
+    const candidates = getCandidates('2');
+    candidates.then((myCandidates) => console.log(myCandidates))
+  }, [])
+
+  
+
+  // const authenticatedUser = Auth.currentAuthenticatedUser()
+  // authenticatedUser.then(result => console.log(result))
+  const currentUser = Auth.currentUserInfo()
+  // currentUser.then(result => console.log(`Current user: ${result.id}`))
+
+
+
+
+  return (
   <NavigationContainer>
     <Stack.Navigator>
       <Stack.Screen
@@ -106,6 +125,7 @@ const App = () => (
       </Stack.Screen>
     </Stack.Navigator>
   </NavigationContainer>
-);
+  ) 
+}
 
 export default withAuthenticator(App);

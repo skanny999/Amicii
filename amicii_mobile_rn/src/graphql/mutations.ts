@@ -14,7 +14,6 @@ export const createUser = /* GraphQL */ `
       profileEmoji
       createdOn
       features {
-        id
         emoji
       }
     }
@@ -32,7 +31,6 @@ export const updateUser = /* GraphQL */ `
       profileEmoji
       createdOn
       features {
-        id
         emoji
       }
     }
@@ -50,7 +48,6 @@ export const likeUser = /* GraphQL */ `
       profileEmoji
       createdOn
       features {
-        id
         emoji
       }
     }
@@ -68,7 +65,6 @@ export const dislikeUser = /* GraphQL */ `
       profileEmoji
       createdOn
       features {
-        id
         emoji
       }
     }

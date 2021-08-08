@@ -17,7 +17,6 @@ export type User = {
 
 export type Feature = {
   __typename: "Feature",
-  id?: number | null,
   emoji?: string,
 };
 
@@ -53,7 +52,6 @@ export type CreateUserMutation = {
     createdOn: string,
     features:  Array< {
       __typename: "Feature",
-      id?: number | null,
       emoji: string,
     } | null >,
   } | null,
@@ -76,7 +74,6 @@ export type UpdateUserMutation = {
     createdOn: string,
     features:  Array< {
       __typename: "Feature",
-      id?: number | null,
       emoji: string,
     } | null >,
   } | null,
@@ -100,7 +97,6 @@ export type LikeUserMutation = {
     createdOn: string,
     features:  Array< {
       __typename: "Feature",
-      id?: number | null,
       emoji: string,
     } | null >,
   } | null,
@@ -124,7 +120,6 @@ export type DislikeUserMutation = {
     createdOn: string,
     features:  Array< {
       __typename: "Feature",
-      id?: number | null,
       emoji: string,
     } | null >,
   } | null,
@@ -147,7 +142,6 @@ export type UserQuery = {
     createdOn: string,
     features:  Array< {
       __typename: "Feature",
-      id?: number | null,
       emoji: string,
     } | null >,
   } | null,
@@ -170,7 +164,6 @@ export type CandidatesQuery = {
     createdOn: string,
     features:  Array< {
       __typename: "Feature",
-      id?: number | null,
       emoji: string,
     } | null >,
   } | null > | null,
@@ -193,7 +186,6 @@ export type MatchesQuery = {
     createdOn: string,
     features:  Array< {
       __typename: "Feature",
-      id?: number | null,
       emoji: string,
     } | null >,
   } | null > | null,
@@ -212,7 +204,6 @@ export type OnCreateUserSubscription = {
     createdOn: string,
     features:  Array< {
       __typename: "Feature",
-      id?: number | null,
       emoji: string,
     } | null >,
   } | null,
@@ -231,8 +222,11 @@ export type OnUpdateUserSubscription = {
     createdOn: string,
     features:  Array< {
       __typename: "Feature",
-      id?: number | null,
       emoji: string,
     } | null >,
   } | null,
 };
+export function graphql(arg0: { query: any; variables: {}; }): import("@aws-amplify/api-graphql").GraphQLResult<UserQuery> | PromiseLike<import("@aws-amplify/api-graphql").GraphQLResult<UserQuery>> {
+  throw new Error('Function not implemented.');
+}
+
