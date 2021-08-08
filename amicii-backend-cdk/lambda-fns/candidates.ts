@@ -10,6 +10,9 @@ async function candidates(userId: string) {
                 id: {
                     in: allCandidatesIds.map((item: { ID: string }) => item.ID)
                 }
+            },
+            include: {
+                features: true
             }
         })
         return allCandidates
