@@ -6,13 +6,17 @@ export type IconType = {
 }
 
 export type UserType = {
-    id: number,
-    name: string,
-    bio: string,
-    age: number,
-    emoji: string,
-    features: string[]
+    id?: string | undefined,
+    username?: string | undefined,
+    age?: number | undefined,
+    bio?: string | undefined,
+    genderM?: number | undefined,
+    genderF?: number | undefined,
+    profileEmoji?: string | undefined,
+    createdOn?: string | undefined,
+    features: [string, string, string, string, string, string, string, string, string, string],
 }
+
 
 export type CardItemType = {
     name: string,

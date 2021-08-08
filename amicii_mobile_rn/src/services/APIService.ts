@@ -1,19 +1,22 @@
 import { user, candidates } from '../graphql/queries';
-import { createUser } from '../graphql/mutations';
+import { createUser, updateUser } from '../graphql/mutations';
 import * as AmiciiAPI from '../AmiciiAPI'
 import API, {GraphQLResult, graphqlOperation} from '@aws-amplify/api';
+import { UserType } from '../types';
 
 // MUTATIONS
 
 export async function createNewUser(userId: string) {
     try {
         const createUserMutationVariable: AmiciiAPI.CreateUserMutationVariables = { userId: userId };
-        const createUserRequest: GraphQLResult<AmiciiAPI.CreateUserMutation> = await API.graphql(graphqlOperation(createUser, createUserMutationVariable)) as GraphQLResult<AmiciiAPI.CreateUserMutation>;
+        const createUserRequest: GraphQLResult<AmiciiAPI.CreateUserMutation> = await API.graphql(
+          graphqlOperation(createUser, createUserMutationVariable)
+          ) as GraphQLResult<AmiciiAPI.CreateUserMutation>;
         if (createUserRequest.data) {
             const createUserMutation: AmiciiAPI.CreateUserMutation = createUserRequest.data;
             if (createUserMutation.createUser) {
-              const user = createUserMutation.createUser;
-              return user
+              console.log(createUserMutation.createUser)
+              return userId
             }
           }
     } catch (err) {
@@ -21,12 +24,52 @@ export async function createNewUser(userId: string) {
     }
 }
 
+export async function updateCurrentUser(user: UserType) {
+  try {
+    const updateInput: AmiciiAPI.UpdateUserInput = {
+      id: user.id,
+      username: user.username || '',
+      age: user.age || 0,
+      bio: user.bio || '',
+      genderM: user.genderM || 0,
+      genderF: user.genderF || 0,
+      profileEmoji: user.profileEmoji || '',
+      features: [
+        {emoji: user.features[0]},
+        {emoji: user.features[1]},
+        {emoji: user.features[2]},
+        {emoji: user.features[3]},
+        {emoji: user.features[4]},
+        {emoji: user.features[5]},
+        {emoji: user.features[6]},
+        {emoji: user.features[7]},
+        {emoji: user.features[8]},
+        {emoji: user.features[9]},
+      ],
+    }
+    const updateUserMutationVariables: AmiciiAPI.UpdateUserMutationVariables = { user: updateInput}
+    const updateUserResult: GraphQLResult<AmiciiAPI.UpdateUserMutation> = await API.graphql(
+      graphqlOperation(updateUser, updateUserMutationVariables)
+      ) as GraphQLResult<AmiciiAPI.UpdateUserMutation>
+    if (updateUserResult.data) {
+      const updateUserMutation: AmiciiAPI.UpdateUserMutation = updateUserResult.data
+      if (updateUserMutation.updateUser) {
+        return updateUserMutation.updateUser
+      }
+    }
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 // QUERIES
 
 export async function getUser(userId: string) {
     try {
       const userQV: AmiciiAPI.UserQueryVariables = {userId: userId}
-      const userResult: GraphQLResult<AmiciiAPI.UserQuery> = await API.graphql(graphqlOperation(user, userQV)) as GraphQLResult<AmiciiAPI.UserQuery> 
+      const userResult: GraphQLResult<AmiciiAPI.UserQuery> = await API.graphql(
+        graphqlOperation(user, userQV)
+        ) as GraphQLResult<AmiciiAPI.UserQuery> 
       if (userResult.data) {
         const query: AmiciiAPI.UserQuery = userResult.data
         if (query.user) {
