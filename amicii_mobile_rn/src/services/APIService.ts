@@ -1,6 +1,25 @@
 import { user, candidates } from '../graphql/queries';
+import { createUser } from '../graphql/mutations';
 import * as AmiciiAPI from '../AmiciiAPI'
 import API, {GraphQLResult, graphqlOperation} from '@aws-amplify/api';
+
+// MUTATIONS
+
+export async function createNewUser(userId: string) {
+    try {
+        const createUserMutationVariable: AmiciiAPI.CreateUserMutationVariables = { userId: userId };
+        const createUserRequest: GraphQLResult<AmiciiAPI.CreateUserMutation> = await API.graphql(graphqlOperation(createUser, createUserMutationVariable)) as GraphQLResult<AmiciiAPI.CreateUserMutation>;
+        if (createUserRequest.data) {
+            const createUserMutation: AmiciiAPI.CreateUserMutation = createUserRequest.data;
+            if (createUserMutation.createUser) {
+              const user = createUserMutation.createUser;
+              return user
+            }
+          }
+    } catch (err) {
+        console.log(err)
+    }
+}
 
 // QUERIES
 
@@ -12,7 +31,6 @@ export async function getUser(userId: string) {
         const query: AmiciiAPI.UserQuery = userResult.data
         if (query.user) {
           return query.user
-        //   console.log('User: ', user)
         }
       }
     } catch (err) {

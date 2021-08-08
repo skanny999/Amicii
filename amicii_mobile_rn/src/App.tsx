@@ -13,7 +13,8 @@ import Home from './screens/Home'
 import Matches from './screens/Matches' 
 import TabBarIcon from './components/TabBarIcon';
 import Profile from "./screens/Profile";
-import { getCandidates, getUser } from './services/APIService';
+import { createNewUser, getCandidates, getUser } from './services/APIService';
+
 
 const configuration = {
   ...config, 
@@ -33,11 +34,12 @@ const Tab = createBottomTabNavigator();
 const App = () => {
 
   useEffect(() => {
-    // const user = getUser('a')
-    // user.then((myUser) => console.log(myUser))
+    const newUser = createNewUser('ghi')
+    newUser.then((user) => console.log(user))
 
-    const candidates = getCandidates('2');
-    candidates.then((myCandidates) => console.log(myCandidates))
+
+    // const candidates = getCandidates('2');
+    // candidates.then((myCandidates) => console.log(myCandidates))
   }, [])
 
   
