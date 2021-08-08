@@ -22,8 +22,8 @@ async function createUser(userId: string) {
     }
 
     try {
-        const createUser = await db.user.create({ data: user})
-        return createUser
+        await db.user.create({ data: user})
+        return userId
     } catch (err) {
         console.log('MySQL error: ', err)
         return null
