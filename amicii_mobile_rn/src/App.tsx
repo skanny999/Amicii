@@ -13,7 +13,9 @@ import Home from './screens/Home'
 import Matches from './screens/Matches' 
 import TabBarIcon from './components/TabBarIcon';
 import Profile from "./screens/Profile";
-import { createNewUser, getCandidates, getUser } from './services/APIService';
+import { createNewUser, getCandidates, getUser, updateCurrentUser } from './services/APIService';
+import { UserType } from './types'
+
 
 
 const configuration = {
@@ -31,23 +33,41 @@ Amplify.configure(configuration)
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+export const sampleUser: UserType = {
+  id: "test2",
+  username: "mark",
+  age: 22,
+  bio: "this sapore",
+  genderM: 1,
+  genderF: 0,
+  profileEmoji: "1f45e",
+  features: [
+    '1f614',
+    '1f452',
+    '1f367',
+    '1f343',
+    '26a7',
+    '26f9 1f3fd 200d 2640 fe0f',
+    '1f682',
+    '1f558',
+    '1f9ae',
+    '1f54b',
+  ]
+};
+
 const App = () => {
 
   useEffect(() => {
-    const newUser = createNewUser('ghi')
-    newUser.then((user) => console.log(user))
 
-
-    // const candidates = getCandidates('2');
-    // candidates.then((myCandidates) => console.log(myCandidates))
   }, [])
 
   
 
-  // const authenticatedUser = Auth.currentAuthenticatedUser()
-  // authenticatedUser.then(result => console.log(result))
+  // const authenticatedUser = Auth.currentAuthenticatedUser().then(user => console.log("AUTHENTICATED USER: ", user))
+
+
   const currentUser = Auth.currentUserInfo()
-  // currentUser.then(result => console.log(`Current user: ${result.id}`))
+  currentUser.then(result => console.log(`CURRENT USER: ${result.id}`))
 
 
 

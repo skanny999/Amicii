@@ -6,10 +6,19 @@ import Filters from "../components/Filters";
 import MockUsers from '../assets/data/mockUsers'
 import CardItem from "../components/CardItem";
 import Icon from '../components/Icon'
+import Logout from '../components/Logout';
+import Auth from '@aws-amplify/auth'
+
+
+
 
 
 const Home = () => {
     const [swiper, setSwiper] = useState<CardStack | null>(null)
+
+    const logoutPressed = () => {
+        Auth.signOut()
+    }
     
     return (
         <ImageBackground
@@ -18,6 +27,7 @@ const Home = () => {
             <View style={styles.homeContainer}>
                 <View style={styles.homeTop}>
                     <Filters/>
+                    <Logout handlePress={ logoutPressed }/>
                 </View>
                 <View style={{flex: 2}}>
                     <CardStack
@@ -28,10 +38,10 @@ const Home = () => {
                         {MockUsers.map((user) => (
                             <Card key={user.id}>
                                 <CardItem 
-                                name={user.name} 
-                                emoji={user.emoji} 
-                                age={user.age}
-                                bio={user.bio}
+                                name={user.username!} 
+                                emoji={user.profileEmoji!} 
+                                age={user.age!}
+                                bio={user.bio!}
                                 features={user.features}
                                 hasAction={true}
                                 isLarge={true}

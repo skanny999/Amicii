@@ -33,10 +33,10 @@ const Matches = () => {
                 renderItem={({item}) => (
                     <TouchableOpacity onPress={() => showUserDetails(item)}>
                         <CardItem
-                        emoji={item.emoji}
-                        name={item.name}
-                        bio={item.bio}
-                        age={item.age}
+                        emoji={item.profileEmoji!}
+                        name={item.username!}
+                        bio={item.bio!}
+                        age={item.age!}
                         features={item.features}
                         isLarge={false}
                         editable={false} 
@@ -57,10 +57,10 @@ const Matches = () => {
                                 <Text style={styles.modalTextStyle}>Close</Text>
                             </Pressable>
                             <CardItem
-                            emoji={item.emoji}
-                            name={item.name}
-                            bio={item.bio}
-                            age={item.age}
+                            emoji={item.profileEmoji!}
+                            name={item.username!}
+                            bio={item.bio!}
+                            age={item.age!}
                             features={item.features}
                             isLarge={true}
                             editable={false} 

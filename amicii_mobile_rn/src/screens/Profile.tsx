@@ -4,7 +4,6 @@ import styles from "../assets/styles"
 import CardItem from "../components/CardItem"
 import {user} from "../assets/data/mockUsers"
 import Edit from "../components/Edit"
-import { WINDOW_HEIGHT } from '../assets/styles/index';
 import EmojiPicker from "../components/EmojiPicker"
 
 const me = user
@@ -18,7 +17,7 @@ const Profile = () => {
 
     const handleSelectEmoji = (emoji: string) => {
       if (emojiIndexToChange < 0) {
-        setUser({...thisUser, emoji: emoji});
+        setUser({...thisUser, profileEmoji: emoji});
       } else {
         const updatedFeatures = thisUser.features 
         updatedFeatures[emojiIndexToChange] = emoji
@@ -45,10 +44,10 @@ const Profile = () => {
                 <View style={styles.cardItemContainer}>
                 {/* <View style={{paddingBottom: WINDOW_HEIGHT / 20}}/> */}
                 <CardItem
-                    name={thisUser.name}
-                    emoji={thisUser.emoji}
-                    bio={thisUser.bio}
-                    age={thisUser.age}
+                    name={thisUser.username!}
+                    emoji={thisUser.profileEmoji!}
+                    bio={thisUser.bio!}
+                    age={thisUser.age!}
                     features={thisUser.features}
                     hasAction={false}
                     isLarge={true}
