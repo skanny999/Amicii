@@ -15,6 +15,7 @@ import TabBarIcon from './components/TabBarIcon';
 import Profile from "./screens/Profile";
 import { createNewUser, getCandidates, getUser, updateCurrentUser } from './services/APIService';
 import { UserType } from './types'
+import { extractUserId } from './helpers/stringHelper'
 
 
 
@@ -33,44 +34,14 @@ Amplify.configure(configuration)
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-export const sampleUser: UserType = {
-  id: "test2",
-  username: "mark",
-  age: 22,
-  bio: "this sapore",
-  genderM: 1,
-  genderF: 0,
-  profileEmoji: "1f45e",
-  features: [
-    '1f614',
-    '1f452',
-    '1f367',
-    '1f343',
-    '26a7',
-    '26f9 1f3fd 200d 2640 fe0f',
-    '1f682',
-    '1f558',
-    '1f9ae',
-    '1f54b',
-  ]
-};
+var userId: string | undefined
 
 const App = () => {
 
-  useEffect(() => {
-
-  }, [])
-
-  
-
-  // const authenticatedUser = Auth.currentAuthenticatedUser().then(user => console.log("AUTHENTICATED USER: ", user))
-
-
-  const currentUser = Auth.currentUserInfo()
-  currentUser.then(result => console.log(`CURRENT USER: ${result.id}`))
-
-
-
+ Auth.currentUserInfo()
+ .then(result => {
+   userId = extractUserId(result)
+ })
 
   return (
   <NavigationContainer>
@@ -103,7 +74,7 @@ const App = () => {
           >
             <Tab.Screen
               name="Explore"
-              component={Home}
+              children={() => <Home userId={userId}/>}
               options={{
                 tabBarIcon: ({ focused }) => (
                   <TabBarIcon
@@ -117,7 +88,7 @@ const App = () => {
 
             <Tab.Screen
               name="Matches"
-              component={Matches}
+              children={() => <Matches/>}
               options={{
                 tabBarIcon: ({ focused }) => (
                   <TabBarIcon
@@ -131,7 +102,7 @@ const App = () => {
 
             <Tab.Screen
               name='Profile'
-              component={Profile}
+              children={() => <Profile/>}
               options={{
                 tabBarIcon: ({ focused }) => (
                   <TabBarIcon

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, ImageBackground, TouchableOpacity } from 'react-native';
+import { View, ImageBackground, TouchableOpacity, Modal, Pressable, Text } from 'react-native';
 import CardStack, { Card } from 'react-native-card-stack-swiper'
 import styles, { DISLIKE, DUNNO, LIKE } from '../assets/styles'
 import Filters from "../components/Filters";
@@ -8,25 +8,24 @@ import CardItem from "../components/CardItem";
 import Icon from '../components/Icon'
 import Logout from '../components/Logout';
 import Auth from '@aws-amplify/auth'
+import { UserType } from '../types';
 
-
-
-
-
-const Home = () => {
-    const [swiper, setSwiper] = useState<CardStack | null>(null)
-
-    const logoutPressed = () => {
-        Auth.signOut()
-    }
+const Home = (props: {userId?: string}) => {
     
+    const [swiper, setSwiper] = useState<CardStack | null>(null)
+    const [candidates, setCandidates] = useState<UserType[] | null>(null)
+    const [modalVisible, setModalVisible] = useState(false)
+
+    const logoutPressed = () => Auth.signOut()
+    const handleShowFilter = () => setModalVisible(true)
+
     return (
         <ImageBackground
             source={require('../assets/images/background.png')}
             style={styles.homeBackground}>
             <View style={styles.homeContainer}>
                 <View style={styles.homeTop}>
-                    <Filters/>
+                    <Filters handlePress= { handleShowFilter }/>
                     <Logout handlePress={ logoutPressed }/>
                 </View>
                 <View style={{flex: 2}}>
@@ -42,6 +41,8 @@ const Home = () => {
                                 emoji={user.profileEmoji!} 
                                 age={user.age!}
                                 bio={user.bio!}
+                                genderM={user.genderM!}
+                                genderF={user.genderF!}
                                 features={user.features}
                                 hasAction={true}
                                 isLarge={true}
@@ -69,6 +70,25 @@ const Home = () => {
                     </TouchableOpacity>
                 </View>
             </View>
+            <Modal
+        animationType="slide"
+        transparent={false}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.modalCenteredView}>
+          <View style={styles.modalView}>
+            <Pressable
+              style={[styles.modalButton, styles.modalButtonClose]}
+              onPress={() => setModalVisible(!modalVisible)}>
+                <Text style={styles.modalTextStyle}>Close</Text>
+            </Pressable>
+        
+          </View>
+        </View>
+      </Modal>
         </ImageBackground>
     )
 }

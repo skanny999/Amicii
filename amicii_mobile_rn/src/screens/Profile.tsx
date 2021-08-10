@@ -8,7 +8,7 @@ import EmojiPicker from "../components/EmojiPicker"
 
 const me = user
 
-const Profile = () => {
+const Profile = (props: {userId?: string}) => {
 
     const [thisUser, setUser] = useState(me)
     const [emojiIndexToChange, setEmojiIndexToChange] = useState<number>(-2)
@@ -47,6 +47,8 @@ const Profile = () => {
                     name={thisUser.username!}
                     emoji={thisUser.profileEmoji!}
                     bio={thisUser.bio!}
+                    genderM={thisUser.genderM!}
+                    genderF={thisUser.genderF!}
                     age={thisUser.age!}
                     features={thisUser.features}
                     hasAction={false}
@@ -68,9 +70,8 @@ const Profile = () => {
           <View style={styles.modalView}>
           <Pressable
               style={[styles.modalButton, styles.modalButtonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={styles.modalTextStyle}>Close</Text>
+              onPress={() => setModalVisible(!modalVisible)}>
+                <Text style={styles.modalTextStyle}>Close</Text>
             </Pressable>
             <EmojiPicker selectedEmoji={handleSelectEmoji}/>
           </View>

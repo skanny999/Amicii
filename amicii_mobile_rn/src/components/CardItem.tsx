@@ -1,6 +1,5 @@
 import React from "react";
 import {Text, TextInput, TouchableOpacity, View} from 'react-native'
-import Icon from './Icon'
 import {CardItemType} from '../types'
 import styles, { DISLIKE, DUNNO, LIKE, WINDOW_WIDTH, }from '../assets/styles'
 import EmojiGrid from "./EmojiGrid";
@@ -9,6 +8,8 @@ const CardItem = ({
     name,
     emoji,
     age,
+    genderM,
+    genderF,
     bio,
     features,
     hasAction,
@@ -17,6 +18,16 @@ const CardItem = ({
     handleEditEmoji,
     handleEditBio
 }: CardItemType) => {
+
+    const gender = (genderM: number, genderF: number) => {
+        if (genderM === 1) {
+            return ', M'
+        } else if (genderF === 1) {
+            return ', F'
+        } else {
+            return ''
+        }
+    }
 
     const profileImageStyle = [
         {
@@ -57,7 +68,7 @@ const CardItem = ({
                 }}>{emoji}</Text>
             </TouchableOpacity>
             <Text style={nameStyle}>{name}</Text>
-            <Text style={ageStyle}>{age}</Text>
+            <Text style={ageStyle}>{`${age}${gender(genderM, genderF)}`}</Text>
             <EmojiGrid handlePress={handleEditEmoji!!} emojis={features} editable={editable} isLarge={isLarge}/>
             {bio && isLarge &&(
              <TextInput 

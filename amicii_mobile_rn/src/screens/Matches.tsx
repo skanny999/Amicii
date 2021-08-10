@@ -6,9 +6,10 @@ import CardItem from '../components/CardItem'
 import styles, { DARK_GRAY } from '../assets/styles'
 import { UserType } from '../types';
 
-const Matches = () => {
+const Matches = (props: {userId?: string}) => {
 
     const [modalVisible, setModalVisible] = useState(false)
+    const [matches, setMatches] = useState<UserType[] | null>(null)
 
     const showUserDetails = (user: UserType) => {
         setModalVisible(true)
@@ -37,6 +38,8 @@ const Matches = () => {
                         name={item.username!}
                         bio={item.bio!}
                         age={item.age!}
+                        genderM={item.genderM!}
+                        genderF={item.genderF!}
                         features={item.features}
                         isLarge={false}
                         editable={false} 
@@ -60,6 +63,8 @@ const Matches = () => {
                             emoji={item.profileEmoji!}
                             name={item.username!}
                             bio={item.bio!}
+                            genderM={item.genderM!}
+                            genderF={item.genderF!}
                             age={item.age!}
                             features={item.features}
                             isLarge={true}

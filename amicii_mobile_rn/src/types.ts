@@ -22,6 +22,8 @@ export type CardItemType = {
     name: string,
     emoji: string,
     age: number,
+    genderM: number,
+    genderF: number,
     bio: string,
     features: string[],
     hasAction?: boolean,
