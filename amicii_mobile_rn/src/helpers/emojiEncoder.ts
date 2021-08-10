@@ -1,17 +1,17 @@
-export function stringFromEmoji(emoji) {
+export function stringFromEmoji(emoji: string) {
     return emojiUnicode(emoji).split(' ').map(function (val) {
         return parseInt(val).toString(16);
     }).join(' ');
 }
 
-export function emojiFromString(emojiString) {
+export function emojiFromString(emojiString: string) {
     return emojiString
     .split(" ")
     .map( comp => String.fromCodePoint(parseInt(comp, 16)))
-    .reduce((prev, curr) => prev + curr)
+    .reduce((prev: string, curr: string) => prev + curr)
 }
 
-const emojiUnicode = function (input) {
+const emojiUnicode = function (input: string) {
     if (input.length === 1) {
         return input.charCodeAt(0).toString();
     } else if (input.length > 1) {
