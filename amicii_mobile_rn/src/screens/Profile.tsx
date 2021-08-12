@@ -1,19 +1,34 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { ImageBackground,Modal,Pressable,StyleSheet,Text,View } from 'react-native'
 import styles from "../assets/styles"
 import CardItem from "../components/CardItem"
 import {user} from "../assets/data/mockUsers"
 import Edit from "../components/Edit"
 import EmojiPicker from "../components/EmojiPicker"
+import { getUser } from "../services/APIService"
 
 const me = user
 
-const Profile = (props: {userId?: string}) => {
+const Profile = (props: {userId: string}) => {
 
     const [thisUser, setUser] = useState(me)
     const [emojiIndexToChange, setEmojiIndexToChange] = useState<number>(-2)
     const [modalVisible, setModalVisible] = useState(false)
     const [currentBio, setCurrentBio] = useState(me.bio)
+
+    useEffect(() => {
+      const processUser = async () => {
+          console.log('Processing user with id: ', props.userId)
+          try {
+            const userResponse =  await getUser(props.userId)
+            console.log(userResponse)
+            setUser(userResponse!)
+          } catch (err) {
+              console.log(err)
+          }
+      }
+      processUser()
+  },[props.userId])
 
     const handleSelectEmoji = (emoji: string) => {
       if (emojiIndexToChange < 0) {

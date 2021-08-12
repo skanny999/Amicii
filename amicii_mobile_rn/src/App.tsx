@@ -13,13 +13,8 @@ import Home from './screens/Home'
 import Matches from './screens/Matches' 
 import TabBarIcon from './components/TabBarIcon';
 import Profile from "./screens/Profile";
-import { createNewUser, getCandidates, getUser, updateCurrentUser } from './services/APIService';
-import { UserType } from './types'
 import { extractUserId } from './helpers/stringHelper'
-import { user } from './assets/data/mockUsers'
-import { createUser } from './graphql/mutations'
 import { useState } from 'react'
-import { ActivityIndicator, Dimensions, View } from 'react-native'
 
 const configuration = {
   ...config, 
@@ -44,25 +39,15 @@ const App = () => {
     const processUser = async () => {
         try {
           const actualUser = await Auth.currentUserInfo();
-          const userId = await extractUserId(actualUser.id)
+          const userId = extractUserId(actualUser.id)
           setCurrentUserId(userId)
-          const myUser = await getUser(userId);
-          if (!myUser) {
-            await createNewUser(userId)
-            }
-          setCurrentUserId(userId)
+          console.log(userId)
         } catch (error) {
           console.log('Cannot get userId: ', error)
         }
       }
     processUser()
     }, [])
-    
-  if (currentUserId == '') return (
-    <View style={{  display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
-      <ActivityIndicator size="large" color="black" />
-    </View>
-  )
 
   return (
   <NavigationContainer>

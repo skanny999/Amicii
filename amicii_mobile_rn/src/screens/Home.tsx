@@ -1,16 +1,17 @@
-import React, { useState } from 'react'
-import { View, ImageBackground, TouchableOpacity, Modal, Pressable, Text } from 'react-native';
+import React, { useEffect, useState } from 'react'
+import { View, ImageBackground, TouchableOpacity, Modal, Pressable, Text, ActivityIndicator } from 'react-native';
 import CardStack, { Card } from 'react-native-card-stack-swiper'
 import styles, { DISLIKE, DUNNO, LIKE } from '../assets/styles'
 import Filters from "../components/Filters";
-import MockUsers from '../assets/data/mockUsers'
+import MockUsers, { more } from '../assets/data/mockUsers'
 import CardItem from "../components/CardItem";
 import Icon from '../components/Icon'
 import Logout from '../components/Logout';
 import Auth from '@aws-amplify/auth'
 import { UserType } from '../types';
+import { createNewUser, getUser, getCandidates } from '../services/APIService';
 
-const Home = (props: {userId?: string}) => {
+const Home = (props: {userId: string}) => {
     
     const [swiper, setSwiper] = useState<CardStack | null>(null)
     const [candidates, setCandidates] = useState<UserType[] | null>(null)
@@ -18,6 +19,33 @@ const Home = (props: {userId?: string}) => {
 
     const logoutPressed = () => Auth.signOut()
     const handleShowFilter = () => setModalVisible(true)
+
+    useEffect(() => {
+        const processUser = async () => {
+            console.log('Processing user with id: ', props.userId)
+            try {
+                if (props.userId != '') {
+                    const currentUser = await getUser(props.userId)
+                    if (currentUser == null) {
+                        await createNewUser(props.userId)
+                    }
+                    const candidatesResponse =  await getCandidates(props.userId)
+                    console.log(candidatesResponse)
+                    setCandidates(candidatesResponse!)
+                    
+                }
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        processUser()
+    },[props.userId])
+
+    if (candidates == null) return (
+        <View style={{  display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
+          <ActivityIndicator size="large" color="black" />
+        </View>
+      )
 
     return (
         <ImageBackground
@@ -34,7 +62,7 @@ const Home = (props: {userId?: string}) => {
                         verticalSwipe={true}
                         renderNoMoreCards={() => null}
                         ref={(newSwiper): void => setSwiper(newSwiper)}>
-                        {MockUsers.map((user) => (
+                        {candidates.map((user) => (
                             <Card key={user.id}>
                                 <CardItem 
                                 name={user.username!} 

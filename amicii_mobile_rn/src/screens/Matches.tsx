@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ImageBackground, View, Text, TouchableOpacity, FlatList, Modal, Pressable } from 'react-native'
 import MockUsers from '../assets/data/mockUsers'
 import Icon from '../components/Icon'
 import CardItem from '../components/CardItem'
 import styles, { DARK_GRAY } from '../assets/styles'
 import { UserType } from '../types';
+import { getMatches } from '../services/APIService'
 
-const Matches = (props: {userId?: string}) => {
+const Matches = (props: {userId: string}) => {
 
     const [modalVisible, setModalVisible] = useState(false)
     const [matches, setMatches] = useState<UserType[] | null>(null)
@@ -14,6 +15,22 @@ const Matches = (props: {userId?: string}) => {
     const showUserDetails = (user: UserType) => {
         setModalVisible(true)
     }
+
+    useEffect(() => {
+        const processUser = async () => {
+            console.log('Processing user with id: ', props.userId)
+            try {
+                if (props.userId != '') {
+                    const matchesResponse =  await getMatches(props.userId)
+                    console.log(matchesResponse)
+                    setMatches(matchesResponse!)
+                }
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        processUser()
+    },[props.userId])
 
     return (
         <ImageBackground
@@ -29,7 +46,7 @@ const Matches = (props: {userId?: string}) => {
                 </View>
                 <FlatList
                 numColumns={2}
-                data={MockUsers}
+                data={matches}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({item}) => (
                     <TouchableOpacity onPress={() => showUserDetails(item)}>

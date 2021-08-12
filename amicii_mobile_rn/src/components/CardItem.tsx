@@ -3,6 +3,7 @@ import {Text, TextInput, TouchableOpacity, View} from 'react-native'
 import {CardItemType} from '../types'
 import styles, { DISLIKE, DUNNO, LIKE, WINDOW_WIDTH, }from '../assets/styles'
 import EmojiGrid from "./EmojiGrid";
+import { nonEmpty } from "../helpers/stringHelper";
 
 const CardItem = ({
     name,
@@ -70,7 +71,7 @@ const CardItem = ({
             <Text style={nameStyle}>{name}</Text>
             <Text style={ageStyle}>{`${age}${gender(genderM, genderF)}`}</Text>
             <EmojiGrid handlePress={handleEditEmoji!!} emojis={features} editable={editable} isLarge={isLarge}/>
-            {bio && isLarge &&(
+            {nonEmpty(bio) && isLarge && (
              <TextInput 
              editable={editable}
              multiline={true}
