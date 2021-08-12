@@ -3,13 +3,12 @@ import { View, ImageBackground, TouchableOpacity, Modal, Pressable, Text, Activi
 import CardStack, { Card } from 'react-native-card-stack-swiper'
 import styles, { DISLIKE, DUNNO, LIKE } from '../assets/styles'
 import Filters from "../components/Filters";
-import MockUsers, { more } from '../assets/data/mockUsers'
 import CardItem from "../components/CardItem";
 import Icon from '../components/Icon'
 import Logout from '../components/Logout';
 import Auth from '@aws-amplify/auth'
 import { UserType } from '../types';
-import { createNewUser, getUser, getCandidates } from '../services/APIService';
+import { createNewUser, getUser, getCandidates, likeUser, dislikeUser } from '../services/APIService';
 
 const Home = (props: {userId: string}) => {
     
@@ -63,7 +62,10 @@ const Home = (props: {userId: string}) => {
                         renderNoMoreCards={() => null}
                         ref={(newSwiper): void => setSwiper(newSwiper)}>
                         {candidates.map((user) => (
-                            <Card key={user.id}>
+                            <Card 
+                            key={user.id} 
+                            onSwipedRight={() => likeUser(props.userId, user.id!)}
+                            onSwipedLeft={() => dislikeUser(props.userId, user.id!)}>
                                 <CardItem 
                                 name={user.username!} 
                                 emoji={user.profileEmoji!} 

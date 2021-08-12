@@ -63,6 +63,42 @@ export async function updateCurrentUser(user: UserType) {
   }
 }
 
+export async function likeUser(userId: string, otherUserId: string) {
+  try {
+      const createLikeUserVariable: AmiciiAPI.LikeUserMutationVariables = { userId: userId, otherUserId: otherUserId };
+      const createLikeUserRequest: GraphQLResult<AmiciiAPI.LikeUserMutation> = await API.graphql(
+        graphqlOperation(createUser, createLikeUserVariable)
+        ) as GraphQLResult<AmiciiAPI.LikeUserMutation>;
+      if (createLikeUserRequest.data) {
+          const createLikeUserMutation: AmiciiAPI.LikeUserMutation = createLikeUserRequest.data;
+          if (createLikeUserMutation.likeUser) {
+            console.log(createLikeUserMutation.likeUser)
+            return userId
+          }
+        }
+  } catch (err) {
+      console.log(err)
+  }
+}
+
+export async function dislikeUser(userId: string, otherUserId: string) {
+  try {
+      const createDislikeUserVariable: AmiciiAPI.DislikeUserMutationVariables = { userId: userId, otherUserId: otherUserId };
+      const createDislikeUserRequest: GraphQLResult<AmiciiAPI.DislikeUserMutation> = await API.graphql(
+        graphqlOperation(createUser, createDislikeUserVariable)
+        ) as GraphQLResult<AmiciiAPI.DislikeUserMutation>;
+      if (createDislikeUserRequest.data) {
+          const createDislikeUserMutation: AmiciiAPI.DislikeUserMutation = createDislikeUserRequest.data;
+          if (createDislikeUserMutation.dislikeUser) {
+            console.log(createDislikeUserMutation.dislikeUser)
+            return userId
+          }
+        }
+  } catch (err) {
+      console.log(err)
+  }
+}
+
 // QUERIES
 
 export async function getUser(userId: string) {
