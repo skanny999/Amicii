@@ -7,7 +7,7 @@ type User @aws_api_key @aws_cognito_user_pools {
   genderF: Int!
   profileEmoji: String!
   createdOn: String!
-  features: [Feature]! @connection
+  features: [Feature] @connection
 }
 
 type Feature @aws_api_key @aws_cognito_user_pools {
@@ -44,7 +44,7 @@ input UpdateUserInput {
   genderM: Int!
   genderF: Int!
   profileEmoji: String!
-  features: [FeatureInput]!
+  features: [FeatureInput]
 }
 
 input FeatureInput {
