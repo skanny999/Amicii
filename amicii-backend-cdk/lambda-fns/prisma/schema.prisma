@@ -17,7 +17,6 @@ model User {
     genderF      Float      @default(value: 0)
     profileEmoji String     @default(value: "")
     createdOn    DateTime   @default(now())
-    description  String     @default("")
     features     Features[]
 }
 
