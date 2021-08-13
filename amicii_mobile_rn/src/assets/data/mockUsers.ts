@@ -11,6 +11,18 @@ export const user: UserType = {
     features: ["🏩", "👀","👩🏼", "💆🏻‍♂️","👩🏻‍🦯", "🧶","🧚🏻‍♀️", "🧟","🙅🏻", "👄"]
 }
 
+export const newUser: UserType = {
+    age: 0, 
+    bio: "", 
+    createdOn: "2021-08-12T13:45:30.792Z", 
+    features: ["PH1", "PH10", "PH2", "PH3", "PH4", "PH5", "PH6", "PH7", "PH8", "PH9"], 
+    genderF: 0, 
+    genderM: 0, 
+    id: "test3", 
+    profileEmoji: "", 
+    username: ""
+}
+
 const mockUsers: UserType[] = [
     {
         id: '1',

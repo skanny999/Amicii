@@ -16,9 +16,9 @@ const CardItem = ({
     handleEditGender
 }: CardItemType) => {
 
-    const gender = (genderM: number, genderF: number) => {
-        return (genderM === 1) ? 'M' : (genderF === 1) ? 'F' : ''
-    }
+    const gender = (newUser) ? '   Select Gender' : (user.genderM === 1) ? 'M' : (user.genderF === 1) ? 'F' : ''
+    const age = (newUser) ? 'Select Age   ' : user.age!
+    const profileEmoji = (newUser) ? '❓' : user.profileEmoji!
 
     const profileImageStyle = [
         {
@@ -56,15 +56,15 @@ const CardItem = ({
                     paddingTop: 20,
                     textAlign: 'center',
                     fontSize: isLarge ? 100 : 60
-                }}>{user.profileEmoji!}</Text>
+                }}>{profileEmoji}</Text>
             </TouchableOpacity>
             <Text style={nameStyle}>{user.username!}</Text>
             <View style={{flexDirection: 'row'}}>
                 <TouchableOpacity onPress={handleEditAge} disabled={!newUser}>
-                    <Text style={ageGenderStyle}>{`${user.age!}`}</Text>
+                    <Text style={ageGenderStyle}>{age}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={handleEditGender} disabled={!newUser}>
-                    <Text style={ageGenderStyle}>{`${gender(user.genderM!, user.genderF!)}`}</Text>
+                    <Text style={ageGenderStyle}>{gender}</Text>
                 </TouchableOpacity>
             </View>
             <EmojiGrid handlePress={handleEditEmoji!!} emojis={user.features} editable={editable || newUser} isLarge={isLarge}/>

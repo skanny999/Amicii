@@ -48,16 +48,16 @@ export const createFeatureRelationQuery = `CREATE TABLE IF NOT EXISTS _FeaturesT
 export const addFeatureToUserForeignKey = `ALTER TABLE _FeaturesToUser ADD FOREIGN KEY (A) REFERENCES Features(id) ON DELETE CASCADE ON UPDATE CASCADE;`
 export const addUserToFeatureForeignKey = `ALTER TABLE _FeaturesToUser ADD FOREIGN KEY (B) REFERENCES User(id) ON DELETE CASCADE ON UPDATE CASCADE;`
 
-export const addDefaultFeature1 = `INSERT IGNORE INTO Features VALUES(1, 'PL1');`
-export const addDefaultFeature2 = `INSERT IGNORE INTO Features VALUES(2, 'PL2');`
-export const addDefaultFeature3 = `INSERT IGNORE INTO Features VALUES(3, 'PL3');`
-export const addDefaultFeature4 = `INSERT IGNORE INTO Features VALUES(4, 'PL4');`
-export const addDefaultFeature5 = `INSERT IGNORE INTO Features VALUES(5, 'PL5');`
-export const addDefaultFeature6 = `INSERT IGNORE INTO Features VALUES(6, 'PL6');`
-export const addDefaultFeature7 = `INSERT IGNORE INTO Features VALUES(7, 'PL7');`
-export const addDefaultFeature8 = `INSERT IGNORE INTO Features VALUES(8, 'PL8');`
-export const addDefaultFeature9 = `INSERT IGNORE INTO Features VALUES(9, 'PL9');`
-export const addDefaultFeature10 = `INSERT IGNORE INTO Features VALUES(10, 'PL10');`
+export const addDefaultFeature1 = `INSERT IGNORE INTO Features VALUES(1, 'PH1');`
+export const addDefaultFeature2 = `INSERT IGNORE INTO Features VALUES(2, 'PH2');`
+export const addDefaultFeature3 = `INSERT IGNORE INTO Features VALUES(3, 'PH3');`
+export const addDefaultFeature4 = `INSERT IGNORE INTO Features VALUES(4, 'PH4');`
+export const addDefaultFeature5 = `INSERT IGNORE INTO Features VALUES(5, 'PH5');`
+export const addDefaultFeature6 = `INSERT IGNORE INTO Features VALUES(6, 'PH6');`
+export const addDefaultFeature7 = `INSERT IGNORE INTO Features VALUES(7, 'PH7');`
+export const addDefaultFeature8 = `INSERT IGNORE INTO Features VALUES(8, 'PH8');`
+export const addDefaultFeature9 = `INSERT IGNORE INTO Features VALUES(9, 'PH9');`
+export const addDefaultFeature10 = `INSERT IGNORE INTO Features VALUES(10, 'PH10');`
 
 export const candidatesQuery = (userId: String) => {
     return `SELECT AU.ID

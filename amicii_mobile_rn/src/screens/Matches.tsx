@@ -76,8 +76,7 @@ const Matches = (props: {userId: string}) => {
                             user={item}
                             isLarge={true}
                             editable={false}
-                            newUser={true}
-                            handleEditEmoji={() => {}}/>
+                            newUser={true}/>
                             </View>
                             </View>
                         </Modal>

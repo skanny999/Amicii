@@ -10,7 +10,7 @@ import Auth from '@aws-amplify/auth'
 import { UserType } from '../types';
 import { createNewUser, getUser, getCandidates, likeUser, dislikeUser } from '../services/APIService';
 import mockUsers from '../assets/data/mockUsers';
-import {user} from "../assets/data/mockUsers"
+import {user, newUser} from "../assets/data/mockUsers"
 
 const Home = (props: {userId: string}) => {
     
@@ -18,7 +18,7 @@ const Home = (props: {userId: string}) => {
     const [candidates, setCandidates] = useState<UserType[] | null>(null)
     const [filtersModalVisible, setFiltersModalVisible] = useState(false)
     const [newUserModalVisible, setNewUserModalVisible] = useState(false)
-    const [currentUser, setCurrentUser] = useState<UserType | null>(user)
+    const [currentUser, setCurrentUser] = useState<UserType | null>(newUser)
 
     const logoutPressed = () => Auth.signOut()
     const handleShowFilter = () => setFiltersModalVisible(true)
@@ -45,10 +45,11 @@ const Home = (props: {userId: string}) => {
                 console.log(err)
             }
         }
-        processUser()
+        setNewUserModalVisible(true)
+        // processUser()
     },[props.userId])
 
-    if (candidates == null) return (
+    if (candidates == null && currentUser == null) return (
         <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
           <ActivityIndicator size="large" color="black" />
         </View>
@@ -122,7 +123,7 @@ const Home = (props: {userId: string}) => {
             animationType="slide"
             transparent={false}
             visible={newUserModalVisible}
-            onRequestClose={() => { setFiltersModalVisible(!filtersModalVisible)}}
+            onRequestClose={() => { setNewUserModalVisible(!filtersModalVisible)}}
             >
             <View style={styles.modalCenteredView}>
             <View style={styles.modalView}>
@@ -131,6 +132,16 @@ const Home = (props: {userId: string}) => {
                 onPress={() => setNewUserModalVisible(!newUserModalVisible)}>
                     <Text style={styles.modalTextStyle}>NewUser</Text>
                 </Pressable>
+                <CardItem
+                    user={currentUser!}
+                    isLarge={true}
+                    editable={true}
+                    newUser={true}
+                    handleEditEmoji={() =>{}}
+                    handleEditBio={() =>{}}
+                    handleEditAge={() =>{}}
+                    handleEditGender={() => {}}
+                    />
             </View>
             </View>
         </Modal>

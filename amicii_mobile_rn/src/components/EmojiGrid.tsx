@@ -9,6 +9,8 @@ interface EmojiProps {
 
 const EmojiGrid = (props: EmojiProps) => {
 
+    const emoji = (item: string) => (item.includes('PH')) ? '❓' : item
+
     return(
         <FlatList
             contentContainerStyle={emojiStyles(props.isLarge).grid}
@@ -21,7 +23,7 @@ const EmojiGrid = (props: EmojiProps) => {
                             disabled={!props.editable} 
                             onPress={() => props.handlePress(index)} 
                             >       
-                            <Text style={emojiStyles(props.isLarge).item}>{item}</Text>
+                            <Text style={emojiStyles(props.isLarge).item}>{emoji(item)}</Text>
                         </TouchableOpacity>
             }}
         />
