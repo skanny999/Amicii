@@ -21,7 +21,9 @@ type Query {
 }
 
 type Mutation {
-  createUser(userId: String): User @aws_api_key @aws_cognito_user_pools
+  createUser(userId: String, username: String): User
+    @aws_api_key
+    @aws_cognito_user_pools
   updateUser(user: UpdateUserInput): User @aws_api_key @aws_cognito_user_pools
   likeUser(userId: String, otherUserId: String): User
     @aws_api_key
