@@ -10,6 +10,7 @@ import Auth from '@aws-amplify/auth'
 import { UserType } from '../types';
 import { createNewUser, getUser, getCandidates, likeUser, dislikeUser } from '../services/APIService';
 import mockUsers from '../assets/data/mockUsers';
+import {user} from "../assets/data/mockUsers"
 
 const Home = (props: {userId: string}) => {
     
@@ -17,6 +18,7 @@ const Home = (props: {userId: string}) => {
     const [candidates, setCandidates] = useState<UserType[] | null>(null)
     const [filtersModalVisible, setFiltersModalVisible] = useState(false)
     const [newUserModalVisible, setNewUserModalVisible] = useState(false)
+    const [currentUser, setCurrentUser] = useState<UserType | null>(user)
 
     const logoutPressed = () => Auth.signOut()
     const handleShowFilter = () => setFiltersModalVisible(true)
@@ -28,8 +30,12 @@ const Home = (props: {userId: string}) => {
                 if (props.userId != '') {
                     const currentUser = await getUser(props.userId)
                     if (currentUser == null) {
-                        await createNewUser(props.userId)
-                        setNewUserModalVisible(true)
+                        const newUserId = await createNewUser(props.userId)
+                        if (newUserId != null) {
+                            const newUser = await getUser(props.userId)
+                            setCurrentUser(newUser!)
+                            setNewUserModalVisible(true)
+                        }
                     }
                     const candidatesResponse =  await getCandidates(props.userId)
                     console.log(candidatesResponse)
@@ -70,9 +76,9 @@ const Home = (props: {userId: string}) => {
                             onSwipedLeft={() => dislikeUser(props.userId, user.id!)}>
                                 <CardItem 
                                 user={user}
-                                hasAction={true}
                                 isLarge={true}
                                 editable={false}
+                                newUser={false}
                                 />
                             </Card>
                         ))}

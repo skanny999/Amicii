@@ -60,9 +60,9 @@ const Profile = (props: {userId: string}) => {
                 {/* <View style={{paddingBottom: WINDOW_HEIGHT / 20}}/> */}
                 <CardItem
                     user={thisUser}
-                    hasAction={false}
                     isLarge={true}
                     editable={true}
+                    newUser={false}
                     handleEditEmoji={emojiToBeUpdated}
                     handleEditBio={updateBio}
                 />

@@ -20,11 +20,13 @@ export type UserType = {
 
 export type CardItemType = {
     user: UserType,
-    hasAction?: boolean,
     isLarge: boolean,
     editable: boolean,
+    newUser: boolean,
     handleEditEmoji?: (item: number) => void,
     handleEditBio?: (text: string) => void,
+    handleEditAge?: () => void,
+    handleEditGender?: () => void
 }
 
 export type TabBarIconType = {

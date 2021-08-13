@@ -5,6 +5,8 @@ export const user: UserType = {
     username: 'Luca',
     bio: 'One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like.',
     age: 22,
+    genderM: 0, 
+    genderF: 1,
     profileEmoji: '🧖🏾‍♀️',
     features: ["🏩", "👀","👩🏼", "💆🏻‍♂️","👩🏻‍🦯", "🧶","🧚🏻‍♀️", "🧟","🙅🏻", "👄"]
 }

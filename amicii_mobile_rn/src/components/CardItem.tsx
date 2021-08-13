@@ -7,21 +7,17 @@ import { nonEmpty } from "../helpers/stringHelper";
 
 const CardItem = ({
     user,
-    hasAction,
     isLarge,
     editable,
+    newUser,
     handleEditEmoji,
-    handleEditBio
+    handleEditBio,
+    handleEditAge,
+    handleEditGender
 }: CardItemType) => {
 
     const gender = (genderM: number, genderF: number) => {
-        if (genderM === 1) {
-            return ', M'
-        } else if (genderF === 1) {
-            return ', F'
-        } else {
-            return ''
-        }
+        return (genderM === 1) ? 'M' : (genderF === 1) ? 'F' : ''
     }
 
     const profileImageStyle = [
@@ -42,7 +38,7 @@ const CardItem = ({
         }
     ]
 
-    const ageStyle = [
+    const ageGenderStyle = [
         {
             paddingBottom: isLarge ? 15 : 10,
             color: '#363637',
@@ -63,11 +59,18 @@ const CardItem = ({
                 }}>{user.profileEmoji!}</Text>
             </TouchableOpacity>
             <Text style={nameStyle}>{user.username!}</Text>
-            <Text style={ageStyle}>{`${user.age!}${gender(user.genderM!, user.genderF!)}`}</Text>
-            <EmojiGrid handlePress={handleEditEmoji!!} emojis={user.features} editable={editable} isLarge={isLarge}/>
+            <View style={{flexDirection: 'row'}}>
+                <TouchableOpacity onPress={handleEditAge} disabled={!newUser}>
+                    <Text style={ageGenderStyle}>{`${user.age!}`}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleEditGender} disabled={!newUser}>
+                    <Text style={ageGenderStyle}>{`${gender(user.genderM!, user.genderF!)}`}</Text>
+                </TouchableOpacity>
+            </View>
+            <EmojiGrid handlePress={handleEditEmoji!!} emojis={user.features} editable={editable || newUser} isLarge={isLarge}/>
             {nonEmpty(user.bio!) && isLarge && (
              <TextInput 
-             editable={editable}
+             editable={editable || newUser}
              multiline={true}
              style={styles.cardItemBio}
              onChangeText={handleEditBio}

@@ -54,7 +54,8 @@ const Matches = (props: {userId: string}) => {
                         <CardItem
                         user={item}
                         isLarge={false}
-                        editable={false} 
+                        editable={false}
+                        newUser={false} 
                         handleEditEmoji={() => {}}      
                         />
                         <Modal
@@ -74,7 +75,8 @@ const Matches = (props: {userId: string}) => {
                             <CardItem
                             user={item}
                             isLarge={true}
-                            editable={false} 
+                            editable={false}
+                            newUser={true}
                             handleEditEmoji={() => {}}/>
                             </View>
                             </View>
