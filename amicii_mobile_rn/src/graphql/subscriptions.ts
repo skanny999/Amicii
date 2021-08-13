@@ -14,7 +14,6 @@ export const onCreateUser = /* GraphQL */ `
       profileEmoji
       createdOn
       features {
-        id
         emoji
       }
     }
@@ -32,7 +31,6 @@ export const onUpdateUser = /* GraphQL */ `
       profileEmoji
       createdOn
       features {
-        id
         emoji
       }
     }

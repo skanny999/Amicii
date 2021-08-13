@@ -12,7 +12,7 @@ export type User = {
   genderF?: number,
   profileEmoji?: string,
   createdOn?: string,
-  features?:  Array<Feature | null >,
+  features?:  Array<Feature | null > | null,
 };
 
 export type Feature = {
@@ -28,7 +28,7 @@ export type UpdateUserInput = {
   genderM: number,
   genderF: number,
   profileEmoji: string,
-  features: Array< FeatureInput | null >,
+  features?: Array< FeatureInput | null > | null,
 };
 
 export type FeatureInput = {
@@ -37,6 +37,7 @@ export type FeatureInput = {
 
 export type CreateUserMutationVariables = {
   userId?: string | null,
+  username?: string | null,
 };
 
 export type CreateUserMutation = {
@@ -50,10 +51,10 @@ export type CreateUserMutation = {
     genderF: number,
     profileEmoji: string,
     createdOn: string,
-    features:  Array< {
+    features?:  Array< {
       __typename: "Feature",
       emoji: string,
-    } | null >,
+    } | null > | null,
   } | null,
 };
 
@@ -72,10 +73,10 @@ export type UpdateUserMutation = {
     genderF: number,
     profileEmoji: string,
     createdOn: string,
-    features:  Array< {
+    features?:  Array< {
       __typename: "Feature",
       emoji: string,
-    } | null >,
+    } | null > | null,
   } | null,
 };
 
@@ -95,10 +96,10 @@ export type LikeUserMutation = {
     genderF: number,
     profileEmoji: string,
     createdOn: string,
-    features:  Array< {
+    features?:  Array< {
       __typename: "Feature",
       emoji: string,
-    } | null >,
+    } | null > | null,
   } | null,
 };
 
@@ -118,10 +119,10 @@ export type DislikeUserMutation = {
     genderF: number,
     profileEmoji: string,
     createdOn: string,
-    features:  Array< {
+    features?:  Array< {
       __typename: "Feature",
       emoji: string,
-    } | null >,
+    } | null > | null,
   } | null,
 };
 
@@ -140,10 +141,10 @@ export type UserQuery = {
     genderF: number,
     profileEmoji: string,
     createdOn: string,
-    features:  Array< {
+    features?:  Array< {
       __typename: "Feature",
       emoji: string,
-    } | null >,
+    } | null > | null,
   } | null,
 };
 
@@ -162,10 +163,10 @@ export type CandidatesQuery = {
     genderF: number,
     profileEmoji: string,
     createdOn: string,
-    features:  Array< {
+    features?:  Array< {
       __typename: "Feature",
       emoji: string,
-    } | null >,
+    } | null > | null,
   } | null > | null,
 };
 
@@ -184,10 +185,10 @@ export type MatchesQuery = {
     genderF: number,
     profileEmoji: string,
     createdOn: string,
-    features:  Array< {
+    features?:  Array< {
       __typename: "Feature",
       emoji: string,
-    } | null >,
+    } | null > | null,
   } | null > | null,
 };
 
@@ -202,10 +203,10 @@ export type OnCreateUserSubscription = {
     genderF: number,
     profileEmoji: string,
     createdOn: string,
-    features:  Array< {
+    features?:  Array< {
       __typename: "Feature",
       emoji: string,
-    } | null >,
+    } | null > | null,
   } | null,
 };
 
@@ -220,13 +221,9 @@ export type OnUpdateUserSubscription = {
     genderF: number,
     profileEmoji: string,
     createdOn: string,
-    features:  Array< {
+    features?:  Array< {
       __typename: "Feature",
       emoji: string,
-    } | null >,
+    } | null > | null,
   } | null,
 };
-export function graphql(arg0: { query: any; variables: {}; }): import("@aws-amplify/api-graphql").GraphQLResult<UserQuery> | PromiseLike<import("@aws-amplify/api-graphql").GraphQLResult<UserQuery>> {
-  throw new Error('Function not implemented.');
-}
-

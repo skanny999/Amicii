@@ -3,8 +3,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const createUser = /* GraphQL */ `
-  mutation CreateUser($userId: String) {
-    createUser(userId: $userId) {
+  mutation CreateUser($userId: String, $username: String) {
+    createUser(userId: $userId, username: $username) {
       id
       username
       age

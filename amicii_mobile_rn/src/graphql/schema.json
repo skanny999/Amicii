@@ -216,16 +216,12 @@
           "description" : null,
           "args" : [ ],
           "type" : {
-            "kind" : "NON_NULL",
+            "kind" : "LIST",
             "name" : null,
             "ofType" : {
-              "kind" : "LIST",
-              "name" : null,
-              "ofType" : {
-                "kind" : "OBJECT",
-                "name" : "Feature",
-                "ofType" : null
-              }
+              "kind" : "OBJECT",
+              "name" : "Feature",
+              "ofType" : null
             }
           },
           "isDeprecated" : false,
@@ -258,17 +254,6 @@
         "name" : "Feature",
         "description" : null,
         "fields" : [ {
-          "name" : "id",
-          "description" : null,
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
           "name" : "emoji",
           "description" : null,
           "args" : [ ],
@@ -297,6 +282,15 @@
           "description" : null,
           "args" : [ {
             "name" : "userId",
+            "description" : null,
+            "type" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          }, {
+            "name" : "username",
             "description" : null,
             "type" : {
               "kind" : "SCALAR",
@@ -491,16 +485,12 @@
           "name" : "features",
           "description" : null,
           "type" : {
-            "kind" : "NON_NULL",
+            "kind" : "LIST",
             "name" : null,
             "ofType" : {
-              "kind" : "LIST",
-              "name" : null,
-              "ofType" : {
-                "kind" : "INPUT_OBJECT",
-                "name" : "FeatureInput",
-                "ofType" : null
-              }
+              "kind" : "INPUT_OBJECT",
+              "name" : "FeatureInput",
+              "ofType" : null
             }
           },
           "defaultValue" : null
