@@ -59,13 +59,7 @@ const Profile = (props: {userId: string}) => {
                 <View style={styles.cardItemContainer}>
                 {/* <View style={{paddingBottom: WINDOW_HEIGHT / 20}}/> */}
                 <CardItem
-                    name={thisUser.username!}
-                    emoji={thisUser.profileEmoji!}
-                    bio={thisUser.bio!}
-                    genderM={thisUser.genderM!}
-                    genderF={thisUser.genderF!}
-                    age={thisUser.age!}
-                    features={thisUser.features}
+                    user={thisUser}
                     hasAction={false}
                     isLarge={true}
                     editable={true}

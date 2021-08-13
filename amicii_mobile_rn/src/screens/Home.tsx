@@ -15,10 +15,11 @@ const Home = (props: {userId: string}) => {
     
     const [swiper, setSwiper] = useState<CardStack | null>(null)
     const [candidates, setCandidates] = useState<UserType[] | null>(null)
-    const [modalVisible, setModalVisible] = useState(false)
+    const [filtersModalVisible, setFiltersModalVisible] = useState(false)
+    const [newUserModalVisible, setNewUserModalVisible] = useState(false)
 
     const logoutPressed = () => Auth.signOut()
-    const handleShowFilter = () => setModalVisible(true)
+    const handleShowFilter = () => setFiltersModalVisible(true)
 
     useEffect(() => {
         const processUser = async () => {
@@ -28,11 +29,11 @@ const Home = (props: {userId: string}) => {
                     const currentUser = await getUser(props.userId)
                     if (currentUser == null) {
                         await createNewUser(props.userId)
+                        setNewUserModalVisible(true)
                     }
                     const candidatesResponse =  await getCandidates(props.userId)
                     console.log(candidatesResponse)
                     setCandidates(candidatesResponse!)
-                    
                 }
             } catch (err) {
                 console.log(err)
@@ -42,7 +43,7 @@ const Home = (props: {userId: string}) => {
     },[props.userId])
 
     if (candidates == null) return (
-        <View style={{  display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
+        <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
           <ActivityIndicator size="large" color="black" />
         </View>
       )
@@ -68,13 +69,7 @@ const Home = (props: {userId: string}) => {
                             onSwipedRight={() => likeUser(props.userId, user.id!)}
                             onSwipedLeft={() => dislikeUser(props.userId, user.id!)}>
                                 <CardItem 
-                                name={user.username!} 
-                                emoji={user.profileEmoji!} 
-                                age={user.age!}
-                                bio={user.bio!}
-                                genderM={user.genderM!}
-                                genderF={user.genderF!}
-                                features={user.features}
+                                user={user}
                                 hasAction={true}
                                 isLarge={true}
                                 editable={false}
@@ -101,26 +96,39 @@ const Home = (props: {userId: string}) => {
                     </TouchableOpacity>
                 </View>
             </View>
-            <Modal
+        <Modal
         animationType="slide"
         transparent={false}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.modalCenteredView}>
-          <View style={styles.modalView}>
-            <Pressable
-              style={[styles.modalButton, styles.modalButtonClose]}
-              onPress={() => setModalVisible(!modalVisible)}>
-                <Text style={styles.modalTextStyle}>Close</Text>
-            </Pressable>
-        
-          </View>
-        </View>
-      </Modal>
-        </ImageBackground>
+        visible={filtersModalVisible}
+        onRequestClose={() => { setFiltersModalVisible(!filtersModalVisible)}}
+        >
+            <View style={styles.modalCenteredView}>
+            <View style={styles.modalView}>
+                <Pressable
+                style={[styles.modalButton, styles.modalButtonClose]}
+                onPress={() => setFiltersModalVisible(!filtersModalVisible)}>
+                    <Text style={styles.modalTextStyle}>Close</Text>
+                </Pressable>
+            </View>
+            </View>
+        </Modal>
+        <Modal
+            animationType="slide"
+            transparent={false}
+            visible={newUserModalVisible}
+            onRequestClose={() => { setFiltersModalVisible(!filtersModalVisible)}}
+            >
+            <View style={styles.modalCenteredView}>
+            <View style={styles.modalView}>
+                <Pressable
+                style={[styles.modalButton, styles.modalButtonClose]}
+                onPress={() => setNewUserModalVisible(!newUserModalVisible)}>
+                    <Text style={styles.modalTextStyle}>NewUser</Text>
+                </Pressable>
+            </View>
+            </View>
+        </Modal>
+    </ImageBackground>
     )
 }
 

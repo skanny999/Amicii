@@ -52,13 +52,7 @@ const Matches = (props: {userId: string}) => {
                 renderItem={({item}) => (
                     <TouchableOpacity onPress={() => showUserDetails(item)}>
                         <CardItem
-                        emoji={item.profileEmoji!}
-                        name={item.username!}
-                        bio={item.bio!}
-                        age={item.age!}
-                        genderM={item.genderM!}
-                        genderF={item.genderF!}
-                        features={item.features}
+                        user={item}
                         isLarge={false}
                         editable={false} 
                         handleEditEmoji={() => {}}      
@@ -78,13 +72,7 @@ const Matches = (props: {userId: string}) => {
                                 <Text style={styles.modalTextStyle}>Close</Text>
                             </Pressable>
                             <CardItem
-                            emoji={item.profileEmoji!}
-                            name={item.username!}
-                            bio={item.bio!}
-                            genderM={item.genderM!}
-                            genderF={item.genderF!}
-                            age={item.age!}
-                            features={item.features}
+                            user={item}
                             isLarge={true}
                             editable={false} 
                             handleEditEmoji={() => {}}/>

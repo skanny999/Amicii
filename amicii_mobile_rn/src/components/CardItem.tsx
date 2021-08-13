@@ -6,13 +6,7 @@ import EmojiGrid from "./EmojiGrid";
 import { nonEmpty } from "../helpers/stringHelper";
 
 const CardItem = ({
-    name,
-    emoji,
-    age,
-    genderM,
-    genderF,
-    bio,
-    features,
+    user,
     hasAction,
     isLarge,
     editable,
@@ -66,18 +60,18 @@ const CardItem = ({
                     paddingTop: 20,
                     textAlign: 'center',
                     fontSize: isLarge ? 100 : 60
-                }}>{emoji}</Text>
+                }}>{user.profileEmoji!}</Text>
             </TouchableOpacity>
-            <Text style={nameStyle}>{name}</Text>
-            <Text style={ageStyle}>{`${age}${gender(genderM, genderF)}`}</Text>
-            <EmojiGrid handlePress={handleEditEmoji!!} emojis={features} editable={editable} isLarge={isLarge}/>
-            {nonEmpty(bio) && isLarge && (
+            <Text style={nameStyle}>{user.username!}</Text>
+            <Text style={ageStyle}>{`${user.age!}${gender(user.genderM!, user.genderF!)}`}</Text>
+            <EmojiGrid handlePress={handleEditEmoji!!} emojis={user.features} editable={editable} isLarge={isLarge}/>
+            {nonEmpty(user.bio!) && isLarge && (
              <TextInput 
              editable={editable}
              multiline={true}
              style={styles.cardItemBio}
              onChangeText={handleEditBio}
-             >{bio}</TextInput>
+             >{user.bio!}</TextInput>
             )}
             <View style={{padding:isLarge ? 20 : 10 }}/>
         </View>
