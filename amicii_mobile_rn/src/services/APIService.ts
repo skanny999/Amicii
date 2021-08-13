@@ -7,9 +7,9 @@ import { responseToCandidates, responseToUser, responseToMatches } from '../help
 
 // MUTATIONS
 
-export async function createNewUser(userId: string) {
+export async function createNewUser(userId: string, username: string) {
     try {
-        const createUserMutationVariable: AmiciiAPI.CreateUserMutationVariables = { userId: userId };
+        const createUserMutationVariable: AmiciiAPI.CreateUserMutationVariables = { userId: userId, username: username };
         const createUserRequest: GraphQLResult<AmiciiAPI.CreateUserMutation> = await API.graphql(
           graphqlOperation(createUser, createUserMutationVariable)
           ) as GraphQLResult<AmiciiAPI.CreateUserMutation>;
