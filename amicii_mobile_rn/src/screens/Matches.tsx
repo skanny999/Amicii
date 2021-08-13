@@ -6,6 +6,7 @@ import CardItem from '../components/CardItem'
 import styles, { DARK_GRAY } from '../assets/styles'
 import { UserType } from '../types';
 import { getMatches } from '../services/APIService'
+import mockUsers from '../assets/data/mockUsers'
 
 const Matches = (props: {userId: string}) => {
 
@@ -46,7 +47,7 @@ const Matches = (props: {userId: string}) => {
                 </View>
                 <FlatList
                 numColumns={2}
-                data={matches}
+                data={mockUsers}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({item}) => (
                     <TouchableOpacity onPress={() => showUserDetails(item)}>

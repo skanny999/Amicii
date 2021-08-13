@@ -9,6 +9,7 @@ import Logout from '../components/Logout';
 import Auth from '@aws-amplify/auth'
 import { UserType } from '../types';
 import { createNewUser, getUser, getCandidates, likeUser, dislikeUser } from '../services/APIService';
+import mockUsers from '../assets/data/mockUsers';
 
 const Home = (props: {userId: string}) => {
     
@@ -61,7 +62,7 @@ const Home = (props: {userId: string}) => {
                         verticalSwipe={true}
                         renderNoMoreCards={() => null}
                         ref={(newSwiper): void => setSwiper(newSwiper)}>
-                        {candidates.map((user) => (
+                        {mockUsers.map((user) => (
                             <Card 
                             key={user.id} 
                             onSwipedRight={() => likeUser(props.userId, user.id!)}

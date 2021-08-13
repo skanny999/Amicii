@@ -22,7 +22,7 @@ const Profile = (props: {userId: string}) => {
           try {
             const userResponse =  await getUser(props.userId)
             console.log(userResponse)
-            setUser(userResponse!)
+            // setUser(userResponse!)
           } catch (err) {
               console.log(err)
           }
