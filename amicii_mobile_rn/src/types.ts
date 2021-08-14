@@ -25,12 +25,17 @@ export type CardItemType = {
     newUser: boolean,
     handleEditEmoji?: (item: number) => void,
     handleEditBio?: (text: string) => void,
-    handleEditAge?: () => void,
-    handleEditGender?: () => void
+    handleEditAge?: (age: string) => void,
+    handleEditGender?: (gender: string) => void
 }
 
 export type TabBarIconType = {
     focused: boolean,
     iconName: string,
     text: string
+}
+
+export enum PickerType {
+    age,
+    gender
 }

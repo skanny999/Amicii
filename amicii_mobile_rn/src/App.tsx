@@ -15,12 +15,16 @@ import TabBarIcon from './components/TabBarIcon';
 import Profile from "./screens/Profile";
 import { extractUserId } from './helpers/stringHelper'
 import { useState } from 'react'
+import { createNewUser, getUser } from './services/APIService'
+import { UserType } from './types'
+import { ActivityIndicator, View } from 'react-native'
+import { newMockUser, user } from './assets/data/mockUsers'
 
 const configuration = {
   ...config, 
   aws_appsync_graphqlEndpoint: AmiciiBackendCdkStack.awsappsynchgraphqlEndpoint,
   aws_appsync_authenticationType: 'AMAZON_COGNITO_USER_POOLS',
-  aws_appsync_region: AmiciiBackendCdkStack.awsappsynchregion,
+  aws_appsync_region: 'eu-west-2',
   Analytics: {
     disabled: true,
   },
@@ -34,20 +38,43 @@ const Tab = createBottomTabNavigator();
 const App = () => {
 
   const [currentUserId, setCurrentUserId] = useState<string>('')
+  const [initialRouteName, setInitialRouteName] = useState<string>('Explore')
+  const [currentUser, setCurrentUser] = useState<UserType | undefined>()
 
   useEffect(() => {
     const processUser = async () => {
         try {
-          const actualUser = await Auth.currentUserInfo();
-          const userId = extractUserId(actualUser.id)
+          const loggedInUser = await Auth.currentUserInfo();
+          const userId = extractUserId(loggedInUser.id)
+          const username = loggedInUser.username
+          var user = await getUser(userId) 
+          if (!user) {
+            const createdUserId = await createNewUser(userId, username)
+            if (createdUserId) {
+              user = await getUser(createdUserId)
+              setInitialRouteName('Profile')
+            }             
+          }
+          setCurrentUser(user)
           setCurrentUserId(userId)
-          console.log(userId)
         } catch (error) {
           console.log('Cannot get userId: ', error)
         }
       }
-    processUser()
+    const testNewUserProcess = () => {
+      setInitialRouteName('Profile')
+      setCurrentUser(newMockUser)
+      setCurrentUserId(newMockUser.id)
+    }
+    testNewUserProcess()
+    // processUser()
     }, [])
+  
+  if (currentUser == null) return (
+    <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
+      <ActivityIndicator size="large" color="black" />
+    </View>
+  )
 
   return (
   <NavigationContainer>
@@ -58,6 +85,7 @@ const App = () => {
       >
         {() => (
           <Tab.Navigator
+            initialRouteName={initialRouteName}
             tabBarOptions={{
               showLabel: false,
               activeTintColor: PRIMARY,
@@ -108,7 +136,7 @@ const App = () => {
 
             <Tab.Screen
               name='Profile'
-              children={() => <Profile userId={currentUserId}/>}
+              children={() => <Profile user={currentUser}/>}
               options={{
                 tabBarIcon: ({ focused }) => (
                   <TabBarIcon

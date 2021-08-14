@@ -1,8 +1,9 @@
 import React from "react";
 import {Text, TextInput, TextProps, TextStyle, TouchableOpacity, View} from 'react-native'
-import {CardItemType} from '../types'
+import {CardItemType, PickerType} from '../types'
 import styles, { WINDOW_WIDTH }from '../assets/styles'
-import EmojiGrid from "./EmojiGrid";
+import EmojiGrid from "./EmojiGrid"
+import AGPicker from "./Picker";
 
 const CardItem = ({
     user,
@@ -17,7 +18,7 @@ const CardItem = ({
 
     const gender = (newUser) ? '  Select Gender' : (user.genderM === 1) ? 'M' : (user.genderF === 1) ? 'F' : ''
     const age = (newUser) ? 'Select Age  ' : user.age!
-    const profileEmoji = (newUser) ? '❓' : user.profileEmoji!
+    const profileEmoji = (user.profileEmoji == "") ? '❓' : user.profileEmoji!
 
     const profileImageStyle = [
         {
@@ -55,12 +56,16 @@ const CardItem = ({
             fontSize: isLarge ? 30 : 20,
             fontWeight: "500"}}>{user.username!}</Text>
             <View style={{flexDirection: 'row'}}>
-                <TouchableOpacity onPress={handleEditAge} disabled={!newUser}>
-                    <Text style={ageGenderStyle}>{age}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={handleEditGender} disabled={!newUser}>
-                    <Text style={ageGenderStyle}>{gender}</Text>
-                </TouchableOpacity>
+                <AGPicker 
+                type={PickerType.age} 
+                isLarge={isLarge}
+                disabled={!newUser}
+                handlePickedValue={handleEditAge!!}/>                
+                <AGPicker 
+                type={PickerType.gender} 
+                isLarge={isLarge}
+                disabled={!newUser}
+                handlePickedValue={handleEditGender!!}/>
             </View>
             <EmojiGrid handlePress={handleEditEmoji!!} emojis={user.features} editable={editable || newUser} isLarge={isLarge}/>
             {isLarge && (

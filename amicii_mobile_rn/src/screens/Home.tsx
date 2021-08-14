@@ -8,48 +8,33 @@ import Icon from '../components/Icon'
 import Logout from '../components/Logout';
 import Auth from '@aws-amplify/auth'
 import { UserType } from '../types';
-import { createNewUser, getUser, getCandidates, likeUser, dislikeUser } from '../services/APIService';
+import { createNewUser, getUser, getCandidates, likeUser, dislikeUser, updateCurrentUser } from '../services/APIService';
 import mockUsers from '../assets/data/mockUsers';
-import {user, newUser} from "../assets/data/mockUsers"
 
 const Home = (props: {userId: string}) => {
     
     const [swiper, setSwiper] = useState<CardStack | null>(null)
     const [candidates, setCandidates] = useState<UserType[] | null>(null)
     const [filtersModalVisible, setFiltersModalVisible] = useState(false)
-    const [newUserModalVisible, setNewUserModalVisible] = useState(false)
-    const [currentUser, setCurrentUser] = useState<UserType | null>(newUser)
 
     const logoutPressed = () => Auth.signOut()
     const handleShowFilter = () => setFiltersModalVisible(true)
 
     useEffect(() => {
-        const processUser = async () => {
+        const loadCandidates = async () => {
             console.log('Processing user with id: ', props.userId)
             try {
-                if (props.userId != '') {
-                    const currentUser = await getUser(props.userId)
-                    if (currentUser == null) {
-                        const newUserId = await createNewUser(props.userId)
-                        if (newUserId != null) {
-                            const newUser = await getUser(props.userId)
-                            setCurrentUser(newUser!)
-                            setNewUserModalVisible(true)
-                        }
-                    }
-                    const candidatesResponse =  await getCandidates(props.userId)
-                    console.log(candidatesResponse)
-                    setCandidates(candidatesResponse!)
-                }
+                const candidatesResponse =  await getCandidates(props.userId)
+                console.log(candidatesResponse)
+                setCandidates(candidatesResponse!)
             } catch (err) {
                 console.log(err)
             }
         }
-        setNewUserModalVisible(true)
-        // processUser()
+        loadCandidates()
     },[props.userId])
 
-    if (candidates == null && currentUser == null) return (
+    if (candidates == null) return (
         <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
           <ActivityIndicator size="large" color="black" />
         </View>
@@ -103,49 +88,22 @@ const Home = (props: {userId: string}) => {
                     </TouchableOpacity>
                 </View>
             </View>
-        <Modal
-        animationType="slide"
-        transparent={false}
-        visible={filtersModalVisible}
-        onRequestClose={() => { setFiltersModalVisible(!filtersModalVisible)}}
-        >
-            <View style={styles.modalCenteredView}>
-            <View style={styles.modalView}>
-                <Pressable
-                style={[styles.modalButton, styles.modalButtonClose]}
-                onPress={() => setFiltersModalVisible(!filtersModalVisible)}>
-                    <Text style={styles.modalTextStyle}>Close</Text>
-                </Pressable>
-            </View>
-            </View>
-        </Modal>
-        <Modal
+            <Modal
             animationType="slide"
             transparent={false}
-            visible={newUserModalVisible}
-            onRequestClose={() => { setNewUserModalVisible(!filtersModalVisible)}}
-            >
-            <View style={styles.modalCenteredView}>
-            <View style={styles.modalView}>
-                <Pressable
-                style={[styles.modalButton, styles.modalButtonClose]}
-                onPress={() => setNewUserModalVisible(!newUserModalVisible)}>
-                    <Text style={styles.modalTextStyle}>NewUser</Text>
-                </Pressable>
-                <CardItem
-                    user={currentUser!}
-                    isLarge={true}
-                    editable={true}
-                    newUser={true}
-                    handleEditEmoji={() =>{}}
-                    handleEditBio={() =>{}}
-                    handleEditAge={() =>{}}
-                    handleEditGender={() => {}}
-                    />
-            </View>
-            </View>
-        </Modal>
-    </ImageBackground>
+            visible={filtersModalVisible}
+            onRequestClose={() => { setFiltersModalVisible(!filtersModalVisible)}}>
+                <View style={styles.modalCenteredView}>
+                    <View style={styles.modalView}>
+                        <Pressable
+                        style={[styles.modalButton, styles.modalButtonClose]}
+                        onPress={() => setFiltersModalVisible(!filtersModalVisible)}>
+                            <Text style={styles.modalTextStyle}>Close</Text>
+                        </Pressable>
+                    </View>
+                </View>
+            </Modal>
+        </ImageBackground>
     )
 }
 

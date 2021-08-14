@@ -2,79 +2,92 @@ import React, { useEffect, useState } from "react"
 import { ImageBackground,Modal,Pressable,StyleSheet,Text,View } from 'react-native'
 import styles from "../assets/styles"
 import CardItem from "../components/CardItem"
-import {user} from "../assets/data/mockUsers"
 import Edit from "../components/Edit"
 import EmojiPicker from "../components/EmojiPicker"
-import { getUser } from "../services/APIService"
 
-const me = user
+import { UserType } from "../types"
 
-const Profile = (props: {userId: string}) => {
+const Profile = (props: {user?: UserType}) => {
 
-    const [thisUser, setUser] = useState(me)
-    const [emojiIndexToChange, setEmojiIndexToChange] = useState<number>(-2)
-    const [modalVisible, setModalVisible] = useState(false)
-    const [currentBio, setCurrentBio] = useState(me.bio)
+  const [currentUser, setCurrentUser] = useState(props.user!)
+  const [emojiIndexToChange, setEmojiIndexToChange] = useState<number>(-2)
+  const [modalVisible, setModalVisible] = useState(false)
+  const [currentBio, setCurrentBio] = useState(currentUser?.bio)
 
-    useEffect(() => {
-      const processUser = async () => {
-          console.log('Processing user with id: ', props.userId)
-          try {
-            const userResponse =  await getUser(props.userId)
-            console.log(userResponse)
-            // setUser(userResponse!)
-          } catch (err) {
-              console.log(err)
-          }
-      }
-      processUser()
-  },[props.userId])
-
-    const handleSelectEmoji = (emoji: string) => {
-      if (emojiIndexToChange < 0) {
-        setUser({...thisUser, profileEmoji: emoji});
-      } else {
-        const updatedFeatures = thisUser.features 
-        updatedFeatures[emojiIndexToChange] = emoji
-        setUser({...thisUser, features: updatedFeatures})
-      }
-      setModalVisible(false)
+  const userIsSetup = () => {
+    if (currentUser == null) {
+        return false
+    } else {
+        return currentUser.age > 18 &&
+        currentUser.bio.length > 0 &&
+        !(currentUser.genderM == 0 && currentUser.genderF == 0) &&
+        !currentUser.profileEmoji.includes('PH') &&
+        validFeatures(currentUser)
     }
+  }
 
-    const emojiToBeUpdated = (index: number) => {
-        setEmojiIndexToChange(index)
-        setModalVisible(true)
+  const validFeatures = (user: UserType) => {
+    for (const feature of user.features) {
+        if (feature.includes('PH')) {
+            return false
+        }
     }
+    return true
+  }
 
-    const updateBio = (text: string) => {
-      setCurrentBio(text)
-      setUser({...thisUser, bio: currentBio})
+  const handleSelectEmoji = (emoji: string) => {
+    if (emojiIndexToChange < 0) {
+      setCurrentUser({...currentUser, profileEmoji: emoji});
+    } else {
+      const updatedFeatures = currentUser.features 
+      updatedFeatures[emojiIndexToChange] = emoji
+      setCurrentUser({...currentUser, features: updatedFeatures})
     }
+    setModalVisible(false)
+  }
 
-    return (
-        <ImageBackground source={require('../assets/images/background.png')} style={styles.profileBackground}>
-            <View style={styles.profileTop}>
-            <Edit/>
-            </View>
-                <View style={styles.cardItemContainer}>
-                {/* <View style={{paddingBottom: WINDOW_HEIGHT / 20}}/> */}
-                <CardItem
-                    user={thisUser}
-                    isLarge={true}
-                    editable={true}
-                    newUser={false}
-                    handleEditEmoji={emojiToBeUpdated}
-                    handleEditBio={updateBio}
-                />
-            </View>
+  const emojiToBeUpdated = (index: number) => {
+      setEmojiIndexToChange(index)
+      setModalVisible(true)
+  }
+
+  const updateBio = (text: string) => {
+    setCurrentBio(text)
+    setCurrentUser({...currentUser, bio: currentBio})
+  }
+
+  const updateAge = (age: string) => {
+    console.log(age)
+  }
+
+  const updatedGender = (gender: string) => {
+    console.log(gender)
+  }
+
+  return (
+    <ImageBackground source={require('../assets/images/background.png')} style={styles.profileBackground}>
+      <View style={styles.profileTop}>
+      <Edit/>
+      </View>
+          <View style={styles.cardItemContainer}>
+          <CardItem
+              user={currentUser}
+              isLarge={true}
+              editable={true}
+              newUser={!userIsSetup()}
+              handleEditEmoji={emojiToBeUpdated}
+              handleEditBio={updateBio}
+              handleEditAge={updateAge}
+              handleEditGender={updatedGender}
+          />
+      </View>
       <Modal
         animationType="slide"
         transparent={false}
         visible={modalVisible}
         onRequestClose={() => {
           setModalVisible(!modalVisible);
-        }}
-      >
+        }}>
         <View style={styles.modalCenteredView}>
           <View style={styles.modalView}>
           <Pressable
@@ -86,52 +99,8 @@ const Profile = (props: {userId: string}) => {
           </View>
         </View>
       </Modal>
-      </ImageBackground>
-    )
+    </ImageBackground>
+  )
 }
 
 export default Profile
-
-const modelStyles = StyleSheet.create({
-    centeredView: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-      marginTop: 0
-    },
-    modalView: {
-      margin: 20,
-      backgroundColor: "white",
-      borderRadius: 20,
-      padding: 35,
-      alignItems: "center",
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 2
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-      elevation: 5
-    },
-    button: {
-      borderRadius: 20,
-      padding: 10,
-      elevation: 2
-    },
-    buttonOpen: {
-      backgroundColor: "#F194FF",
-    },
-    buttonClose: {
-      backgroundColor: "#2196F3",
-    },
-    textStyle: {
-      color: "white",
-      fontWeight: "bold",
-      textAlign: "center"
-    },
-    modalText: {
-      marginBottom: 15,
-      textAlign: "left"
-    }
-  });

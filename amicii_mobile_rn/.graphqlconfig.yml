@@ -1,0 +1,18 @@
+projects:
+  cdk-amicii-appsync-api:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - src/graphql/**/*.ts
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: AmiciiAPI
+        docsFilePath: src/graphql
+        region: eu-west-2
+        apiId: sqv5r4y6rbhghkvkgookb7zwju
+        maxDepth: 2
+extensions:
+  amplify:
+    version: 3

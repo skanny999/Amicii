@@ -12,7 +12,7 @@ export const user: UserType = {
     features: ["🏩", "👀","👩🏼", "💆🏻‍♂️","👩🏻‍🦯", "🧶","🧚🏻‍♀️", "🧟","🙅🏻", "👄"]
 }
 
-export const newUser: UserType = {
+export const newMockUser: UserType = {
     age: 0, 
     bio: "", 
     createdOn: "2021-08-12T13:45:30.792Z", 
