@@ -6,14 +6,14 @@ export type IconType = {
 }
 
 export type UserType = {
-    id?: string | undefined,
-    username?: string | undefined,
-    age?: number | undefined,
-    bio?: string | undefined,
-    genderM?: number | undefined,
-    genderF?: number | undefined,
-    profileEmoji?: string | undefined,
-    createdOn?: string | undefined,
+    id: string
+    username: string,
+    age: number,
+    bio: string,
+    genderM: number,
+    genderF: number,
+    profileEmoji: string,
+    createdOn: string,
     features: [string, string, string, string, string, string, string, string, string, string],
 }
 

@@ -7,6 +7,7 @@ export const user: UserType = {
     age: 22,
     genderM: 0, 
     genderF: 1,
+    createdOn: "2021-08-12T13:45:30.792Z",
     profileEmoji: '🧖🏾‍♀️',
     features: ["🏩", "👀","👩🏼", "💆🏻‍♂️","👩🏻‍🦯", "🧶","🧚🏻‍♀️", "🧟","🙅🏻", "👄"]
 }
@@ -20,7 +21,7 @@ export const newUser: UserType = {
     genderM: 0, 
     id: "test3", 
     profileEmoji: "", 
-    username: ""
+    username: "Gianni"
 }
 
 const mockUsers: UserType[] = [
@@ -29,6 +30,9 @@ const mockUsers: UserType[] = [
         username: 'Ric',
         bio: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis.',
         age: 21,
+        genderM: 0, 
+        genderF: 1,
+        createdOn: "2021-08-12T13:45:30.792Z", 
         profileEmoji: '😀',
         features: ["👩🏽‍🚀", "🙈","🐭", "😁","😺", "👘","🐲", "🫓","🎭", "🏢"]
     },
@@ -37,6 +41,9 @@ const mockUsers: UserType[] = [
         username: 'Lara',
         bio: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
         age: 23,
+        genderM: 0, 
+        genderF: 1,
+        createdOn: "2021-08-12T13:45:30.792Z",
         profileEmoji: '😉',
         features: ["⚓️", "🛕","📤", "✳️","🕟", "🫀","☎️", "💾","🖥", "📟"]
     },
@@ -45,6 +52,9 @@ const mockUsers: UserType[] = [
         username: 'Martin',
         bio: 'Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica, sport etc. Ciao',
         age: 22,
+        genderM: 0, 
+        genderF: 1,
+        createdOn: "2021-08-12T13:45:30.792Z",
         profileEmoji: '😗',
         features: ["🪛", "🪙","🪤", "🎙","🧧", "🏷","🗜", "🎢","🌋", "🏘"]
     }
