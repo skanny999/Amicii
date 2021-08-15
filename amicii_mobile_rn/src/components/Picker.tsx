@@ -24,7 +24,7 @@ const AGPicker = (props: { type: PickerType, isLarge: boolean, disabled: boolean
         { label: '  Select Gender', value: 'gender' },
         { label: 'M', value: 'M' },
         { label: 'F', value: 'F' },
-        { label: '', value: '' },
+        { label: ' ', value: ' ' },
     ]
 
     const items = (type: PickerType) => {

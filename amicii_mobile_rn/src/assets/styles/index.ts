@@ -78,6 +78,11 @@ export default StyleSheet.create({
         fontSize: 13,
         textAlign: 'center'
     },
+    cancelButtonText: {
+        color: DARK_GRAY,
+        fontSize: 13,
+        textAlign: 'center'
+    },
 
     //TAB BAR ICON
     tabBarIconMenu: {
@@ -179,8 +184,9 @@ export default StyleSheet.create({
     profileTop: {
         paddingTop: isAndroid ? 20 : 50,
         marginHorizontal: 20,
+        flexDirection: "row-reverse",
         justifyContent: 'space-between',
-        alignItems: 'flex-end'
+        alignItems: 'center'
     },
 
     //MODAL
