@@ -1,5 +1,5 @@
 import { user, candidates, matches } from '../graphql/queries';
-import { createUser, updateUser } from '../graphql/mutations';
+import { createUser, updateUser, likeUser, dislikeUser  } from '../graphql/mutations';
 import * as AmiciiAPI from '../AmiciiAPI'
 import API, {GraphQLResult, graphqlOperation} from '@aws-amplify/api';
 import { UserType } from '../types';
@@ -66,11 +66,11 @@ export async function updateCurrentUser(user: UserType) {
   }
 }
 
-export async function likeUser(userId: string, otherUserId: string) {
+export async function postLikeUser(userId: string, otherUserId: string) {
   try {
       const createLikeUserVariable: AmiciiAPI.LikeUserMutationVariables = { userId: userId, otherUserId: otherUserId };
       const createLikeUserRequest: GraphQLResult<AmiciiAPI.LikeUserMutation> = await API.graphql(
-        graphqlOperation(createUser, createLikeUserVariable)
+        graphqlOperation(likeUser, createLikeUserVariable)
         ) as GraphQLResult<AmiciiAPI.LikeUserMutation>;
       if (createLikeUserRequest.data) {
           const createLikeUserMutation: AmiciiAPI.LikeUserMutation = createLikeUserRequest.data;
@@ -84,11 +84,11 @@ export async function likeUser(userId: string, otherUserId: string) {
   }
 }
 
-export async function dislikeUser(userId: string, otherUserId: string) {
+export async function postDislikeUser(userId: string, otherUserId: string) {
   try {
       const createDislikeUserVariable: AmiciiAPI.DislikeUserMutationVariables = { userId: userId, otherUserId: otherUserId };
       const createDislikeUserRequest: GraphQLResult<AmiciiAPI.DislikeUserMutation> = await API.graphql(
-        graphqlOperation(createUser, createDislikeUserVariable)
+        graphqlOperation(dislikeUser, createDislikeUserVariable)
         ) as GraphQLResult<AmiciiAPI.DislikeUserMutation>;
       if (createDislikeUserRequest.data) {
           const createDislikeUserMutation: AmiciiAPI.DislikeUserMutation = createDislikeUserRequest.data;
