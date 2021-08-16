@@ -2,7 +2,7 @@ import React from 'react';
 import { PickerType } from '../types';
 import RNPickerSelect from 'react-native-picker-select'
 
-const AGPicker = (props: { type: PickerType, isLarge: boolean, disabled: boolean, handlePickedValue: (value: string) => void }) => {
+const AGPicker = (props: { type: PickerType, value: string, isLarge: boolean, disabled: boolean, handlePickedValue: (value: string) => void }) => {
     
     const textProps = {
         paddingBottom: props.isLarge ? 15 : 10,
@@ -46,6 +46,7 @@ const AGPicker = (props: { type: PickerType, isLarge: boolean, disabled: boolean
                 inputIOS:textProps,
                 inputAndroid:textProps
             }}
+            value={props.value}
         />
     )
 }

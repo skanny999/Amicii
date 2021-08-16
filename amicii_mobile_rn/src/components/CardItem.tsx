@@ -18,7 +18,7 @@ const CardItem = ({
 }: CardItemType) => {
 
     const gender = (newUser) ? '  Select Gender' : (user.genderM === 1) ? 'M' : (user.genderF === 1) ? 'F' : ''
-    const age = (newUser) ? 'Select Age  ' : user.age!
+    const age = (newUser) ? 'Select Age  ' : `${user.age!}`
     const profileEmoji = (user.profileEmoji == "") ? '❓' : user.profileEmoji!
 
     const profileImageStyle = [
@@ -57,13 +57,15 @@ const CardItem = ({
             fontSize: isLarge ? 30 : 20,
             fontWeight: "500"}}>{user.username!}</Text>
             <View style={{flexDirection: 'row'}}>
-                <AGPicker 
-                type={PickerType.age} 
+                <AGPicker
+                type={PickerType.age}
+                value={age} 
                 isLarge={isLarge}
                 disabled={!newUser}
                 handlePickedValue={handleEditAge!!}/>                
                 <AGPicker 
-                type={PickerType.gender} 
+                type={PickerType.gender}
+                value={gender}  
                 isLarge={isLarge}
                 disabled={!newUser}
                 handlePickedValue={handleEditGender!!}/>
