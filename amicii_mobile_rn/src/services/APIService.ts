@@ -35,6 +35,7 @@ export async function updateCurrentUser(user: UserType) {
       genderM: user.genderM || 0,
       genderF: user.genderF || 0,
       profileEmoji: user.profileEmoji || '',
+      createdOn: user.createdOn,
       features: [
         {emoji: user.features[0]},
         {emoji: user.features[1]},
@@ -72,8 +73,8 @@ export async function likeUser(userId: string, otherUserId: string) {
       if (createLikeUserRequest.data) {
           const createLikeUserMutation: AmiciiAPI.LikeUserMutation = createLikeUserRequest.data;
           if (createLikeUserMutation.likeUser) {
-            console.log(createLikeUserMutation.likeUser)
-            return userId
+            console.log("Liked user: ", createLikeUserMutation.likeUser)
+            return otherUserId
           }
         }
   } catch (err) {
@@ -90,7 +91,7 @@ export async function dislikeUser(userId: string, otherUserId: string) {
       if (createDislikeUserRequest.data) {
           const createDislikeUserMutation: AmiciiAPI.DislikeUserMutation = createDislikeUserRequest.data;
           if (createDislikeUserMutation.dislikeUser) {
-            console.log(createDislikeUserMutation.dislikeUser)
+            console.log("Disliked user: ", createDislikeUserMutation.dislikeUser)
             return userId
           }
         }

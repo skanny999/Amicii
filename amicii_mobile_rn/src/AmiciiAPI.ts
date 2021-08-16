@@ -28,6 +28,7 @@ export type UpdateUserInput = {
   genderM: number,
   genderF: number,
   profileEmoji: string,
+  createdOn: string,
   features?: Array< FeatureInput | null > | null,
 };
 
