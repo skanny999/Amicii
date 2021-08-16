@@ -1,5 +1,6 @@
 import React from "react"
 import { FlatList, StyleSheet, Text, TouchableOpacity } from "react-native"
+import { emojiFromString } from "../helpers/emojiEncoder"
 interface EmojiProps {
     emojis: string[],
     editable: boolean,
@@ -9,7 +10,13 @@ interface EmojiProps {
 
 const EmojiGrid = (props: EmojiProps) => {
 
-    const emoji = (item: string) => (item.includes('PH')) ? '❓' : item
+    const emoji = (item: string) => {
+        if (!item) {
+            return '❓'
+        } else {
+            return (item.includes('PH')) ? '❓' : emojiFromString(item)
+        }
+    }
 
     return(
         <FlatList
@@ -21,8 +28,7 @@ const EmojiGrid = (props: EmojiProps) => {
             renderItem={({ item, index }) => {
                 return  <TouchableOpacity 
                             disabled={!props.editable} 
-                            onPress={() => props.handlePress(index)} 
-                            >       
+                            onPress={() => props.handlePress(index)} >       
                             <Text style={emojiStyles(props.isLarge).item}>{emoji(item)}</Text>
                         </TouchableOpacity>
             }}

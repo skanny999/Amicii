@@ -4,6 +4,7 @@ import {CardItemType, PickerType} from '../types'
 import styles, { WINDOW_WIDTH }from '../assets/styles'
 import EmojiGrid from "./EmojiGrid"
 import AGPicker from "./Picker";
+import { emojiFromString } from "../helpers/emojiEncoder";
 
 const CardItem = ({
     user,
@@ -47,7 +48,7 @@ const CardItem = ({
                     paddingTop: 20,
                     textAlign: 'center',
                     fontSize: isLarge ? 100 : 60
-                }}>{profileEmoji}</Text>
+                }}>{emojiFromString(profileEmoji)}</Text>
             </TouchableOpacity>
             <Text style={{
             paddingTop: isLarge ? 15 : 10,
@@ -67,10 +68,10 @@ const CardItem = ({
                 disabled={!newUser}
                 handlePickedValue={handleEditGender!!}/>
             </View>
-            <EmojiGrid handlePress={handleEditEmoji!!} emojis={user.features} editable={editable || newUser} isLarge={isLarge}/>
+            <EmojiGrid handlePress={handleEditEmoji!!} emojis={user.features} editable={editable} isLarge={isLarge}/>
             {isLarge && (
              <TextInput 
-             editable={editable || newUser}
+             editable={editable}
              multiline={true}
              style={styles.cardItemBio}
              onChangeText={handleEditBio}

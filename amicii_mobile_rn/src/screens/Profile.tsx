@@ -5,7 +5,7 @@ import CancelButton from "../components/CancelButton"
 import CardItem from "../components/CardItem"
 import EditButton from "../components/EditButton"
 import EmojiPicker from "../components/EmojiPicker"
-import { updateUser } from "../graphql/mutations"
+import { stringFromEmoji } from "../helpers/emojiEncoder"
 import { updateCurrentUser } from "../services/APIService"
 import { UserType } from "../types"
 
@@ -26,7 +26,6 @@ const Profile = (props: {user?: UserType}) => {
   const setUpCompleted = () => {
     const completed = userIsSetup() &&
     savedUser.age < 18
-    console.log(currentUser)
     return completed
   }
 
@@ -43,14 +42,15 @@ const Profile = (props: {user?: UserType}) => {
   const [currentUser, setCurrentUser] = useState(props.user!)
   const [emojiIndexToChange, setEmojiIndexToChange] = useState<number>(-2)
   const [modalVisible, setModalVisible] = useState(false)
-  const [isEditing, setIsEditing] = useState(!userIsSetup)
+  const [isEditing, setIsEditing] = useState(!userIsSetup())
 
   const handleSelectEmoji = (emoji: string) => {
+    const emojiString = stringFromEmoji(emoji)
     if (emojiIndexToChange < 0) {
-      setCurrentUser({...currentUser, profileEmoji: emoji});
+      setCurrentUser({...currentUser, profileEmoji: emojiString});
     } else {
       const updatedFeatures = currentUser.features 
-      updatedFeatures[emojiIndexToChange] = emoji
+      updatedFeatures[emojiIndexToChange] = emojiString
       setCurrentUser({...currentUser, features: updatedFeatures})
     }
     setModalVisible(false)
@@ -90,7 +90,7 @@ const Profile = (props: {user?: UserType}) => {
   const saveChanges = () => {
     if (userIsSetup()) {
       setIsEditing(!isEditing)
-      const updatedUser = updateCurrentUser(currentUser)
+      updateCurrentUser(currentUser)
       setSavedUser(currentUser)
     } else {
       
