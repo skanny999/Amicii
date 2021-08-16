@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react"
-import { ImageBackground,Modal,Pressable,StyleSheet,Text,View } from 'react-native'
+import React, { useState } from "react"
+import { ImageBackground, Modal, Pressable, Text, View } from 'react-native'
 import styles from "../assets/styles"
 import CancelButton from "../components/CancelButton"
 import CardItem from "../components/CardItem"
@@ -15,7 +15,7 @@ const Profile = (props: {user?: UserType}) => {
     if (currentUser == null) {
         return false
     } else {
-        return currentUser.age > 18 &&
+        return currentUser.age >= 18 &&
         currentUser.bio.length > 0 &&
         !(currentUser.genderM == 0 && currentUser.genderF == 0) &&
         !currentUser.profileEmoji.includes('PH') &&
@@ -49,8 +49,9 @@ const Profile = (props: {user?: UserType}) => {
     if (emojiIndexToChange < 0) {
       setCurrentUser({...currentUser, profileEmoji: emojiString});
     } else {
-      const updatedFeatures = currentUser.features 
-      updatedFeatures[emojiIndexToChange] = emojiString
+      const updatedFeatures = currentUser.features
+      const emojiToUpdate = updatedFeatures.includes(emojiString) ? 'PH' : emojiString // no duplicates allowed
+      updatedFeatures[emojiIndexToChange] = emojiToUpdate
       setCurrentUser({...currentUser, features: updatedFeatures})
     }
     setModalVisible(false)
@@ -93,9 +94,10 @@ const Profile = (props: {user?: UserType}) => {
         updateCurrentUser(currentUser)
         setSavedUser(currentUser)
       }
+      console.log("it was editiong")
       setIsEditing(!isEditing)
     } else {
-      
+      console.log("user is not setup: ", currentUser)
     }
   }
   const cancelEditing = () => {

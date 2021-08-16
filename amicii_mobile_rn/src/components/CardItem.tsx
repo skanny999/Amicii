@@ -1,5 +1,5 @@
 import React from "react";
-import {Text, TextInput, TextProps, TextStyle, TouchableOpacity, View} from 'react-native'
+import {Text, TextInput, TouchableOpacity, View} from 'react-native'
 import {CardItemType, PickerType} from '../types'
 import styles, { WINDOW_WIDTH }from '../assets/styles'
 import EmojiGrid from "./EmojiGrid"
@@ -17,9 +17,20 @@ const CardItem = ({
     handleEditGender
 }: CardItemType) => {
 
-    const gender = (newUser) ? '  Select Gender' : (user.genderM === 1) ? 'M' : (user.genderF === 1) ? 'F' : ''
-    const age = (newUser) ? 'Select Age  ' : `${user.age!}`
-    const profileEmoji = (user.profileEmoji == "") ? '❓' : user.profileEmoji!
+    const gender = () => {
+        if (newUser && (user.genderM == 0 && user.genderF == 0)) {
+            return '  Select Gender'
+        } else if (user.genderM == 1 && user.genderF == 1) {
+            return ' '
+        } else if (user.genderM == 1) {
+            return 'M'
+        } else {
+            return 'F'
+        }
+    }
+    
+    const age = (newUser && user.age < 18) ? 'Select Age  ' : `${user.age!}`
+    const profileEmoji = (user.profileEmoji == "") ? '❓' : emojiFromString(user.profileEmoji!)
 
     const profileImageStyle = [
         {
@@ -48,7 +59,7 @@ const CardItem = ({
                     paddingTop: 20,
                     textAlign: 'center',
                     fontSize: isLarge ? 100 : 60
-                }}>{emojiFromString(profileEmoji)}</Text>
+                }}>{profileEmoji}</Text>
             </TouchableOpacity>
             <Text style={{
             paddingTop: isLarge ? 15 : 10,
@@ -65,7 +76,7 @@ const CardItem = ({
                 handlePickedValue={handleEditAge!!}/>                
                 <AGPicker 
                 type={PickerType.gender}
-                value={gender}  
+                value={gender()}  
                 isLarge={isLarge}
                 disabled={!newUser}
                 handlePickedValue={handleEditGender!!}/>

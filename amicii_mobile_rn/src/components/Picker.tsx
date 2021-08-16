@@ -10,9 +10,7 @@ const AGPicker = (props: { type: PickerType, value: string, isLarge: boolean, di
                 fontSize: props.isLarge ? 20 : 15
     }
 
-    const handlerFunction = () => {
-        return (props.disabled) ? ((value: any) => null) : props.handlePickedValue
-    }
+    const handlerFunction = (props.disabled) ? ((value: any) => null) : props.handlePickedValue
 
     const ageItems = () => {
         var ageArray = new Array();

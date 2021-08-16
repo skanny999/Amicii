@@ -18,7 +18,7 @@ import { useState } from 'react'
 import { createNewUser, getUser } from './services/APIService'
 import { UserType } from './types'
 import { ActivityIndicator, View } from 'react-native'
-import { newMockUser, user } from './assets/data/mockUsers'
+import { newMockUser } from './assets/data/mockUsers'
 
 const configuration = {
   ...config, 
@@ -43,24 +43,25 @@ const App = () => {
 
   useEffect(() => {
     const processUser = async () => {
-        try {
-          const loggedInUser = await Auth.currentUserInfo();
-          const userId = extractUserId(loggedInUser.id)
-          const username = loggedInUser.username
-          var user = await getUser(userId) 
-          if (!user) {
-            const createdUserId = await createNewUser(userId, username)
-            if (createdUserId) {
-              user = await getUser(createdUserId)
-              setInitialRouteName('Profile')
-            }             
-          }
-          setCurrentUser(user)
-          setCurrentUserId(user!.id)
-        } catch (error) {
-          console.log('Cannot get userId: ', error)
+      try {
+        const loggedInUser = await Auth.currentUserInfo();
+        const userId = extractUserId(loggedInUser.id)
+        const username = loggedInUser.username
+        var user = await getUser(userId) 
+        if (!user) {
+          const createdUserId = await createNewUser(userId, username)
+          if (createdUserId) {
+            user = await getUser(createdUserId)
+            setInitialRouteName('Profile')
+          }             
         }
+        setCurrentUser(user)
+        setCurrentUserId(user!.id)
+      } catch (error) {
+        console.log('Cannot get userId: ', error)
       }
+    }
+
     const testNewUserProcess = () => {
       setInitialRouteName('Profile')
       setCurrentUser(newMockUser)
@@ -76,15 +77,15 @@ const App = () => {
       }
     }
     // testNewUserProcess()
-    testUser('1')
-    // processUser()
+    // testUser('1')
+    processUser()
     }, [])
   
-  // if (currentUser == null) return (
-  //   <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
-  //     <ActivityIndicator size="large" color="black" />
-  //   </View>
-  // )
+  if (currentUser == null) return (
+    <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
+      <ActivityIndicator size="large" color="black" />
+    </View>
+  )
 
   return (
   <NavigationContainer>
