@@ -89,9 +89,11 @@ const Profile = (props: {user?: UserType}) => {
   
   const saveChanges = () => {
     if (userIsSetup()) {
+      if (isEditing) {
+        updateCurrentUser(currentUser)
+        setSavedUser(currentUser)
+      }
       setIsEditing(!isEditing)
-      updateCurrentUser(currentUser)
-      setSavedUser(currentUser)
     } else {
       
     }
