@@ -24,7 +24,7 @@ const configuration = {
   ...config, 
   aws_appsync_graphqlEndpoint: AmiciiBackendCdkStack.awsappsynchgraphqlEndpoint,
   aws_appsync_authenticationType: 'AMAZON_COGNITO_USER_POOLS',
-  aws_appsync_region: 'eu-west-2',
+  aws_appsync_region: AmiciiBackendCdkStack.awsappsynchregion,
   Analytics: {
     disabled: true,
   },
@@ -56,7 +56,7 @@ const App = () => {
             }             
           }
           setCurrentUser(user)
-          setCurrentUserId(userId)
+          setCurrentUserId(user!.id)
         } catch (error) {
           console.log('Cannot get userId: ', error)
         }
@@ -66,15 +66,25 @@ const App = () => {
       setCurrentUser(newMockUser)
       setCurrentUserId(newMockUser.id)
     }
-    testNewUserProcess()
+    const testUser = async (userId: string) => {
+      try {
+        const user = await getUser(userId)
+        setCurrentUser(user)
+        setCurrentUserId(user!.id)
+      } catch (error) {
+        console.log('Cannot get userId: ', error)
+      }
+    }
+    // testNewUserProcess()
+    testUser('1')
     // processUser()
     }, [])
   
-  if (currentUser == null) return (
-    <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
-      <ActivityIndicator size="large" color="black" />
-    </View>
-  )
+  // if (currentUser == null) return (
+  //   <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
+  //     <ActivityIndicator size="large" color="black" />
+  //   </View>
+  // )
 
   return (
   <NavigationContainer>
