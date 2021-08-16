@@ -46,6 +46,7 @@ input UpdateUserInput {
   genderM: Int!
   genderF: Int!
   profileEmoji: String!
+  createdOn: String!
   features: [FeatureInput]
 }
 

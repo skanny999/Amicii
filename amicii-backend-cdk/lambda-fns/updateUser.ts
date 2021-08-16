@@ -16,12 +16,14 @@ async function updateUser(user: User) {
     const connectOrCreateNewFeatures =  db.user.update({
         where: {id: user.id},
         data: {
+            id: user.id,
             username: user.username,
             age: user.age,
             bio: user.bio,
             genderM: user.genderM,
             genderF: user.genderF,
             profileEmoji: user.profileEmoji,
+            createdOn: user.createdOn,
             features: {
                 connectOrCreate: [
                     {
