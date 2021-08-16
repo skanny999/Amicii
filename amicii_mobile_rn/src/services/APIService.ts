@@ -1,4 +1,4 @@
-import { user, candidates } from '../graphql/queries';
+import { user, candidates, matches } from '../graphql/queries';
 import { createUser, updateUser } from '../graphql/mutations';
 import * as AmiciiAPI from '../AmiciiAPI'
 import API, {GraphQLResult, graphqlOperation} from '@aws-amplify/api';
@@ -26,6 +26,7 @@ export async function createNewUser(userId: string, username: string) {
 }
 
 export async function updateCurrentUser(user: UserType) {
+  console.log("updating user: ", user)
   try {
     const updateInput: AmiciiAPI.UpdateUserInput = {
       id: user.id,
@@ -56,11 +57,12 @@ export async function updateCurrentUser(user: UserType) {
     if (updateUserResult.data) {
       const updateUserMutation: AmiciiAPI.UpdateUserMutation = updateUserResult.data
       if (updateUserMutation.updateUser) {
+        console.log("Updated user: ", updateUserMutation.updateUser)
         return updateUserMutation.updateUser
       }
     }
   } catch (err) {
-    console.log(err)
+    console.log('Error updating user', err)
   }
 }
 
@@ -137,11 +139,12 @@ export async function getCandidates(userId: string) {
 }
 
 export async function getMatches(userId: string) {
+  console.log('getting matches for user with id: ', userId)
     try {
-      const userQV: AmiciiAPI.MatchesQueryVariables = {userId: userId}
-      const userResult: GraphQLResult<AmiciiAPI.MatchesQuery> = await API.graphql(graphqlOperation(user, userQV)) as GraphQLResult<AmiciiAPI.MatchesQuery> 
-      if (userResult.data) {
-        const query: AmiciiAPI.MatchesQuery = userResult.data
+      const matchesQV: AmiciiAPI.MatchesQueryVariables = {userId: userId}
+      const matchesResult: GraphQLResult<AmiciiAPI.MatchesQuery> = await API.graphql(graphqlOperation(matches, matchesQV)) as GraphQLResult<AmiciiAPI.MatchesQuery> 
+      if (matchesResult.data) {
+        const query: AmiciiAPI.MatchesQuery = matchesResult.data
         if (query.matches) {
           return responseToMatches(query)
         }

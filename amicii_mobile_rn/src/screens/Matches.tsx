@@ -6,7 +6,6 @@ import CardItem from '../components/CardItem'
 import styles, { DARK_GRAY } from '../assets/styles'
 import { UserType } from '../types';
 import { getMatches } from '../services/APIService'
-import mockUsers from '../assets/data/mockUsers'
 
 const Matches = (props: {userId: string}) => {
 
@@ -19,7 +18,6 @@ const Matches = (props: {userId: string}) => {
 
     useEffect(() => {
         const processUser = async () => {
-            console.log('Processing user with id: ', props.userId)
             try {
                 if (props.userId != '') {
                     const matchesResponse =  await getMatches(props.userId)
@@ -47,7 +45,7 @@ const Matches = (props: {userId: string}) => {
                 </View>
                 <FlatList
                 numColumns={2}
-                data={mockUsers}
+                data={matches}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({item}) => (
                     <TouchableOpacity onPress={() => showUserDetails(item)}>
