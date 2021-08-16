@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amiciimobilern-dev-213817-authRole",
+      "UnauthRoleArn": "arn:aws:iam::268456659050:role/amplify-amiciimobilern-dev-213817-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::268456659050:role/amplify-amiciimobilern-dev-213817-authRole",
+      "Region": "eu-west-2",
+      "DeploymentBucketName": "amplify-amiciimobilern-dev-213817-deployment",
+      "UnauthRoleName": "amplify-amiciimobilern-dev-213817-unauthRole",
+      "StackName": "amplify-amiciimobilern-dev-213817",
+      "StackId": "arn:aws:cloudformation:eu-west-2:268456659050:stack/amplify-amiciimobilern-dev-213817/b9fa3c70-fe08-11eb-abf6-0a344e8b4626",
+      "AmplifyAppId": "d266f4qwg9k5v1"
+    }
+  }
+}

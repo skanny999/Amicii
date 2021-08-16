@@ -8,10 +8,10 @@ projects:
     extensions:
       amplify:
         codeGenTarget: typescript
-        generatedFileName: AmiciiAPI
+        generatedFileName: src/AmiciiAPI.ts
         docsFilePath: src/graphql
         region: eu-west-2
-        apiId: sqv5r4y6rbhghkvkgookb7zwju
+        apiId: 4qya7awf5rd7bfpbqt2e4m3oiy
         maxDepth: 2
 extensions:
   amplify:

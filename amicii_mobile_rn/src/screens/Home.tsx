@@ -8,7 +8,7 @@ import Icon from '../components/Icon'
 import Logout from '../components/Logout';
 import Auth from '@aws-amplify/auth'
 import { UserType } from '../types';
-import { getCandidates, likeUser, dislikeUser } from '../services/APIService';
+import { getCandidates, postLikeUser, postDislikeUser } from '../services/APIService';
 
 const Home = (props: {userId: string}) => {
     
@@ -21,13 +21,15 @@ const Home = (props: {userId: string}) => {
 
     useEffect(() => {
         const loadCandidates = async () => {
-            console.log('Processing user with id: ', props.userId)
-            try {
-                const candidatesResponse =  await getCandidates(props.userId)
-                console.log(candidatesResponse)
-                setCandidates(candidatesResponse!)
-            } catch (err) {
-                console.log(err)
+            if (props.userId !== '') {
+                console.log('Processing user with id: ', props.userId)
+                try {
+                    const candidatesResponse =  await getCandidates(props.userId)
+                    console.log(candidatesResponse)
+                    setCandidates(candidatesResponse!)
+                } catch (err) {
+                    console.log(err)
+                }
             }
         }
         loadCandidates()
@@ -56,8 +58,8 @@ const Home = (props: {userId: string}) => {
                         {candidates.map((user) => (
                             <Card 
                             key={user.id} 
-                            onSwipedRight={() => likeUser(props.userId, user.id!)}
-                            onSwipedLeft={() => dislikeUser(props.userId, user.id!)}>
+                            onSwipedRight={() => postLikeUser(props.userId, user.id!)}
+                            onSwipedLeft={() => postDislikeUser(props.userId, user.id!)}>
                                 <CardItem 
                                 user={user}
                                 isLarge={true}
