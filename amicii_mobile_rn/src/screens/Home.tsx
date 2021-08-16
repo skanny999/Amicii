@@ -50,7 +50,6 @@ const Home = (props: {userId: string}) => {
                 </View>
                 <View style={{flex: 2}}>
                     <CardStack
-                        loop
                         verticalSwipe={true}
                         renderNoMoreCards={() => null}
                         ref={(newSwiper): void => setSwiper(newSwiper)}>
