@@ -10,6 +10,10 @@ const AGPicker = (props: { type: PickerType, value: string, isLarge: boolean, di
                 fontSize: props.isLarge ? 20 : 15
     }
 
+    const handlerFunction = () => {
+        return (props.disabled) ? ((value: any) => null) : props.handlePickedValue
+    }
+
     const ageItems = () => {
         var ageArray = new Array();
         ageArray[0] = { label: 'Select Age ', value: '0' }
@@ -40,7 +44,7 @@ const AGPicker = (props: { type: PickerType, value: string, isLarge: boolean, di
         <RNPickerSelect
             placeholder={{}}
             disabled={props.disabled}
-            onValueChange={props.handlePickedValue}
+            onValueChange={handlerFunction}
             items={items(props.type)}
             style={{
                 inputIOS:textProps,
