@@ -23,8 +23,8 @@ INSERT INTO Likes VALUES (1, 'qfebcu', 'bcysqv');
 INSERT INTO Likes VALUES (2, 'qfebcu', 'pmdtks');
 INSERT INTO Likes VALUES (3, 'qfebcu', 'jkwows');
 INSERT INTO Likes VALUES (4, 'bcysqv', 'bcysqv');
-INSERT INTO Likes VALUES (5, 'bcysqv, 'nvkisj');
-INSERT INTO Likes VALUES (6, 'bcysqv, 'vgjtfx');
+INSERT INTO Likes VALUES (5, 'bcysqv', 'nvkisj');
+INSERT INTO Likes VALUES (6, 'bcysqv', 'vgjtfx');
 INSERT INTO Likes VALUES (7, 'pmdtks', 'bcysqv');
 INSERT INTO Likes VALUES (8, 'pmdtks', 'jkwows');
 INSERT INTO Likes VALUES (9, 'nvkisj', 'bcysqv');
@@ -295,7 +295,3 @@ INSERT INTO _FeaturesToUser VALUES(27, 'fmrufv');
 INSERT INTO _FeaturesToUser VALUES(28, 'fmrufv');
 INSERT INTO _FeaturesToUser VALUES(29, 'fmrufv');
 INSERT INTO _FeaturesToUser VALUES(20, 'fmrufv');
-
-
-
-
