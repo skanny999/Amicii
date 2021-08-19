@@ -5,10 +5,14 @@ export function stringFromEmoji(emoji: string) {
 }
 
 export function emojiFromString(emojiString: string) {
-    return emojiString
-    .split(" ")
-    .map( comp => String.fromCodePoint(parseInt(comp, 16)))
-    .reduce((prev: string, curr: string) => prev + curr)
+    if (emojiString.length > 0) {
+        return emojiString
+        .split(" ")
+        .map( comp => String.fromCodePoint(parseInt(comp, 16)))
+        .reduce((prev: string, curr: string) => prev + curr)
+    } else {
+        return '';
+    }
 }
 
 const emojiUnicode = function (input: string) {
