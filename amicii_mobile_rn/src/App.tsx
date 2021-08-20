@@ -52,7 +52,8 @@ const App = () => {
 
   const userId = 'efgh'
   const emojiProfile = '1f45e'
-  const chatName = 'abcdefgh'
+  const username = 'user2'
+  const chatName = 'abcdefghi'
 
   useEffect(() => {
     const processUser = async () => {
@@ -173,7 +174,7 @@ const App = () => {
               />
               <Tab.Screen
                 name='Chat'
-                children={() => <ChatDetails userId={userId} profileEmoji={emojiProfile} chatName={chatName}/>}
+                children={() => <ChatDetails userId={userId} username={username} profileEmoji={emojiProfile} chatName={chatName}/>}
                 options={{
                   tabBarIcon: ({ focused }) => (
                     <TabBarIcon

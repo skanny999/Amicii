@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@flyerhq/react-native-chat-ui": "^1.0.3",
     "@react-native-async-storage/async-storage": "^1.15.5",
     "@react-native-community/netinfo": "^6.0.0",
     "@react-native-picker/picker": "^1.16.5",
@@ -38,6 +39,7 @@
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^2.0.0",
     "@types/jest": "^26.0.23",
+    "@types/pubnub": "^4.29.4",
     "@types/react-native": "^0.64.5",
     "@types/react-native-vector-icons": "^6.4.8",
     "@types/react-test-renderer": "^16.9.2",
