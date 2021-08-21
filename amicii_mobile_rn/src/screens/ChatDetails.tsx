@@ -38,6 +38,7 @@ const ChatDetails = ({route, navigation}: ChatNavProps<'ChatDetails'>) => {
           try {
             const messages = response["channels"][chatName]
             .map(channel => channel["message"])
+            .reverse()
             setMessages(messages)
           } catch (err) {
             console.log(err)
@@ -47,16 +48,14 @@ const ChatDetails = ({route, navigation}: ChatNavProps<'ChatDetails'>) => {
       const listener: ListenerParameters = {
         message: envelope => {
             if (envelope.message.authorId !== userId) {
-                setMessages(msgs => [
-                  ...msgs,
-                  {
-                      authorId: envelope.message.authorId,
-                      id: envelope.message.id,
-                      text: envelope.message.text,
-                      timestamp: envelope.message.timestamp,
-                      type: 'text'
-                  }
-                ])
+                const textMessage: MessageType.Text  = {
+                  authorId: envelope.message.authorId,
+                  id: envelope.message.id,
+                  text: envelope.message.text,
+                  timestamp: envelope.message.timestamp,
+                  type: 'text'
+              }
+              addMessage(textMessage)
             }
         }
       }
