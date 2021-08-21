@@ -23,6 +23,7 @@ import { newMockUser } from './assets/data/mockUsers'
 import PubNub from "pubnub";
 import { PubNubProvider } from "pubnub-react";
 import ChatDetails from './screens/ChatDetails'
+import ChatList from './screens/ChatList'
 
 const configuration = {
   ...config, 
@@ -91,8 +92,8 @@ const App = () => {
       }
     }
     // testNewUserProcess()
-    // testUser('1')
-    processUser()
+    testUser('qfebcu')
+    // processUser()
     }, [])
   
   if (currentUser == null) return (
@@ -159,22 +160,22 @@ const App = () => {
                   ),
                 }}
               />
+                <Tab.Screen
+                  name='Chat'
+                  children={() => <Chat user={currentUser}/>}
+                  options={{
+                    tabBarIcon: ({ focused }) => (
+                      <TabBarIcon
+                        focused={focused}
+                        iconName="chatbubbles"
+                        text='Messages'
+                      />
+                    )
+                  }}
+                />
               <Tab.Screen
                 name='Profile'
                 children={() => <Profile user={currentUser}/>}
-                options={{
-                  tabBarIcon: ({ focused }) => (
-                    <TabBarIcon
-                      focused={focused}
-                      iconName="person"
-                      text='Profile'
-                    />
-                  )
-                }}
-              />
-              <Tab.Screen
-                name='Chat'
-                children={() => <ChatDetails userId={userId} username={username} profileEmoji={emojiProfile} chatName={chatName}/>}
                 options={{
                   tabBarIcon: ({ focused }) => (
                     <TabBarIcon

@@ -4,18 +4,21 @@ import React from 'react';
 import { UserType } from '../types';
 import ChatDetails from './ChatDetails';
 import ChatList from './ChatList';
+import { ChatParamList } from './ChatParamList';
 
+interface RoutesProps {
+  user: UserType
+}
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<ChatParamList>();
 
-const Chat = (props: {user: UserType}) => {
+const Chat: React.FC<RoutesProps> = (props: {user: UserType}) => {
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="ChatList" component={ChatList} />
-        <Stack.Screen name="ChatDetails" component={ChatDetails} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator initialRouteName='ChatList'>
+      <Stack.Screen name='ChatList' component={ChatList} initialParams={{user: props.user}}/>
+      <Stack.Screen name="ChatDetails" component={ChatDetails} />
+    </Stack.Navigator>
   );
 }
 

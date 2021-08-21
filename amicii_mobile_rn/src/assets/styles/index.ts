@@ -189,6 +189,25 @@ export default StyleSheet.create({
         alignItems: 'center'
     },
 
+    //MESSAGES
+    containerMessage: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "flex-start",
+        flexDirection: "row",
+        paddingHorizontal: 10,
+        width: WINDOW_WIDTH - 100,
+    },
+
+    messageEmoji: {
+        fontSize: 50
+    },
+
+    messageName: {
+        fontSize: 20
+    },
+    title: { paddingBottom: 10, fontSize: 22, color: DARK_GRAY },
+
     //MODAL
     modalCenteredView: {
         flex: 1,

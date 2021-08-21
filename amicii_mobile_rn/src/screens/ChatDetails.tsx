@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { usePubNub } from "pubnub-react";
 import { ListenerParameters } from 'pubnub';
-import { UserType } from '../types';
-import { emojiFromString } from '../helpers/emojiEncoder';
 import { Chat, MessageType, defaultTheme } from '@flyerhq/react-native-chat-ui'
+import { ChatNavProps } from './ChatParamList';
 
 const uuidv4 = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
@@ -13,9 +12,9 @@ const uuidv4 = () => {
     })
    }
 
-const ChatDetails = (props: {userId: string, profileEmoji: string, username: string, chatName: string}) => {
+const ChatDetails = ({route, navigation}: ChatNavProps<'ChatDetails'>) => {
 
-  const userId = props.userId
+  const { userId, chatName} = route.params
 
   const pubnub = usePubNub();
 
@@ -28,18 +27,21 @@ const ChatDetails = (props: {userId: string, profileEmoji: string, username: str
   useEffect(() => {
 
     if (pubnub) {
-
       pubnub.setUUID(userId)
 
       pubnub.fetchMessages({
-            channels: [props.chatName],
+            channels: [chatName],
             end: '15343325004275466',
             count: 100
         },
         (status, response) => {
-            const messages = response["channels"][props.chatName]
+          try {
+            const messages = response["channels"][chatName]
             .map(channel => channel["message"])
             setMessages(messages)
+          } catch (err) {
+            console.log(err)
+          }
         })
 
       const listener: ListenerParameters = {
@@ -60,7 +62,7 @@ const ChatDetails = (props: {userId: string, profileEmoji: string, username: str
       }
 
       pubnub.addListener(listener);
-      pubnub.subscribe({ channels: [props.chatName] });
+      pubnub.subscribe({ channels: [chatName] });
 
       return () => {
         pubnub.removeListener(listener);
@@ -79,7 +81,7 @@ const ChatDetails = (props: {userId: string, profileEmoji: string, username: str
           type: 'text'
       }
       addMessage(textMessage)
-      pubnub.publish({ channel: props.chatName, message: textMessage });
+      pubnub.publish({ channel: chatName, message: textMessage });
   }
 
   return (

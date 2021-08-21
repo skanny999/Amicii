@@ -39,3 +39,8 @@ export enum PickerType {
     age,
     gender
 }
+
+export type MessageType = {
+    emoji: string;
+    name: string;
+  };
