@@ -13,5 +13,7 @@
     "**/*.js": {
       "when": "$(basename).ts"
     },
+    "prettier.eslintIntegration": true,
+    "prettier.semi": false
   }
 }

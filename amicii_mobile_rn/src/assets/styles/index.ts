@@ -29,7 +29,6 @@ export default StyleSheet.create({
 
     // CARD ITEM
     cardItemContainer: {
-        flex:1,
         backgroundColor: WHITE,
         borderRadius: 8,
         alignItems: "center",
@@ -179,7 +178,6 @@ export default StyleSheet.create({
         flex: 1,
         resizeMode: "cover",
         width: WINDOW_WIDTH,
-        height: WINDOW_HEIGHT,
     },
     profileTop: {
         paddingTop: isAndroid ? 20 : 50,
