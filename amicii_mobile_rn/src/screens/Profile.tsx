@@ -113,7 +113,7 @@ const Profile = (props: { user?: UserType }) => {
         source={require('../assets/images/background.png')}
         style={styles.profileBackground}
       >
-        <View style={styles.profileTop}>
+        <View testID={'ProfileScreen'} style={styles.profileTop}>
           <EditButton
             isEditing={isEditing || !userIsSetup()}
             handlePress={saveChanges}

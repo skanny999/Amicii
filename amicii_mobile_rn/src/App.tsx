@@ -89,8 +89,8 @@ const App = () => {
       }
     }
     // testNewUserProcess()
-    testUser('bcysqv')
-    // processUser()
+    // testUser('bcysqv')
+    processUser()
   }, [])
 
   if (currentUser == null)
@@ -182,6 +182,7 @@ const App = () => {
                   name="Profile"
                   children={() => <Profile user={currentUser} />}
                   options={{
+                    tabBarTestID: 'ProfileTabBarButton',
                     tabBarIcon: ({ focused }) => (
                       <TabBarIcon
                         focused={focused}
