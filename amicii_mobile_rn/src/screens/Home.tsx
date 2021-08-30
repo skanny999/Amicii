@@ -70,7 +70,11 @@ const Home = (props: { userId: string }) => {
           <Filters handlePress={handleShowFilter} />
           <Logout handlePress={logoutPressed} />
         </View>
-        <View style={{ flex: 2 }}>
+        <View
+          style={{
+            flex: 2,
+          }}
+        >
           <CardStack
             verticalSwipe={true}
             renderNoMoreCards={() => null}

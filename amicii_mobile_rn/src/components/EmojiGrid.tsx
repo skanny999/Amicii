@@ -24,7 +24,11 @@ const EmojiGrid = (props: EmojiProps) => {
   }
 
   return (
-    <View style={{ height: '23%' }}>
+    <View
+      style={{
+        height: '23%',
+      }}
+    >
       <FlatList
         contentContainerStyle={emojiStyles(props.isLarge).grid}
         scrollEnabled={false}
@@ -48,6 +52,7 @@ const EmojiGrid = (props: EmojiProps) => {
 
 export default EmojiGrid
 
+/* eslint-disable */
 const emojiStyles = (isLarge: boolean) =>
   StyleSheet.create({
     grid: {

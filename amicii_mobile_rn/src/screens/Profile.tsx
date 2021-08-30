@@ -17,7 +17,7 @@ const Profile = (props: { user?: UserType }) => {
       return (
         currentUser.age >= 18 &&
         currentUser.bio.length > 0 &&
-        !(currentUser.genderM == 0 && currentUser.genderF == 0) &&
+        !(currentUser.genderM === 0 && currentUser.genderF === 0) &&
         !currentUser.profileEmoji.includes('PH') &&
         validFeatures(currentUser)
       )
@@ -69,7 +69,7 @@ const Profile = (props: { user?: UserType }) => {
   }
 
   const updateAge = (age: string) => {
-    setCurrentUser({ ...currentUser, age: parseInt(age) })
+    setCurrentUser({ ...currentUser, age: parseInt(age, 10) })
   }
 
   const updatedGender = (gender: string) => {

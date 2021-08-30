@@ -39,29 +39,29 @@ export async function createNewUser(userId: string, username: string) {
   }
 }
 
-export async function updateCurrentUser(user: UserType) {
-  console.log('updating user: ', user)
+export async function updateCurrentUser(currentUser: UserType) {
+  console.log('updating user: ', currentUser)
   try {
     const updateInput: AmiciiAPI.UpdateUserInput = {
-      id: user.id,
-      username: user.username || '',
-      age: user.age || 0,
-      bio: user.bio || '',
-      genderM: user.genderM || 0,
-      genderF: user.genderF || 0,
-      profileEmoji: user.profileEmoji || '',
-      createdOn: user.createdOn,
+      id: currentUser.id,
+      username: currentUser.username || '',
+      age: currentUser.age || 0,
+      bio: currentUser.bio || '',
+      genderM: currentUser.genderM || 0,
+      genderF: currentUser.genderF || 0,
+      profileEmoji: currentUser.profileEmoji || '',
+      createdOn: currentUser.createdOn,
       features: [
-        { emoji: user.features[0] },
-        { emoji: user.features[1] },
-        { emoji: user.features[2] },
-        { emoji: user.features[3] },
-        { emoji: user.features[4] },
-        { emoji: user.features[5] },
-        { emoji: user.features[6] },
-        { emoji: user.features[7] },
-        { emoji: user.features[8] },
-        { emoji: user.features[9] },
+        { emoji: currentUser.features[0] },
+        { emoji: currentUser.features[1] },
+        { emoji: currentUser.features[2] },
+        { emoji: currentUser.features[3] },
+        { emoji: currentUser.features[4] },
+        { emoji: currentUser.features[5] },
+        { emoji: currentUser.features[6] },
+        { emoji: currentUser.features[7] },
+        { emoji: currentUser.features[8] },
+        { emoji: currentUser.features[9] },
       ],
     }
     const updateUserMutationVariables: AmiciiAPI.UpdateUserMutationVariables = {

@@ -17,11 +17,11 @@ const CardItem = ({
   handleEditGender,
 }: CardItemType) => {
   const gender = () => {
-    if (newUser && user.genderM == 0 && user.genderF == 0) {
+    if (newUser && user.genderM === 0 && user.genderF === 0) {
       return '  Select Gender'
-    } else if (user.genderM == 1 && user.genderF == 1) {
+    } else if (user.genderM === 1 && user.genderF === 1) {
       return ' '
-    } else if (user.genderM == 1) {
+    } else if (user.genderM === 1) {
       return 'M'
     } else {
       return 'F'
@@ -30,7 +30,7 @@ const CardItem = ({
 
   const age = newUser && user.age < 18 ? 'Select Age  ' : `${user.age!}`
   const profileEmoji =
-    user.profileEmoji == '' ? '❓' : emojiFromString(user.profileEmoji!)
+    user.profileEmoji === '' ? '❓' : emojiFromString(user.profileEmoji!)
 
   const profileImageStyle = [
     {
@@ -41,20 +41,12 @@ const CardItem = ({
     },
   ]
 
-  const ageGenderStyle = [
-    {
-      paddingBottom: isLarge ? 15 : 10,
-      color: '#363637',
-      fontSize: isLarge ? 20 : 15,
-    },
-  ]
-
   return (
     <View style={styles.cardItemContainer}>
       <TouchableOpacity
         style={profileImageStyle}
         disabled={!editable}
-        onPress={() => handleEditEmoji!!(-1)}
+        onPress={() => handleEditEmoji!(-1)}
       >
         <Text
           style={{
@@ -83,18 +75,18 @@ const CardItem = ({
           value={age}
           isLarge={isLarge}
           disabled={!newUser}
-          handlePickedValue={handleEditAge!!}
+          handlePickedValue={handleEditAge!}
         />
         <AGPicker
           type={PickerType.gender}
           value={gender()}
           isLarge={isLarge}
           disabled={!newUser}
-          handlePickedValue={handleEditGender!!}
+          handlePickedValue={handleEditGender!}
         />
       </View>
       <EmojiGrid
-        handlePress={handleEditEmoji!!}
+        handlePress={handleEditEmoji!}
         emojis={user.features}
         editable={editable}
         isLarge={isLarge}

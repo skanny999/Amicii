@@ -8,7 +8,6 @@ import {
   Modal,
   Pressable,
 } from 'react-native'
-import MockUsers from '../assets/data/mockUsers'
 import Icon from '../components/Icon'
 import CardItem from '../components/CardItem'
 import styles, { DARK_GRAY } from '../assets/styles'
@@ -19,14 +18,14 @@ const Matches = (props: { userId: string }) => {
   const [modalVisible, setModalVisible] = useState(false)
   const [matches, setMatches] = useState<UserType[] | null>(null)
 
-  const showUserDetails = (user: UserType) => {
+  const showUserDetails = (_user: UserType) => {
     setModalVisible(true)
   }
 
   useEffect(() => {
     const processUser = async () => {
       try {
-        if (props.userId != '') {
+        if (props.userId !== '') {
           const matchesResponse = await getMatches(props.userId)
           console.log(matchesResponse)
           setMatches(matchesResponse!)
@@ -47,13 +46,13 @@ const Matches = (props: { userId: string }) => {
         <View style={styles.matchesTop}>
           <Text style={styles.matchesTitle}>Matches</Text>
           <TouchableOpacity>
-            <Icon name="ellipsis-vertical" color={DARK_GRAY} size={20}></Icon>
+            <Icon name="ellipsis-vertical" color={DARK_GRAY} size={20} />
           </TouchableOpacity>
         </View>
         <FlatList
           numColumns={2}
           data={matches}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(_item, index) => index.toString()}
           renderItem={({ item }) => (
             <TouchableOpacity onPress={() => showUserDetails(item)}>
               <CardItem
@@ -61,7 +60,6 @@ const Matches = (props: { userId: string }) => {
                 isLarge={false}
                 editable={false}
                 newUser={false}
-                handleEditEmoji={() => {}}
               />
               <Modal
                 animationType="slide"

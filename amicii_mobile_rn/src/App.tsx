@@ -4,7 +4,7 @@ import config from '../aws-exports'
 import { AmiciiBackendCdkStack } from '../cdk-exports.json'
 import { withAuthenticator } from 'aws-amplify-react-native'
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -15,11 +15,9 @@ import TabBarIcon from './components/TabBarIcon'
 import Profile from './screens/Profile'
 import Chat from './screens/Chat'
 import { extractUserId } from './helpers/stringHelper'
-import { useState } from 'react'
 import { createNewUser, getUser } from './services/APIService'
 import { UserType } from './types'
 import { ActivityIndicator, View } from 'react-native'
-import { newMockUser } from './assets/data/mockUsers'
 import PubNub from 'pubnub'
 import { PubNubProvider } from 'pubnub-react'
 
@@ -48,18 +46,13 @@ const App = () => {
   const [initialRouteName, setInitialRouteName] = useState<string>('Explore')
   const [currentUser, setCurrentUser] = useState<UserType | undefined>()
 
-  const userId = 'efgh'
-  const emojiProfile = '1f45e'
-  const username = 'user2'
-  const chatName = 'abcdefghi'
-
   useEffect(() => {
     const processUser = async () => {
       try {
         const loggedInUser = await Auth.currentUserInfo()
         const userId = extractUserId(loggedInUser.id)
         const username = loggedInUser.username
-        var user = await getUser(userId)
+        let user = await getUser(userId)
         if (!user) {
           const createdUserId = await createNewUser(userId, username)
           if (createdUserId) {
@@ -74,20 +67,20 @@ const App = () => {
       }
     }
 
-    const testNewUserProcess = () => {
-      setInitialRouteName('Profile')
-      setCurrentUser(newMockUser)
-      setCurrentUserId(newMockUser.id)
-    }
-    const testUser = async (userId: string) => {
-      try {
-        const user = await getUser(userId)
-        setCurrentUser(user)
-        setCurrentUserId(user!.id)
-      } catch (error) {
-        console.log('Cannot get userId: ', error)
-      }
-    }
+    // const testNewUserProcess = () => {
+    //   setInitialRouteName('Profile')
+    //   setCurrentUser(newMockUser)
+    //   setCurrentUserId(newMockUser.id)
+    // }
+    // const testUser = async (userId: string) => {
+    //   try {
+    //     const user = await getUser(userId)
+    //     setCurrentUser(user)
+    //     setCurrentUserId(user!.id)
+    //   } catch (error) {
+    //     console.log('Cannot get userId: ', error)
+    //   }
+    // }
     // testNewUserProcess()
     // testUser('bcysqv')
     processUser()
