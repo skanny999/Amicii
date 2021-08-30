@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { ImageBackground, Modal, Pressable, Text, View } from 'react-native'
-import styles from '../assets/styles'
-import CancelButton from '../components/CancelButton'
-import CardItem from '../components/CardItem'
-import EditButton from '../components/EditButton'
-import EmojiPicker from '../components/EmojiPicker'
-import { stringFromEmoji } from '../helpers/emojiEncoder'
-import { updateCurrentUser } from '../services/APIService'
-import { UserType } from '../types'
+import styles from '../../assets/styles'
+import CancelButton from '../../components/CancelButton'
+import CardItem from '../../components/CardItem'
+import EditButton from '../../components/EditButton'
+import EmojiPicker from '../../components/EmojiPicker'
+import { stringFromEmoji } from '../../helpers/emojiEncoder'
+import { updateCurrentUser } from '../../services/APIService'
+import { UserType } from '../../types'
 
 const Profile = (props: { user?: UserType }) => {
   const userIsSetup = () => {
@@ -110,7 +110,7 @@ const Profile = (props: { user?: UserType }) => {
   return (
     <>
       <ImageBackground
-        source={require('../assets/images/background.png')}
+        source={require('../../assets/images/background.png')}
         style={styles.profileBackground}
       >
         <View testID={'ProfileScreen'} style={styles.profileTop}>

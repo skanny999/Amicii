@@ -93,6 +93,7 @@ const CardItem = ({
       />
       {isLarge && (
         <TextInput
+          testID="bio"
           returnKeyType={'done'}
           maxLength={300}
           scrollEnabled={false}

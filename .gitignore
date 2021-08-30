@@ -137,3 +137,5 @@ amplify-gradle-config.json
 amplifytools.xcconfig
 .secret-*
 ../Amicii/amplify/mock-data
+amicii_mobile_rn/cache/*
+amicii_mobile_rn/coverage/*

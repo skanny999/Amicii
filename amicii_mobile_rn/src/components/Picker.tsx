@@ -30,7 +30,7 @@ const AGPicker = (props: {
   }
 
   const genderItems = [
-    { label: '  Select Gender', value: 'gender' },
+    { label: ' Select Gender', value: 'gender' },
     { label: 'M', value: 'M' },
     { label: 'F', value: 'F' },
     { label: ' ', value: ' ' },

@@ -1,18 +1,25 @@
+import { error } from 'react-native-gifted-chat/lib/utils'
+
 export function stringFromEmoji(emoji: string) {
   return emojiUnicode(emoji)
     .split(' ')
     .map(function (val) {
-      return parseInt(val, 10).toString(16)
+      return parseInt(val).toString(16)
     })
     .join(' ')
 }
 
 export function emojiFromString(emojiString: string) {
   if (emojiString.length > 0) {
-    return emojiString
-      .split(' ')
-      .map((comp) => String.fromCodePoint(parseInt(comp, 16)))
-      .reduce((prev: string, curr: string) => prev + curr)
+    try {
+      return emojiString
+        .split(' ')
+        .map((comp) => String.fromCodePoint(parseInt(comp, 16)))
+        .reduce((prev: string, curr: string) => prev + curr)
+    } catch (e) {
+      console.log(e)
+      return ''
+    }
   } else {
     return ''
   }

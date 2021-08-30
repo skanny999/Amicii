@@ -12,7 +12,7 @@ import { PRIMARY, DARK_GRAY, WHITE, BLACK } from '../assets/styles'
 import Home from '../screens/Home'
 import Matches from '../screens/Matches'
 import TabBarIcon from '../components/TabBarIcon'
-import Profile from '../screens/Profile'
+import Profile from '../screens/Profile/Profile'
 import Chat from '../screens/Chat'
 import { extractUserId } from '../helpers/stringHelper'
 import { createNewUser, getUser } from '../services/APIService'
@@ -20,6 +20,7 @@ import { UserType } from '../types'
 import { ActivityIndicator, View } from 'react-native'
 import PubNub from 'pubnub'
 import { PubNubProvider } from 'pubnub-react'
+import mockUsers, { newMockUser, regularUser } from '../assets/data/mockUsers'
 
 const configuration = {
   ...config,
@@ -67,20 +68,20 @@ const App = () => {
       }
     }
 
-    // const testNewUserProcess = () => {
-    //   setInitialRouteName('Profile')
-    //   setCurrentUser(newMockUser)
-    //   setCurrentUserId(newMockUser.id)
-    // }
-    // const testUser = async (userId: string) => {
-    //   try {
-    //     const user = await getUser(userId)
-    //     setCurrentUser(user)
-    //     setCurrentUserId(user!.id)
-    //   } catch (error) {
-    //     console.log('Cannot get userId: ', error)
-    //   }
-    // }
+    const testNewUserProcess = () => {
+      setInitialRouteName('Profile')
+      setCurrentUser(mockUsers[0])
+      setCurrentUserId(mockUsers[0].id)
+    }
+    const testUser = async (userId: string) => {
+      try {
+        const user = await getUser(userId)
+        setCurrentUser(user)
+        setCurrentUserId(user!.id)
+      } catch (error) {
+        console.log('Cannot get userId: ', error)
+      }
+    }
     // testNewUserProcess()
     // testUser('bcysqv')
     processUser()

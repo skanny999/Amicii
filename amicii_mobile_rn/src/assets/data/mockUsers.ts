@@ -1,6 +1,6 @@
-import {UserType} from '../../types'
+import { UserType } from '../../types'
 
-export const user: UserType = {
+export const regularUser: UserType = {
   id: '5',
   username: 'Luca',
   bio: 'One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like.',
@@ -44,8 +44,19 @@ const mockUsers: UserType[] = [
     genderM: 0,
     genderF: 1,
     createdOn: '2021-08-12T13:45:30.792Z',
-    profileEmoji: '😀',
-    features: ['👩🏽‍🚀', '🙈', '🐭', '😁', '😺', '👘', '🐲', '🫓', '🎭', '🏢'],
+    profileEmoji: '1f469 1f3fd 200d 2696 fe0f',
+    features: [
+      '1f614',
+      '1f978',
+      '1f45e',
+      '1f468 200d 1f467 200d 1f467',
+      '1f452',
+      '1f344',
+      '1f317',
+      '1f367',
+      '1f1e7 1f1ef',
+      '1f343',
+    ],
   },
   {
     id: '2',
