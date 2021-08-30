@@ -1,4 +1,4 @@
-import { CandidatesQuery, MatchesQuery, User } from '../AmiciiAPI'
+import { CandidatesQuery, MatchesQuery, User } from '../services/AmiciiAPI'
 import { UserType } from '../types'
 
 export const responseToUser = (response: User): UserType => {

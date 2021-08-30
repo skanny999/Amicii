@@ -5,7 +5,7 @@ import {
   likeUser,
   dislikeUser,
 } from '../graphql/mutations'
-import * as AmiciiAPI from '../AmiciiAPI'
+import * as AmiciiAPI from './AmiciiAPI'
 import API, { GraphQLResult, graphqlOperation } from '@aws-amplify/api'
 import { UserType } from '../types'
 import {
