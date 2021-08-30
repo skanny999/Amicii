@@ -59,7 +59,7 @@ const mockUsers: UserType[] = [
     ],
   },
   {
-    id: '2',
+    id: 'abcd',
     username: 'Lara',
     bio: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
     age: 23,
@@ -70,7 +70,7 @@ const mockUsers: UserType[] = [
     features: ['⚓️', '🛕', '📤', '✳️', '🕟', '🫀', '☎️', '💾', '🖥', '📟'],
   },
   {
-    id: '3',
+    id: 'efgh',
     username: 'Martin',
     bio: 'Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica, sport etc. Ciao',
     age: 22,
