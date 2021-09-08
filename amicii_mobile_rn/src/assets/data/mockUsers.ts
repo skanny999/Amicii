@@ -17,8 +17,8 @@ export const newMockUser: UserType = {
   bio: '',
   createdOn: '2021-08-12T13:45:30.792Z',
   features: [
+    'PH0',
     'PH1',
-    'PH10',
     'PH2',
     'PH3',
     'PH4',

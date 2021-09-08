@@ -1,24 +1,31 @@
 import { getDB } from './db'
-import { matchesQuery } from './sqlCommands'
 
 async function matches(userId: string) {
   const db = await getDB()
   try {
-    const allMatchesIds = await db.$queryRaw(matchesQuery(userId))
-    const allMatches = await db.user.findMany({
+    const myMatches = await db.user.findFirst({
       where: {
-        id: {
-          in: allMatchesIds.map((item: { ID: string }) => item.ID),
+        id: userId,
+      },
+      select: {
+        liked: {
+          where: {
+            liked: {
+              some: {
+                id: userId,
+              },
+            },
+          },
+          include: {
+            features: true,
+          },
         },
       },
-      include: {
-        features: true,
-      },
     })
-    return allMatches
+    return myMatches?.liked
   } catch (err) {
     console.log(err)
-    return null
+    return []
   }
 }
 

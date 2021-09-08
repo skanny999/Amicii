@@ -1,23 +1,36 @@
 import { getDB } from './db'
-import { candidatesQuery } from './sqlCommands'
 
 async function candidates(userId: string) {
   const db = await getDB()
   try {
-    const allCandidatesIds = await db.$queryRaw(candidatesQuery(userId))
-    const allCandidates = await db.user.findMany({
+    return await db.user.findMany({
       where: {
         id: {
-          in: allCandidatesIds.map((item: { ID: string }) => item.ID),
+          not: userId,
+        },
+        likedRelation: {
+          none: {
+            id: userId,
+          },
+        },
+        dislikedRelation: {
+          none: {
+            id: userId,
+          },
+        },
+        disliked: {
+          none: {
+            id: userId,
+          },
         },
       },
       include: {
         features: true,
       },
     })
-    return allCandidates
   } catch (err) {
-    return null
+    console.log(err)
+    return []
   }
 }
 

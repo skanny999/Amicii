@@ -14,7 +14,7 @@ export const getDB = async () => {
     .promise()
 
   const secretString = JSON.parse(dbURL.SecretString || '{}')
-  const url = `mysql://${secretString.username}:${secretString.password}@${secretString.host}:${secretString.port}/${secretString.dbname}?connection_limit=1`
+  const url = `mysql://${secretString.username}:${secretString.password}@${secretString.host}:${secretString.port}/${secretString.dbname}?connection_limit=2`
 
   db = new PrismaClient({
     datasources: { db: { url } },

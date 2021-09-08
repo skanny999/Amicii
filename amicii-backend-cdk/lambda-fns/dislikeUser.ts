@@ -3,10 +3,12 @@ import { getDB } from './db'
 async function dislikeUser(userId: string, dislikedUserId: string) {
   const db = await getDB()
   try {
-    return await db.dislikes.create({
+    return await db.user.update({
+      where: { id: userId },
       data: {
-        userId: userId,
-        dislikedUserId: dislikedUserId,
+        disliked: {
+          connect: { id: dislikedUserId },
+        },
       },
     })
   } catch (err) {

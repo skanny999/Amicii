@@ -1,13 +1,9 @@
 import setupUsersTable from './setupUsersTable'
-import setupLikesTable from './setupLikesTable'
-import setupDislikesTable from './setupDislikesTable'
 import setupFeaturesTable from './setupFeaturesTable'
+import setupDefaultFeatures from './setupDefaultFeatures'
 
 exports.handler = async () => {
-  return await Promise.all([
-    setupUsersTable(),
-    setupLikesTable(),
-    setupDislikesTable(),
-    setupFeaturesTable(),
-  ])
+  await setupUsersTable()
+  await setupFeaturesTable()
+  await setupDefaultFeatures()
 }
