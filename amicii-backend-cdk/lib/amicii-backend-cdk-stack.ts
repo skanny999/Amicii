@@ -25,7 +25,7 @@ export class AmiciiBackendCdkStack extends cdk.Stack {
     new cognito.UserPoolClient(this, 'UserPoolClient', { userPool })
 
     // Create Graphql Api
-    const api = new appsync.GraphqlApi(this, 'AmiciiApi', {
+    const api = new appsync.GraphqlApi(this, 'Amicii Api', {
       name: 'cdk-amicii-appsync-api',
       schema: appsync.Schema.fromAsset('graphql/schema.graphql'),
       authorizationConfig: {
@@ -63,7 +63,7 @@ export class AmiciiBackendCdkStack extends cdk.Stack {
     })
 
     //Create the VPC for the ServerlessDB cluster
-    const vpc = new ec2.Vpc(this, 'AmiciiVPC', {
+    const vpc = new ec2.Vpc(this, 'Amicii VPC', {
       cidr: '10.0.0.0/20',
       natGateways: 0,
       maxAzs: 2,
@@ -95,6 +95,7 @@ export class AmiciiBackendCdkStack extends cdk.Stack {
       vpc,
       securityGroupName: 'private-sg',
     })
+
     privateSg.addIngressRule(
       privateSg,
       ec2.Port.allTraffic(),
