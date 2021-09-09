@@ -118,7 +118,7 @@ export class AmiciiBackendCdkStack extends cdk.Stack {
       scaling: { autoPause: cdk.Duration.seconds(0) },
     })
 
-    const userFn = new ln.NodejsFunction(this, 'UserFn', {
+    const userFn = new ln.NodejsFunction(this, 'UserFunction', {
       vpc,
       vpcSubnets: { subnetType: ec2.SubnetType.ISOLATED },
       securityGroups: [privateSg],

@@ -1,8 +1,8 @@
 {
   "AmiciiBackendCdkStack": {
     "awsappsynchregion": "eu-west-2",
-    "awsappsynchgraphqlEndpoint": "https://jqbebi6pw5gfxd75ho3e4ebrxq.appsync-api.eu-west-2.amazonaws.com/graphql",
-    "awsappsynchapikey": "da2-2brw2e7aobct5nysws6s2nkhga",
+    "awsappsynchgraphqlEndpoint": "https://cdscj2iijffmrnkk3xhfaviuvm.appsync-api.eu-west-2.amazonaws.com/graphql",
+    "awsappsynchapikey": "da2-bfkelveflfcenceddkixiyzjra",
     "awsappsynchauthenticationType": "API_KEY"
   }
 }
