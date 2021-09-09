@@ -15,6 +15,12 @@ const AGPicker = (props: {
     fontSize: props.isLarge ? 20 : 15,
   }
 
+  const androidTextProps = {
+    paddingBottom: props.isLarge ? 15 : 10,
+    color: 'black',
+    fontSize: props.isLarge ? 20 : 15,
+  }
+
   const handlerFunction = props.disabled
     ? (_value: any) => null
     : props.handlePickedValue
@@ -53,8 +59,9 @@ const AGPicker = (props: {
       items={items(props.type)}
       style={{
         inputIOS: textProps,
-        inputAndroid: textProps,
+        inputAndroid: androidTextProps,
       }}
+      useNativeAndroidPickerStyle={false}
       value={props.value}
     />
   )

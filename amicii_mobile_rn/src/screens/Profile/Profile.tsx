@@ -1,5 +1,13 @@
 import React, { useState } from 'react'
-import { ImageBackground, Modal, Pressable, Text, View } from 'react-native'
+import {
+  ImageBackground,
+  KeyboardAvoidingView,
+  Modal,
+  Platform,
+  Pressable,
+  Text,
+  View,
+} from 'react-native'
 import styles from '../../assets/styles'
 import CancelButton from '../../components/CancelButton'
 import CardItem from '../../components/CardItem'
@@ -113,29 +121,33 @@ const Profile = (props: { user?: UserType }) => {
         source={require('../../assets/images/background.png')}
         style={styles.profileBackground}
       >
-        <View testID={'ProfileScreen'} style={styles.profileTop}>
-          <EditButton
-            isEditing={isEditing || !userIsSetup()}
-            handlePress={saveChanges}
-          />
-          {isEditing && setUpCompleted() && (
-            <CancelButton handlePress={cancelEditing} />
-          )}
-        </View>
-        <View style={styles.cardItemContainer}>
-          <CardItem
-            user={currentUser}
-            isLarge={true}
-            editable={isEditing}
-            newUser={!userIsSetup()}
-            handleEditEmoji={emojiToBeUpdated}
-            handleEditBio={updateBio}
-            handleEditAge={updateAge}
-            handleEditGender={updatedGender}
-          />
-        </View>
+        <KeyboardAvoidingView
+          style={{ flexGrow: 1 }}
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        >
+          <View testID={'ProfileScreen'} style={styles.profileTop}>
+            <EditButton
+              isEditing={isEditing || !userIsSetup()}
+              handlePress={saveChanges}
+            />
+            {isEditing && setUpCompleted() && (
+              <CancelButton handlePress={cancelEditing} />
+            )}
+          </View>
+          <View style={styles.cardItemContainer}>
+            <CardItem
+              user={currentUser}
+              isLarge={true}
+              editable={isEditing}
+              newUser={!userIsSetup()}
+              handleEditEmoji={emojiToBeUpdated}
+              handleEditBio={updateBio}
+              handleEditAge={updateAge}
+              handleEditGender={updatedGender}
+            />
+          </View>
+        </KeyboardAvoidingView>
       </ImageBackground>
-
       <Modal
         animationType="slide"
         transparent={false}
