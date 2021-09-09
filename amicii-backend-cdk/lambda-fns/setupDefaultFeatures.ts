@@ -5,43 +5,43 @@ async function setupDefaultFeatures() {
   await db.features.createMany({
     data: [
       {
-        id: 0,
+        id: 1,
         emoji: `PH0`,
       },
       {
-        id: 1,
+        id: 2,
         emoji: `PH1`,
       },
       {
-        id: 2,
+        id: 3,
         emoji: `PH2`,
       },
       {
-        id: 3,
+        id: 4,
         emoji: `PH3`,
       },
       {
-        id: 4,
+        id: 5,
         emoji: `PH4`,
       },
       {
-        id: 5,
+        id: 6,
         emoji: `PH5`,
       },
       {
-        id: 6,
+        id: 7,
         emoji: `PH6`,
       },
       {
-        id: 7,
+        id: 8,
         emoji: `PH7`,
       },
       {
-        id: 8,
+        id: 9,
         emoji: `PH8`,
       },
       {
-        id: 9,
+        id: 10,
         emoji: `PH9`,
       },
     ],

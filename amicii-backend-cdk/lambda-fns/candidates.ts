@@ -25,7 +25,11 @@ async function candidates(userId: string) {
         },
       },
       include: {
-        features: true,
+        features: {
+          select: {
+            emoji: true,
+          },
+        },
       },
     })
   } catch (err) {

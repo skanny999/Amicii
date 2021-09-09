@@ -17,7 +17,11 @@ async function matches(userId: string) {
             },
           },
           include: {
-            features: true,
+            features: {
+              select: {
+                emoji: true,
+              },
+            },
           },
         },
       },

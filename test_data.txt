@@ -89,7 +89,6 @@ INSERT INTO _FeaturesToUser VALUES(20, 'qfebcu');
 INSERT INTO _FeaturesToUser VALUES(12, 'tmqjig');
 INSERT INTO _FeaturesToUser VALUES(22, 'tmqjig');
 INSERT INTO _FeaturesToUser VALUES(23, 'tmqjig');
-INSERT INTO _FeaturesToUser VALUES(23, 'tmqjig');
 INSERT INTO _FeaturesToUser VALUES(24, 'tmqjig');
 INSERT INTO _FeaturesToUser VALUES(25, 'tmqjig');
 INSERT INTO _FeaturesToUser VALUES(26, 'tmqjig');

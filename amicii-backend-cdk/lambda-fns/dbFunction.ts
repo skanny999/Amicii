@@ -5,5 +5,4 @@ import setupDefaultFeatures from './setupDefaultFeatures'
 exports.handler = async () => {
   await setupUsersTable()
   await setupFeaturesTable()
-  await setupDefaultFeatures()
 }

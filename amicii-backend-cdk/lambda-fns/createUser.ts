@@ -8,7 +8,6 @@ async function createUser(userId: string, username: string) {
     username: username,
     features: {
       connect: [
-        { id: 0 },
         { id: 1 },
         { id: 2 },
         { id: 3 },
@@ -18,6 +17,7 @@ async function createUser(userId: string, username: string) {
         { id: 7 },
         { id: 8 },
         { id: 9 },
+        { id: 10 },
       ],
     },
   }
