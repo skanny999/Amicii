@@ -113,6 +113,7 @@ const App = () => {
               <Tab.Navigator
                 initialRouteName={initialRouteName}
                 tabBarOptions={{
+                  keyboardHidesTabBar: true,
                   showLabel: false,
                   activeTintColor: PRIMARY,
                   inactiveTintColor: DARK_GRAY,

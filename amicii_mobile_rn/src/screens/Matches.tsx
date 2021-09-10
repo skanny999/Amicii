@@ -54,7 +54,10 @@ const Matches = (props: { userId: string }) => {
           data={matches}
           keyExtractor={(_item, index) => index.toString()}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => showUserDetails(item)}>
+            <TouchableOpacity
+              onPress={() => showUserDetails(item)}
+              style={{ marginBottom: -80 }}
+            >
               <CardItem
                 user={item}
                 isLarge={false}

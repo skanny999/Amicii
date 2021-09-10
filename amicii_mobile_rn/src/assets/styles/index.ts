@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions, Platform} from 'react-native'
+import { StyleSheet, Dimensions, Platform } from 'react-native'
 
 //COLORS
 
@@ -36,7 +36,7 @@ export default StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 10,
     shadowColor: BLACK,
-    shadowOffset: {height: 0, width: 0},
+    shadowOffset: { height: 0, width: 0 },
   },
   cardItemBio: {
     color: GRAY,
@@ -69,7 +69,7 @@ export default StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 10,
     shadowColor: BLACK,
-    shadowOffset: {height: 0, width: 0},
+    shadowOffset: { height: 0, width: 0 },
   },
   buttonText: {
     color: DARK_GRAY,
@@ -129,7 +129,7 @@ export default StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 20,
     shadowColor: DARK_GRAY,
-    shadowOffset: {height: 10, width: 0},
+    shadowOffset: { height: 10, width: 0 },
   },
   cardStackSmallButton: {
     width: 40,
@@ -143,7 +143,7 @@ export default StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 20,
     shadowColor: DARK_GRAY,
-    shadowOffset: {height: 10, width: 0},
+    shadowOffset: { height: 10, width: 0 },
   },
 
   //MATCHES
@@ -159,7 +159,7 @@ export default StyleSheet.create({
     paddingHorizontal: 10,
   },
   matchesTop: {
-    paddingTop: 50,
+    paddingTop: Platform.OS === 'ios' ? 50 : 20,
     marginHorizontal: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -197,12 +197,13 @@ export default StyleSheet.create({
 
   messageEmoji: {
     fontSize: 50,
+    width: 80,
   },
 
   messageName: {
     fontSize: 20,
   },
-  title: {paddingBottom: 10, fontSize: 22, color: DARK_GRAY},
+  title: { paddingBottom: 10, fontSize: 22, color: DARK_GRAY },
 
   //MODAL
   modalCenteredView: {
