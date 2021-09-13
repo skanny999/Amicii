@@ -19,23 +19,6 @@ INSERT INTO User (id,username,age,profileEmoji,createdOn,bio,genderM,genderF) VA
 INSERT INTO User (id,username,age,profileEmoji,createdOn,bio,genderM,genderF) VALUES ('yyeuir','Noah',54,'1f682','2021-08-06 16:02:14.345','quis massa. Mauris vestibulum, neque sed dictum eleifend, nunc risus varius orci, in consequat enim diam vel arcu. Curabitur ut odio vel est tempor bibendum. Donec felis orci, adipiscing non, luctus sit amet, faucibus ut, nulla. Cras eu tellus eu augue porttitor interdum. Sed',1,1);
 INSERT INTO User (id,username,age,profileEmoji,createdOn,bio,genderM,genderF) VALUES ('fmrufv','Ross',58,'1f43a','2021-08-06 16:02:14.345','Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt, neque vitae semper egestas, urna justo faucibus lectus,',1,0);
 
-INSERT INTO Likes VALUES (1, 'qfebcu', 'bcysqv');
-INSERT INTO Likes VALUES (2, 'qfebcu', 'pmdtks');
-INSERT INTO Likes VALUES (3, 'qfebcu', 'jkwows');
-INSERT INTO Likes VALUES (4, 'bcysqv', 'bcysqv');
-INSERT INTO Likes VALUES (5, 'bcysqv', 'nvkisj');
-INSERT INTO Likes VALUES (6, 'bcysqv', 'vgjtfx');
-INSERT INTO Likes VALUES (7, 'pmdtks', 'bcysqv');
-INSERT INTO Likes VALUES (8, 'pmdtks', 'jkwows');
-INSERT INTO Likes VALUES (9, 'nvkisj', 'bcysqv');
-
-INSERT INTO Dislikes VALUES (1, 'qfebcu', 'tmqjig');
-INSERT INTO Dislikes VALUES (2, 'qfebcu', 'qprvck');
-INSERT INTO Dislikes VALUES (3, 'qfebcu', 'icoacf');
-INSERT INTO Dislikes VALUES (4, 'bcysqv', 'lfjwfg');
-INSERT INTO Dislikes VALUES (5, 'bcysqv', 'wnyebx');
-INSERT INTO Dislikes VALUES (6, 'wnyebx', 'qfebcu');
-
 REPLACE INTO Features VALUES(11, '1f469 1f3fd 200d 2696 fe0f');
 REPLACE INTO Features VALUES(12, '1f614');
 REPLACE INTO Features VALUES(13, '1f978');
