@@ -1,5 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { FlatList, ImageBackground, TouchableOpacity, View } from 'react-native'
+import React, { useCallback, useEffect, useState } from 'react'
+import {
+  FlatList,
+  ImageBackground,
+  RefreshControl,
+  TouchableOpacity,
+  View,
+} from 'react-native'
 import styles from '../assets/styles'
 import Message from '../components/Message'
 import { chatNameForUsers } from '../helpers/chatHelper'
@@ -11,20 +17,27 @@ const ChatList = ({ route, navigation }: ChatNavProps<'ChatList'>) => {
   const user = route.params.user
 
   const [matches, setMatches] = useState<UserType[] | null>(null)
+  const [refreshing, setRefreshing] = useState(false)
+
+  const processUser = async () => {
+    try {
+      if (user.id != null) {
+        const mathchesResponse = await getMatches(user.id)
+        if (mathchesResponse) {
+          setMatches(mathchesResponse)
+        }
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const onRefresh = useCallback(async () => {
+    setRefreshing(true)
+    processUser()
+  }, [refreshing])
 
   useEffect(() => {
-    const processUser = async () => {
-      try {
-        if (user.id != null) {
-          const mathchesResponse = await getMatches(user.id)
-          if (mathchesResponse) {
-            setMatches(mathchesResponse)
-          }
-        }
-      } catch (error) {
-        console.log(error)
-      }
-    }
     processUser()
   }, [user])
 
@@ -37,6 +50,9 @@ const ChatList = ({ route, navigation }: ChatNavProps<'ChatList'>) => {
         <FlatList
           data={matches}
           keyExtractor={(item, index) => index.toString()}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
           renderItem={({ item }) => (
             <TouchableOpacity
               onPress={() => {

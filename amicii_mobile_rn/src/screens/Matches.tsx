@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import {
   ImageBackground,
   View,
@@ -7,6 +7,7 @@ import {
   FlatList,
   Modal,
   Pressable,
+  RefreshControl,
 } from 'react-native'
 import Icon from '../components/Icon'
 import CardItem from '../components/CardItem'
@@ -17,23 +18,32 @@ import { getMatches } from '../services/APIService'
 const Matches = (props: { userId: string }) => {
   const [modalVisible, setModalVisible] = useState(false)
   const [matches, setMatches] = useState<UserType[] | null>(null)
+  const [refreshing, setRefreshing] = useState(false)
 
   const showUserDetails = (_user: UserType) => {
     setModalVisible(true)
   }
 
-  useEffect(() => {
-    const processUser = async () => {
-      try {
-        if (props.userId !== '') {
-          const matchesResponse = await getMatches(props.userId)
-          console.log(matchesResponse)
-          setMatches(matchesResponse!)
-        }
-      } catch (err) {
-        console.log(err)
+  const onRefresh = useCallback(async () => {
+    setRefreshing(true)
+    processUser()
+  }, [refreshing])
+
+  const processUser = async () => {
+    try {
+      if (props.userId !== '') {
+        const matchesResponse = await getMatches(props.userId)
+        console.log(matchesResponse)
+        setMatches(matchesResponse!)
+        setRefreshing(false)
       }
+    } catch (err) {
+      console.log(err)
+      setRefreshing(false)
     }
+  }
+
+  useEffect(() => {
     processUser()
   }, [props.userId])
 
@@ -53,6 +63,9 @@ const Matches = (props: { userId: string }) => {
           numColumns={2}
           data={matches}
           keyExtractor={(_item, index) => index.toString()}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
           renderItem={({ item }) => (
             <TouchableOpacity
               onPress={() => showUserDetails(item)}
