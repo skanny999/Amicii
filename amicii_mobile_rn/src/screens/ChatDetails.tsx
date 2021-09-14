@@ -20,47 +20,45 @@ const ChatDetails = ({ route }: ChatNavProps<'ChatDetails'>) => {
   const [messages, setMessages] = useState<MessageType.Text[]>([])
 
   const addMessage = (message: MessageType.Text) => {
-    setMessages([{ ...message, status: 'read' }, ...messages])
-  }
-
-  const fetchMessages = () => {
-    pubnub.fetchMessages(
-      {
-        channels: [chatName],
-        end: '15343325004275466',
-        count: 100,
-      },
-      (status, response) => {
-        try {
-          const myMessages = response.channels[chatName]
-            .map((channel) => channel.message)
-            .reverse()
-          setMessages(myMessages)
-        } catch (err) {
-          console.log(err)
-        }
-      }
-    )
+    setMessages([message, ...messages])
   }
 
   useEffect(() => {
     if (pubnub) {
       pubnub.setUUID(userId)
-      fetchMessages()
+
+      pubnub.fetchMessages(
+        {
+          channels: [chatName],
+          end: '15343325004275466',
+          count: 100,
+        },
+        (status, response) => {
+          try {
+            const myMessages = response.channels[chatName]
+              .map((channel) => channel.message)
+              .reverse()
+            setMessages(myMessages)
+          } catch (err) {
+            console.log(err)
+          }
+        }
+      )
 
       const listener: ListenerParameters = {
         message: (envelope) => {
-          fetchMessages()
-          // if (envelope.message.authorId !== userId) {
-          //   const textMessage: MessageType.Text = {
-          //     authorId: envelope.message.authorId,
-          //     id: envelope.message.id,
-          //     text: envelope.message.text,
-          //     timestamp: envelope.message.timestamp,
-          //     type: 'text',
-          //   }
-          //   addMessage(textMessage)
-          // }
+          if (envelope.message.authorId !== userId) {
+            setMessages((messages) => [
+              {
+                authorId: envelope.message.authorId,
+                id: envelope.message.id,
+                text: envelope.message.text,
+                timestamp: envelope.message.timestamp,
+                type: 'text',
+              },
+              ...messages,
+            ])
+          }
         },
       }
 
