@@ -19,6 +19,19 @@ INSERT INTO User (id,username,age,profileEmoji,createdOn,bio,genderM,genderF) VA
 INSERT INTO User (id,username,age,profileEmoji,createdOn,bio,genderM,genderF) VALUES ('yyeuir','Noah',54,'1f682','2021-08-06 16:02:14.345','quis massa. Mauris vestibulum, neque sed dictum eleifend, nunc risus varius orci, in consequat enim diam vel arcu. Curabitur ut odio vel est tempor bibendum. Donec felis orci, adipiscing non, luctus sit amet, faucibus ut, nulla. Cras eu tellus eu augue porttitor interdum. Sed',1,1);
 INSERT INTO User (id,username,age,profileEmoji,createdOn,bio,genderM,genderF) VALUES ('fmrufv','Ross',58,'1f43a','2021-08-06 16:02:14.345','Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt, neque vitae semper egestas, urna justo faucibus lectus,',1,0);
 
+
+
+INSERT IGNORE INTO Features VALUES(1, 'PH1');
+INSERT IGNORE INTO Features VALUES(2, 'PH2');
+INSERT IGNORE INTO Features VALUES(3, 'PH3');
+INSERT IGNORE INTO Features VALUES(4, 'PH4');
+INSERT IGNORE INTO Features VALUES(5, 'PH5');
+INSERT IGNORE INTO Features VALUES(6, 'PH6');
+INSERT IGNORE INTO Features VALUES(7, 'PH7');
+INSERT IGNORE INTO Features VALUES(8, 'PH8');
+INSERT IGNORE INTO Features VALUES(9, 'PH9');
+INSERT IGNORE INTO Features VALUES(10, 'PH10');
+
 REPLACE INTO Features VALUES(11, '1f469 1f3fd 200d 2696 fe0f');
 REPLACE INTO Features VALUES(12, '1f614');
 REPLACE INTO Features VALUES(13, '1f978');
@@ -46,17 +59,6 @@ REPLACE INTO Features VALUES(34, '1f4b6');
 REPLACE INTO Features VALUES(35, '1f52a');
 
 
-
-INSERT IGNORE INTO Features VALUES(1, 'PH1');
-INSERT IGNORE INTO Features VALUES(2, 'PH2');
-INSERT IGNORE INTO Features VALUES(3, 'PH3');
-INSERT IGNORE INTO Features VALUES(4, 'PH4');
-INSERT IGNORE INTO Features VALUES(5, 'PH5');
-INSERT IGNORE INTO Features VALUES(6, 'PH6');
-INSERT IGNORE INTO Features VALUES(7, 'PH7');
-INSERT IGNORE INTO Features VALUES(8, 'PH8');
-INSERT IGNORE INTO Features VALUES(9, 'PH9');
-INSERT IGNORE INTO Features VALUES(10, 'PH10');
 
 INSERT INTO _FeaturesToUser VALUES(11, 'qfebcu');
 INSERT INTO _FeaturesToUser VALUES(12, 'qfebcu');

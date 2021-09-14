@@ -21,6 +21,9 @@ import { ActivityIndicator, View } from 'react-native'
 import PubNub from 'pubnub'
 import { PubNubProvider } from 'pubnub-react'
 import mockUsers, { newMockUser, regularUser } from '../assets/data/mockUsers'
+import { LogBox } from 'react-native'
+
+LogBox.ignoreAllLogs()
 
 const configuration = {
   ...config,
